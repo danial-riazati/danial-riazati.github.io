@@ -213,7 +213,19 @@ body {
   margin: 0 10px 0 3px;
   overflow: hidden;
 }
+.skill-item{
+  font-family: "Ubuntu Mono";
+  margin: 20px 0;
+}
+.skill-title::before{
+  content: '# ';
+}
+.skill-title{
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0;
 
+}
 @media only screen and (max-width: 600px) {
   .title-box {
     justify-content: center;
