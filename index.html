@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <title>Danial Riazati</title>
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const input = document.getElementById('autoSizeInput');
+
+        function adjustInputSize() {
+            const span = document.createElement('span');
+            span.style.visibility = 'hidden';
+            span.style.position = 'absolute';
+            span.style.whiteSpace = 'pre';
+            document.body.appendChild(span);
+
+            span.textContent = input.value;
+            span.style.font = window.getComputedStyle(input).font;
+
+            input.style.width = `${span.offsetWidth}px`;
+
+            document.body.removeChild(span);
+        }
+
+        input.addEventListener('blur', function () {
+            setTimeout(() => input.focus(), 0);
+        });
+
+        input.focus();
+        adjustInputSize();
+
+        input.addEventListener('input', adjustInputSize);
+    });
+</script>
+
+<body>
+    <div class="main-box">
+        <div class="navbar-box">
+            <div class="download-cv-button">
+                Download CV
+            </div>
+        </div>
+        <div class="main-content-box">
+
+            <div class="title-box">
+                <div class="title-name-box">
+                    <div class="title-dollar-sign">$</div>
+                    <div class="title-name">Danial Riazati</div>
+                    <div class="cursor-blinker"></div>
+                </div>
+                <img src="assets/profile.jpg" alt="" class="title-image">
+            </div>
+            <div class="terminal-top-box">
+                <div class="terminal-top-red"></div>
+                <div class="terminal-top-yellow"></div>
+                <div class="terminal-top-green"></div>
+            </div>
+            <div class="terminal">
+                <div class="terminal-command-box">
+                    <div class="terminal-name">danial@linux-desktop</div>
+                    <div class="terminal-title-dots">:</div>
+                    <div class="terminal-title-path">~/portfolio</div>
+                    <div class="terminal-title-dollar">$</div>
+                    <div class="terminal-command">
+                        ls
+                    </div>
+                </div>
+                <div class="terminal-return">
+                    AboutMe.txt&nbsp;&nbsp;&nbsp;CV.txt&nbsp;&nbsp;&nbsp;ContactInfo.txt&nbsp;&nbsp;&nbsp;Educations.txt<br />Skills.txt&nbsp;&nbsp;Experiences.txt&nbsp;&nbsp;&nbsp;Projects.txt&nbsp;&nbsp;&nbsp;Certificates.txt
+                </div>
+                <div class="terminal-command-box">
+                    <div class="terminal-name">danial@linux-desktop</div>
+                    <div class="terminal-title-dots">:</div>
+                    <div class="terminal-title-path">~/portfolio</div>
+                    <div class="terminal-title-dollar">$</div>
+                    <div class="terminal-command">
+                        cat AboutMe.txt
+                    </div>
+                </div>
+                <div class="terminal-return">
+                    -----------------------------------------<br />
+                    Hello There,<br />
+                    I'm Danial Riazati,<br />
+                    a Computer Engineering graduate from Shahid Beheshti University, deeply immersed in the world of
+                    technology both as a profession and a passion. My journey into the realm of computers began at the
+                    tender age of four, when I got my first PC. That early fascination has blossomed into a lifelong
+                    commitment to innovation, engaging deeply with system design, IoT, and the intricacies of software
+                    and hardware integration. My experiences have honed my skills across a variety of technologies,
+                    including developing efficient solutions with ASP.NET and SQL, exploring user-centric applications
+                    through Flutter and React.js, and leveraging Docker and Linux for seamless development environments.
+                    Beyond the bits and bytes, programming is my life, work, and hobby. I breathe code, thrive on the
+                    challenges it presents, and find joy in continuous learning and problem-solving. Basketball holds a
+                    special place in my heart, offering a physical outlet for my energy and a team spirit that mirrors
+                    my work philosophy. My ultimate dream is to both teach and learn, sharing knowledge and gathering
+                    people together to nourish my soul and relax my mind.
+                    As I continue to navigate the tech landscape, my goal remains clear: to innovate, educate, and
+                    inspire, never stopping in my quest to learn and share new skills.
+                    <br />
+                    -----------------------------------------<br />
+
+                </div>
+                <div class="terminal-command-box">
+                    <div class="terminal-name">danial@linux-desktop</div>
+                    <div class="terminal-title-dots">:</div>
+                    <div class="terminal-title-path">~/portfolio</div>
+                    <div class="terminal-title-dollar">$</div>
+                    <div class="terminal-command">
+                        cat CV.txt
+                    </div>
+                </div>
+                <div class="terminal-return ">
+                    "
+                    <div class="download-cv-text" onclick="">
+                        Danial_Riazati_CV.pdf
+                    </div>
+                    "
+                </div>
+                <div class="terminal-command-box">
+                    <div class="terminal-name">danial@linux-desktop</div>
+                    <div class="terminal-title-dots">:</div>
+                    <div class="terminal-title-path">~/portfolio</div>
+                    <div class="terminal-title-dollar">$</div>
+                    <div class="terminal-command">
+                        cat ContactInfo.txt
+                    </div>
+                </div>
+                <div class="terminal-return">
+                    ["
+                    <div class="download-cv-text"
+                        onclick="window.open('https://mail.google.com/mail/u/0/?fs=1&to=riazatidanial@gmail.com&su=SUBJECT&body=BODY&tf=cm', '_blank')">
+                        riazatidanial@gmail.com </div>
+                    ", "
+                    <div class="download-cv-text"
+                        onclick="window.open('https://linkedin.com/in/danial-riazati', '_blank')">
+                        LinkedIn
+                    </div>
+                    ", "
+                    <div class="download-cv-text" onclick="window.open('https://github.com/danial-riazati', '_blank')">
+                        github
+                    </div>
+                    "]
+                </div>
+                <div class="terminal-command-box">
+                    <div class="terminal-name">danial@linux-desktop</div>
+                    <div class="terminal-title-dots">:</div>
+                    <div class="terminal-title-path">~/portfolio</div>
+                    <div class="terminal-title-dollar">$</div>
+                    <div class="terminal-command">
+                        <input type="text" id="autoSizeInput" value="">
+                    </div>
+                    <div class="cursor-blinker terminal-cursor-blinker">
+                        s
+                    </div>
+                </div>
+            </div>
+            <div class="subtitle-box">
+                <div class="subtitle-dollar-sign">$</div>
+                <div class="subtitle-name">Educations</div>
+            </div>
+            <div class="terminal-top-box">
+                <div class="terminal-top-red"></div>
+                <div class="terminal-top-yellow"></div>
+                <div class="terminal-top-green"></div>
+            </div>
+            <div class="terminal">
+
+                <div class="terminal-command-box">
+                    <div class="terminal-name">danial@linux-desktop</div>
+                    <div class="terminal-title-dots">:</div>
+                    <div class="terminal-title-path">~/portfolio</div>
+                    <div class="terminal-title-dollar">$</div>
+                    <div class="terminal-command">
+                        cat Educations.txt
+                    </div>
+                </div>
+                <div class="terminal-return ">
+                    -----------------------------------------<br />
+                    Shahid Beheshti University<br />
+                    Bachelor of Engineering - BE, Computer Engineering<br />
+                    Sep 2019 - Feb 2024<br /><br /><br />
+
+                    National Organization for Development of Exceptional Talents (Sampad)<br />
+                    High School Diploma - mathematics<br />
+                    Sep 2013 - Jun 2019<br />
+                    -----------------------------------------<br />
+                </div>
+                <div class="terminal-command-box">
+                    <div class="terminal-name">danial@linux-desktop</div>
+                    <div class="terminal-title-dots">:</div>
+                    <div class="terminal-title-path">~/portfolio</div>
+                    <div class="terminal-title-dollar">$</div>
+                    <div class="cursor-blinker terminal-cursor-blinker">
+                        s
+                    </div>
+                </div>
+            </div>
+            <div class="subtitle-box">
+                <div class="subtitle-dollar-sign">$</div>
+                <div class="subtitle-name">Skills</div>
+            </div>
+            
+            
+            <div style="height: 500px;"></div>
+        </div>
+    </div>
+</body>
+
+</html>
