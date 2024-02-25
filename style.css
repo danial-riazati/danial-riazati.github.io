@@ -5,7 +5,7 @@ body {
 #autoSizeInput {
   display: inline;
   background-color: transparent;
-  color: white;
+  color: #C8D1D9;
   border: none;
   outline: none;
   caret-color: transparent;
@@ -55,7 +55,7 @@ body {
   width: 100px;
   height: 30px;
   background-color: #262626;
-  color: white;
+  color: #C8D1D9;
   border-radius: 2px;
 }
 .title-box {
@@ -154,7 +154,7 @@ body {
   font-family: "Ubuntu Mono";
   color: #94e131;
   font-weight: 200;
-  color: white;
+  color: #C8D1D9;
   word-break: break-all;
 }
 .terminal-name {
@@ -162,7 +162,7 @@ body {
 }
 .terminal-title-dots {
   display: inline;
-  color: white;
+  color: #C8D1D9;
 }
 .terminal-title-path {
   display: inline;
@@ -172,7 +172,7 @@ body {
 }
 .terminal-title-dollar {
   display: inline;
-  color: white;
+  color: #C8D1D9;
   margin-right: 5px;
   margin-left: -5px;
 }
@@ -180,13 +180,13 @@ body {
 .terminal-command {
   font-weight: 200;
   display: inline;
-  color: white;
+  color: #C8D1D9;
 }
 .terminal-cursor-blinker {
   display: inline;
   height: 16px;
   background-color: white;
-  color: white;
+  color: #C8D1D9;
 }
 .download-cv-text {
   margin: 0 -8px;
@@ -225,6 +225,36 @@ body {
   font-weight: bold;
   margin: 5px 0;
 
+}
+.thesis-project-box{
+  padding: 10px 10px;
+  background-color: #262626;
+  min-height: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: start;
+  
+}
+.thesis-project-images{
+  width: 30%;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.thesis-project-data{
+  width: 68%;
+  font-family: "Ubuntu Mono";
+  color: #C8D1D9;
+  text-align: justify;
+  text-justify: inter-word;
+}
+.thesis-project-image{
+  margin: 1px;
+  width:49%;
 }
 @media only screen and (max-width: 600px) {
   .title-box {
