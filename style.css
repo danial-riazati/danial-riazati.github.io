@@ -272,11 +272,46 @@ body {
 }
 .project-item {
   font-family: "Ubuntu Mono";
+  margin:80px 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 .project-title {
-  font-size: large;
+  font-size: 20px;
   font-weight: 900;
 }
 .project-title::before {
-  content: ">";
+  content: "> ";
+  font-size: 24px;
+}
+.project-images{
+  margin: 20px 0;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-evenly;
+align-items: center;
+}
+.project-image{
+  height: 200px;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.certificate-images{
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.certificate-image{
+  border-radius: 10px;
+  width: 45%;
+  aspect-ratio: 8/6;
+  min-width: 320px;
+}
+.certificates-data{
+  font-family: "Ubuntu Mono";
+font-weight: 900;
+font-size: 18px;
 }
