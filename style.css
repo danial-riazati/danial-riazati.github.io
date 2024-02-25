@@ -5,7 +5,7 @@ body {
 #autoSizeInput {
   display: inline;
   background-color: transparent;
-  color: #C8D1D9;
+  color: #c8d1d9;
   border: none;
   outline: none;
   caret-color: transparent;
@@ -37,7 +37,6 @@ body {
   width: 80%;
   min-width: 322px;
   max-width: 800px;
-  background-color: white;
   padding-top: 20px;
   height: 50px;
   display: flex;
@@ -45,6 +44,7 @@ body {
   align-items: center;
   border-bottom: 1px solid rgb(242, 242, 242);
   z-index: 100;
+  background-color: white;
 }
 .download-cv-button {
   display: flex;
@@ -55,7 +55,7 @@ body {
   width: 100px;
   height: 30px;
   background-color: #262626;
-  color: #C8D1D9;
+  color: white;
   border-radius: 2px;
 }
 .title-box {
@@ -91,7 +91,7 @@ body {
   animation: blinker 1s ease-in-out infinite;
 }
 .terminal .cursor-blinker {
-  background-color: white;
+  background-color: #c8d1d9;
 }
 @keyframes blinker {
   50% {
@@ -105,7 +105,7 @@ body {
 }
 .terminal-top-box {
   height: 28px;
-  background-color: #e4e3e5;
+  background-color: #c8d1d9;
   border-radius: 5px 5px 0 0;
   display: flex;
   justify-content: start;
@@ -154,7 +154,7 @@ body {
   font-family: "Ubuntu Mono";
   color: #94e131;
   font-weight: 200;
-  color: #C8D1D9;
+  color: #c8d1d9;
   word-break: break-all;
 }
 .terminal-name {
@@ -162,7 +162,7 @@ body {
 }
 .terminal-title-dots {
   display: inline;
-  color: #C8D1D9;
+  color: #c8d1d9;
 }
 .terminal-title-path {
   display: inline;
@@ -172,7 +172,7 @@ body {
 }
 .terminal-title-dollar {
   display: inline;
-  color: #C8D1D9;
+  color: #c8d1d9;
   margin-right: 5px;
   margin-left: -5px;
 }
@@ -180,13 +180,13 @@ body {
 .terminal-command {
   font-weight: 200;
   display: inline;
-  color: #C8D1D9;
+  color: #c8d1d9;
 }
 .terminal-cursor-blinker {
   display: inline;
   height: 16px;
-  background-color: white;
-  color: #C8D1D9;
+  background-color: #c8d1d9;
+  color: #c8d1d9;
 }
 .download-cv-text {
   margin: 0 -8px;
@@ -213,20 +213,19 @@ body {
   margin: 0 10px 0 3px;
   overflow: hidden;
 }
-.skill-item{
+.skill-item {
   font-family: "Ubuntu Mono";
   margin: 20px 0;
 }
-.skill-title::before{
-  content: '# ';
+.skill-title::before {
+  content: "# ";
 }
-.skill-title{
+.skill-title {
   font-size: 18px;
   font-weight: bold;
   margin: 5px 0;
-
 }
-.thesis-project-box{
+.thesis-project-box {
   padding: 10px 10px;
   background-color: #262626;
   min-height: 20px;
@@ -235,9 +234,8 @@ body {
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: start;
-  
 }
-.thesis-project-images{
+.thesis-project-images {
   width: 30%;
   height: max-content;
   display: flex;
@@ -245,16 +243,16 @@ body {
   align-items: center;
   flex-wrap: wrap;
 }
-.thesis-project-data{
+.thesis-project-data {
   width: 68%;
   font-family: "Ubuntu Mono";
-  color: #C8D1D9;
+  color: #c8d1d9;
   text-align: justify;
   text-justify: inter-word;
 }
-.thesis-project-image{
+.thesis-project-image {
   margin: 1px;
-  width:49%;
+  width: 49%;
 }
 @media only screen and (max-width: 600px) {
   .title-box {
@@ -271,4 +269,14 @@ body {
   .title-image {
     width: 50%;
   }
+}
+.project-item {
+  font-family: "Ubuntu Mono";
+}
+.project-title {
+  font-size: large;
+  font-weight: 900;
+}
+.project-title::before {
+  content: ">";
 }
