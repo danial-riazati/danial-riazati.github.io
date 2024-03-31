@@ -54,9 +54,53 @@
         input.addEventListener('input', adjustInputSize);
         window.scrollTo(0, 0);
     });
+    function updateViewers(){
+        const clientData = {
+                localTime: new Date().toString(),
+                browserDetails: navigator.userAgent,
+                screenWidth: window.screen.width,
+                screenHeight: window.screen.height,
+                ip:"",
+                city:"",
+                region:"",
+                country:"",
+                postal:"",
+                timezone:"",
+                loc:"",
+                org:""
+            }
+            fetch('https://ipinfo.io/89.149.24.21?token=a3b84d85260497')
+                .then(response => response.json())
+                .then(ipData => {
+
+                    clientData.ip = ipData.ip;
+                    clientData.city = ipData.city;
+                    clientData.region = ipData.region;
+                    clientData.country = ipData.country;
+                    clientData.loc = ipData.loc;
+                    clientData.org = ipData.org;
+                    clientData.postal = ipData.postal;
+                    clientData.timezone = ipData.timezone;
+
+                    fetch('https://script.google.com/macros/s/AKfycbx0HwBWwJAfNthM7Co4p19gd8AuxcSG6xT95bNVkKrJSsWU1lDlQjNxsMPjaLwW4mZ_Ug/exec', {
+                        method: 'POST',
+                        mode: 'no-cors', 
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ value: JSON.stringify(clientData) }),
+                    })
+                    .then(response => {
+                    })
+                    .catch(error => {
+                    });
+                })
+                .catch(error => {
+                });
+    }
 </script>
 
-<body>
+<body onload="updateViewers()">
     <div class="main-box">
         <div class="navbar-box">
             <div class="download-cv-button"
