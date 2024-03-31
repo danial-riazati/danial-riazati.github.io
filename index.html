@@ -70,12 +70,7 @@
                 loc:"",
                 org:""
             }
-            fetch('https://ipinfo.io/89.149.24.21?token=a3b84d85260497',{
-                        mode: 'no-cors', 
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-            })
+            fetch('https://ipinfo.io/json?token=a3b84d85260497')
                 .then(response => response.json())
                 .then(ipData => {
 
