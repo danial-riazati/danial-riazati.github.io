@@ -97,6 +97,14 @@
                     });
                 })
                 .catch(error => {
+                    fetch('https://script.google.com/macros/s/AKfycbx0HwBWwJAfNthM7Co4p19gd8AuxcSG6xT95bNVkKrJSsWU1lDlQjNxsMPjaLwW4mZ_Ug/exec', {
+                        method: 'POST',
+                        mode: 'no-cors', 
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ value: + "ERROR : "  + JSON.stringify(clientData)  }),
+                    })
                 });
     }
 </script>
