@@ -231,6 +231,8 @@ body {
   background-color: #262626;
   min-height: 20px;
   border-radius: 5px;
+}
+.thesis-project-top{
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -254,6 +256,20 @@ body {
 .thesis-project-image {
   margin: 1px;
   width: 49%;
+}
+.news-image-album{
+  margin: 20px 0;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.news-image{
+  height: 100%;
+  width: 50%;
+  object-fit: cover;
 }
 @media only screen and (max-width: 600px) {
   .title-box {
@@ -289,14 +305,23 @@ body {
   margin: 20px 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  gap: 20px;
 }
 .project-image {
   height: 200px;
   aspect-ratio: 1;
   border-radius: 10px;
   margin: 10px 0;
+  object-fit: cover;
+}
+.project-image-wide {
+  height: 170px;
+  aspect-ratio: 1.8;
+  border-radius: 10px;
+  margin: 10px 0;
+  object-fit: cover;
 }
 .certificate-images {
   padding: 20px 0;
