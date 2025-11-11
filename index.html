@@ -14,66 +14,212 @@
     <meta property="og:url" content="https://danialriazati.ir">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="google-site-verification" content="cyOPO8z70xLNQhaveYXwENMDbJk1cBrHa9JIeOiAR3I" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
     <link rel="icon" href="/assets/logo.png">
-    <title>Danial Riazati - Portfolio</title>
-</head>
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const input = document.getElementById('autoSizeInput');
+    <title>Curriculum Vitae — Danial Riazati</title>
 
-        function adjustInputSize() {
-            const span = document.createElement('span');
-            span.style.visibility = 'hidden';
-            span.style.position = 'absolute';
-            span.style.whiteSpace = 'pre';
-            document.body.appendChild(span);
-
-            span.textContent = input.value;
-            span.style.font = window.getComputedStyle(input).font;
-
-            input.style.width = `${span.offsetWidth}px`;
-
-            document.body.removeChild(span);
+    <!-- Fonts and style for CV -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #0b3d91;
+            --muted: #5f6570;
+            --paper: #ffffff;
+            --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        input.addEventListener('blur', function () {
-            setTimeout(() => input.focus(), 0);
-        });
+        html,
+        body {
+            background: #ffffff;
+            font-family: var(--sans);
+            color: #111;
+            margin: 0;
+            padding: 0;
+        }
 
-        input.focus();
-        adjustInputSize();
+        .sheet {
+            background: var(--paper);
+            width: 100%;
+            max-width: 980px;
+            margin: auto;
+            padding: 40px 50px;
+            box-sizing: border-box;
+        }
 
-        input.addEventListener('input', adjustInputSize);
-        window.scrollTo(0, 0);
-    });
-    function updateViewers(){
-        const clientData = {
+        .row {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .left {
+            width: 220px;
+            flex-shrink: 0;
+            border-right: 1px solid #e5e8ef;
+            padding-right: 10px;
+            box-sizing: border-box;
+        }
+
+        main {
+            flex: 1;
+            padding-left: 16px;
+        }
+
+        .photo {
+            width: 150px;
+            height: 200px;
+            border-radius: 6px;
+            background: #eef2ff;
+            margin: 0 auto 10px auto;
+            overflow: hidden;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.08);
+            border: 1px solid #dee3f3;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name {
+            text-align: center;
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--accent);
+            margin-bottom: 3px;
+        }
+
+        .role {
+            text-align: center;
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .contact {
+            font-size: 10.5px;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .contact strong {
+            color: #111;
+        }
+
+        section {
+            margin-bottom: 10px;
+            page-break-inside: avoid;
+        }
+
+        h2 {
+            font-size: 13px;
+            margin: 0 0 4px 0;
+            color: #0f1724;
+            font-weight: 600;
+            border-bottom: 1px solid #e5e8ee;
+            padding-bottom: 1px;
+        }
+
+        .summary {
+            font-size: 11px;
+            line-height: 1.35;
+            margin: 0 0 5px 0;
+        }
+
+        .job-title {
+            font-weight: 600;
+            color: #0b3d91;
+            font-size: 11px;
+        }
+
+        .period {
+            color: var(--muted);
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+        .company {
+            font-weight: 600;
+            font-size: 10.5px;
+            color: #222;
+        }
+
+        .bullets {
+            margin: 3px 0 0 0;
+            padding-left: 15px;
+        }
+
+        .bullets li {
+            margin-bottom: 3px;
+            font-size: 10.5px;
+            line-height: 1.3;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 4px;
+            font-size: 10.5px;
+        }
+
+        .skill-pill {
+            background: #f6f8ff;
+            border-radius: 5px;
+            padding: 4px 6px;
+            border: 1px solid #eef2ff;
+            color: #07326a;
+        }
+
+        footer {
+            text-align: right;
+            font-size: 9.5px;
+            color: var(--muted);
+            margin-top: 4mm;
+        }
+
+        @media print {
+
+            html,
+            body {
+                background: #fff;
+            }
+
+            .sheet {
+                background: #fff;
+                box-shadow: none;
+                margin: 0;
+                padding: 10mm 12mm;
+                width: 210mm;
+                min-height: 297mm;
+            }
+
+            .row {
+                flex-wrap: nowrap;
+            }
+        }
+    </style>
+
+    <!-- Existing API and viewer script -->
+    <script>
+        function updateViewers() {
+            const clientData = {
                 localTime: new Date().toString(),
                 browserDetails: navigator.userAgent,
                 screenWidth: window.screen.width,
                 screenHeight: window.screen.height,
-                ip:"",
-                city:"",
-                region:"",
-                country:"",
-                postal:"",
-                timezone:"",
-                loc:"",
-                org:""
+                ip: "",
+                city: "",
+                region: "",
+                country: "",
+                postal: "",
+                timezone: "",
+                loc: "",
+                org: ""
             }
             fetch('https://ipinfo.io/json?token=a3b84d85260497')
                 .then(response => response.json())
                 .then(ipData => {
-
                     clientData.ip = ipData.ip;
                     clientData.city = ipData.city;
                     clientData.region = ipData.region;
@@ -85,578 +231,159 @@
 
                     fetch('https://script.google.com/macros/s/AKfycbx0HwBWwJAfNthM7Co4p19gd8AuxcSG6xT95bNVkKrJSsWU1lDlQjNxsMPjaLwW4mZ_Ug/exec', {
                         method: 'POST',
-                        mode: 'no-cors', 
+                        mode: 'no-cors',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({ value: JSON.stringify(clientData) }),
                     })
-                    .then(response => {
-                    })
-                    .catch(error => {
-                    });
                 })
                 .catch(error => {
                     fetch('https://script.google.com/macros/s/AKfycbx0HwBWwJAfNthM7Co4p19gd8AuxcSG6xT95bNVkKrJSsWU1lDlQjNxsMPjaLwW4mZ_Ug/exec', {
                         method: 'POST',
-                        mode: 'no-cors', 
+                        mode: 'no-cors',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({ value:  "ERROR : "  + JSON.stringify(clientData)  }),
+                        body: JSON.stringify({ value: "ERROR : " + JSON.stringify(clientData) }),
                     })
                 });
-    }
-</script>
+        }
 
-<body onload="updateViewers()">
-    <div class="main-box">
-        <div class="navbar-box">
-            <div class="download-cv-button"
-                onclick="window.open('https://raw.githubusercontent.com/danial-riazati/danial-riazati.github.io/master/Danial_Riazati_CV.pdf')">
-                Download CV
-            </div>
-        </div>
-        <div class="main-content-box">
+        document.addEventListener('DOMContentLoaded', (event) => {
+            updateViewers();
+        });
+    </script>
+</head>
 
-            <div class="title-box">
-                <div class="title-name-box">
-                    <div class="title-dollar-sign">$</div>
-                    <div class="title-name">Danial Riazati</div>
-                    <div class="cursor-blinker"></div>
+<body>
+    <div class="sheet">
+        <div class="row">
+            <aside class="left">
+                <div class="photo">
+                    <img src="./assets/profile.jpg" alt="Danial Riazati Photo">
                 </div>
-                <img src="assets/profile.jpg" alt="Danial Riazati Profile Image" class="title-image">
-            </div>
-            <div class="terminal-top-box">
-                <div class="terminal-top-red"></div>
-                <div class="terminal-top-yellow"></div>
-                <div class="terminal-top-green"></div>
-            </div>
-            <div class="terminal">
-                <div class="terminal-command-box">
-                    <div class="terminal-name">danial@linux-desktop</div>
-                    <div class="terminal-title-dots">:</div>
-                    <div class="terminal-title-path">~/portfolio</div>
-                    <div class="terminal-title-dollar">$</div>
-                    <div class="terminal-command">
-                        ls
+                <div class="name">Danial Riazati</div>
+                <div class="role">Computer Engineer • Full-Stack Developer</div>
+                <div class="contact">
+                    <strong>Address:</strong> Tehran, Iran<br>
+                    <strong>Phone:</strong> (+98) 9034795992<br>
+                    <strong>Email:</strong> riazatidanial@gmail.com<br><br>
+                    <strong>Website:</strong> <a href="https://danialriazati.ir" style="color:var(--accent);text-decoration:none;">danialriazati.ir</a><br>
+                    <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/danial-riazati" style="color:var(--accent);text-decoration:none;">linkedin.com/in/danial-riazati</a><br>
+                    <strong>GitHub:</strong> <a href="https://github.com/danial-riazati" style="color:var(--accent);text-decoration:none;">github.com/danial-riazati</a><br><br>
+                    <strong>Date of Birth:</strong> 8 Sep 2001<br>
+                    <strong>Nationality:</strong> Iranian<br>
+                    <strong>Marital Status:</strong> Married
+                </div>
+            </aside>
+
+            <main>
+                <section>
+                    <h2>Profile</h2>
+                    <p class="summary">
+                        Computer Engineer and Software Developer with hands-on experience in backend systems, IoT, blockchain, and AI-driven applications.
+                        Proven ability to lead teams, mentor interns, and deliver robust, scalable systems. Passionate about smart technologies and software architecture.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Professional Experience</h2>
+                    <div>
+                        <span class="job-title">Software Engineer & Team Lead</span><span class="period">Apr 2024 – Nov 2025</span><br>
+                        <span class="company">Eyvan Group / EyvanTrip.com — Tehran, Iran</span>
+                        <ul class="bullets">
+                            <li>Developed travel platform features including REST APIs and responsive UI modules.</li>
+                            <li>Improved booking logic and CI/CD pipeline efficiency.</li>
+                        </ul>
                     </div>
-                </div>
-                <div class="terminal-return">
-                    AboutMe.txt&nbsp;&nbsp;&nbsp;CV.txt&nbsp;&nbsp;&nbsp;ContactInfo.txt&nbsp;&nbsp;&nbsp;Educations.txt<br />Skills.txt&nbsp;&nbsp;Experiences.txt&nbsp;&nbsp;&nbsp;Projects.txt&nbsp;&nbsp;&nbsp;Certificates.txt
-                </div>
-                <div class="terminal-command-box">
-                    <div class="terminal-name">danial@linux-desktop</div>
-                    <div class="terminal-title-dots">:</div>
-                    <div class="terminal-title-path">~/portfolio</div>
-                    <div class="terminal-title-dollar">$</div>
-                    <div class="terminal-command">
-                        cat AboutMe.txt
+                    <div>
+                        <span class="job-title">Software Engineer</span><span class="period">Apr 2024 – Jul 2024</span><br>
+                        <span class="company">InfraFund.net — London, UK</span>
+                        <ul class="bullets">
+                            <li>Developed Web 3.0 crowdfunding platform integrating blockchain, AI asset management, and KYC systems.</li>
+                            <li>Built DEX/STO components and APIs for real-time investor analytics.</li>
+                        </ul>
                     </div>
-                </div>
-                <div class="terminal-return">
-                    -----------------------------------------<br />
-                    Hi there,<br />
-                    I'm Danial Riazati -<br />
-                    a developer who loves turning ideas into code and building digital solutions that make an impact.<br />
-                    -----------------------------------------<br />
-                </div>
-                <div class="terminal-command-box">
-                    <div class="terminal-name">danial@linux-desktop</div>
-                    <div class="terminal-title-dots">:</div>
-                    <div class="terminal-title-path">~/portfolio</div>
-                    <div class="terminal-title-dollar">$</div>
-                    <div class="terminal-command">
-                        cat CV.txt
+                    <div>
+                        <span class="job-title">Software Engineer — Backend & Team Lead</span><span class="period">Mar 2021 – Feb 2024</span><br>
+                        <span class="company">Hasin Technology Co. — Tehran, Iran</span>
+                        <ul class="bullets">
+                            <li>Optimized payment switch handling 2 M+ daily transactions; implemented advanced monitoring & security.</li>
+                            <li>Led Startup Studio; built Piki Smart Cart integrating sensors, IoT, and computer vision for retail automation.</li>
+                        </ul>
                     </div>
-                </div>
-                <div class="terminal-return ">
-                    "
-                    <div class="download-cv-text"
-                        onclick="window.open('https://raw.githubusercontent.com/danial-riazati/danial-riazati.github.io/master/Danial_Riazati_CV.pdf')">
-                        Danial_Riazati_CV.pdf
+                    <div>
+                        <span class="job-title">Internship Mentor</span><span class="period">Jun 2021 – Dec 2023</span><br>
+                        <span class="company">Radin Technology Co. — Tehran, Iran</span>
+                        <ul class="bullets">
+                            <li>Mentored 30+ undergraduate interns in software engineering and project delivery.</li>
+                        </ul>
                     </div>
-                    "
-                </div>
-                <div class="terminal-command-box">
-                    <div class="terminal-name">danial@linux-desktop</div>
-                    <div class="terminal-title-dots">:</div>
-                    <div class="terminal-title-path">~/portfolio</div>
-                    <div class="terminal-title-dollar">$</div>
-                    <div class="terminal-command">
-                        cat ContactInfo.txt
+                    <div>
+                        <span class="job-title">Teaching & Research Assistant</span><span class="period">Sep 2020 – Sep 2023</span><br>
+                        <span class="company">Shahid Beheshti University — Tehran, Iran</span>
+                        <ul class="bullets">
+                            <li>Head TA for Advanced Programming and Algorithms; assisted in Internet Engineering and research projects.</li>
+                        </ul>
                     </div>
-                </div>
-                <div class="terminal-return">
-                    ["
-                    <div class="download-cv-text"
-                        onclick="window.open('https://mail.google.com/mail/u/0/?fs=1&to=riazatidanial@gmail.com&su=SUBJECT&body=BODY&tf=cm', '_blank')">
-                        riazatidanial@gmail.com </div>
-                    ", "
-                    <div class="download-cv-text"
-                        onclick="window.open('https://linkedin.com/in/danial-riazati', '_blank')">
-                        LinkedIn
+                </section>
+
+                <section>
+                    <h2>Education</h2>
+                    <div>
+                        <span class="job-title">B.Sc. Computer Engineering</span><br>
+                        <span class="period">Shahid Beheshti University, Tehran • Sep 2019 – Aug 2024</span>
+                        <ul class="bullets">
+                            <li>Thesis: <em>Class Negar — Smart Classroom & Attendance System</em> (Best Thesis Project Candidate in CSE Faculty)</li>
+                        </ul>
                     </div>
-                    ", "
-                    <div class="download-cv-text" onclick="window.open('https://github.com/danial-riazati', '_blank')">
-                        github
+                    <div>
+                        <span class="job-title">High School Diploma — Mathematics</span><br>
+                        <span class="period">SAMPAD (Alborz) • Sep 2013 – Jun 2019</span>
                     </div>
-                    "]
-                </div>
-                <div class="terminal-command-box">
-                    <div class="terminal-name">danial@linux-desktop</div>
-                    <div class="terminal-title-dots">:</div>
-                    <div class="terminal-title-path">~/portfolio</div>
-                    <div class="terminal-title-dollar">$</div>
-                    <!-- <div class="terminal-command">
-                        <input type="text" id="autoSizeInput" value="" inputmode="none">
-                    </div> -->
-                    <div class="cursor-blinker terminal-cursor-blinker">
-                        s
+                </section>
+
+                <section>
+                    <h2>Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-pill">C#, Python, Go, C/C++, Java</div>
+                        <div class="skill-pill">JavaScript, Dart, SQL, HTML5, CSS/SCSS</div>
+                        <div class="skill-pill">.NET Core, Node.js, Flask, Gin, Fiber</div>
+                        <div class="skill-pill">React, Next.js, Flutter</div>
+                        <div class="skill-pill">SQL Server, MySQL, MongoDB, Redis</div>
+                        <div class="skill-pill">Docker, AWS, Azure, GitLab CI/CD</div>
+                        <div class="skill-pill">Kafka, RabbitMQ, ELK Stack</div>
+                        <div class="skill-pill">Raspberry Pi, IoT, Computer Vision</div>
                     </div>
-                </div>
-            </div>
-            <div class="subtitle-box">
-                <div class="subtitle-dollar-sign">$</div>
-                <div class="subtitle-name">Educations</div>
-            </div>
-            <div class="terminal-top-box">
-                <div class="terminal-top-red"></div>
-                <div class="terminal-top-yellow"></div>
-                <div class="terminal-top-green"></div>
-            </div>
-            <div class="terminal">
+                </section>
 
-                <div class="terminal-command-box">
-                    <div class="terminal-name">danial@linux-desktop</div>
-                    <div class="terminal-title-dots">:</div>
-                    <div class="terminal-title-path">~/portfolio</div>
-                    <div class="terminal-title-dollar">$</div>
-                    <div class="terminal-command">
-                        cat Educations.txt
-                    </div>
-                </div>
-                <div class="terminal-return ">
-                    -----------------------------------------<br />
-                    <span style="cursor: pointer; color: #ef4545;"
-                        onclick="window.open('https://sbu.ac.ir', '_blank')">Shahid Beheshti University</span><br />
-                    Bachelor of Engineering - BE, Computer Engineering <span
-                        style="font-size: larger;font-weight: bolder; text-decoration: underline;">(GPA:
-                        3.45/4)</span><br />
-                    Sep 2019 - Aug 2024<br /><br /><br />
+                <section>
+                    <h2>Projects & Certificates</h2>
+                    <ul class="bullets">
+                        <li><strong>Class Negar:</strong> Smart classroom system using RFID & QR attendance on Raspberry Pi.</li>
+                        <li><strong>Piki Smart Cart:</strong> AI-driven retail cart with IoT sensors and fraud detection.</li>
+                        <li><strong>Certified Scrum Professional (Scrum Alliance)</strong> — Dec 2023 (ID 001605847)</li>
+                        <li><strong>JavaCup Certified Java Programmer</strong> — Oct 2020</li>
+                        <li><strong>TOEFL iBT Score:</strong> 88-R:22L:21S:22W:23 · Nov 2024</li>
+                    </ul>
+                </section>
 
-                    <span style="cursor: pointer; color: #ef4545;"
-                        onclick="window.open('https://ir.linkedin.com/school/iransampad', '_blank')">National
-                        Organization for Development of Exceptional Talents (Sampad)</span><br />
-                    High School Diploma - mathematics <span
-                        style="font-size: larger;font-weight: bolder; text-decoration: underline;">(GPA:
-                        3.97/4)</span><br />
-                    Sep 2013 - Jun 2019<br />
-                    -----------------------------------------<br />
-                </div>
-                <div class="terminal-command-box">
-                    <div class="terminal-name">danial@linux-desktop</div>
-                    <div class="terminal-title-dots">:</div>
-                    <div class="terminal-title-path">~/portfolio</div>
-                    <div class="terminal-title-dollar">$</div>
-                    <div class="cursor-blinker terminal-cursor-blinker">
-                        s
-                    </div>
-                </div>
-            </div>
-            <div class="subtitle-box">
-                <div class="subtitle-dollar-sign">$</div>
-                <div class="subtitle-name">Skills</div>
-            </div>
+                <section>
+                    <h2>Languages</h2>
+                    <ul class="bullets">
+                        <li><strong>English:</strong> C1 - (TOEFL iBT 2024)</li>
+                        <li><strong>Persian (Farsi):</strong> Native</li>
+                    </ul>
+                </section>
 
-            <div>
-                <div class="skill-item">
-                    <div class="skill-title">Programming, Query, Markup Languages:</div>
-                    C#, Python, Dart, GO, C/C++, Java, JavaScript, SQL, HTML5,
-                    CSS/SCSS
-                </div>
-                <div class="skill-item">
-                    <div class="skill-title">Web Frameworks (Backend):</div>
-                    .NET Core (Web API - MVC), .NET Framework, Node.js, GO REST API Frameworks
-                    (Gin, Gorilla Mux, Fiber), Flask
-                </div>
-                <div class="skill-item">
-                    <div class="skill-title">Web Frameworks (Frontend):</div>
-                    Next.js, React.js, Flutter, Bootstrap, jQuery, Android SDK, Flutter Pi
-                </div>
-                <div class="skill-item">
-                    <div class="skill-title">Databases and Caches:</div>
-                    Microsoft SQL Server, Oracle, MySQL, SQLITE, MongoDB, Redis
-                </div>
-                <div class="skill-item">
-                    <div class="skill-title">Hardware and Boards:</div>
-                    Raspberry Pi Family (Raspberry Pi 4 Model B - Raspberry Pi Zero W), Arduino Uno
-                </div>
-                <div class="skill-item">
-                    <div class="skill-title">Environment and Tools:</div>
-                    Raspberry OS, Linux Debian-Based distros (Ubuntu, Kali Linux), Shell, Nginx,
-                    Visual Studio, VSCode, Message Brokers (Kafka - RabbitMQ), API Gateway (Ocelot), Graylog,
-                    Elasticsearch
-                </div>
-                <div class="skill-item">
-                    <div class="skill-title">Project Management and IaaS:</div>
-                    Scrum, Git, Docker, AWS, Microsoft Azure, GitHub - GitLab CI/CD
-                </div>
-                <div class="skill-item">
-                    <div class="skill-title">Computer Science:</div>
-                    Data Structures and Algorithms, Computer Networking, Operating Systems, SOLID
-                    principles, Design Patterns, Micro-Services, Asynchronous programming
-                </div>
-
-            </div>
-            <div class="subtitle-box">
-                <div class="subtitle-dollar-sign">$</div>
-                <div class="subtitle-name">Projects</div>
-            </div>
-            <div class="thesis-project-box">
-                <div class="thesis-project-top">
-                    <div class="thesis-project-images">
-                        <img class="thesis-project-image" src="./assets/classnegar1.png" alt="Danial Riazati Thesis Project Image Album">
-                        <img class="thesis-project-image" src="./assets/classnegar3.png" alt="Danial Riazati Thesis Project Image Album">
-                        <img class="thesis-project-image" src="./assets/classnegar4.png" alt="Danial Riazati Thesis Project Image Album">
-                        <img class="thesis-project-image" src="./assets/classnegar5.png" alt="Danial Riazati Thesis Project Image Album">
-                        <img class="thesis-project-image" src="./assets/classnegar6.png" alt="Danial Riazati Thesis Project Image Album">
-                        <img class="thesis-project-image" src="./assets/classnegar7.png" alt="Danial Riazati Thesis Project Image Album">
-                    </div>
-                    <div class="thesis-project-data">
-                        <span style="font-weight: 900; font-size: 25px;">💡 Thesis Project</span><br /><br />
-                        Title: Class Negar (Revolutionizing Classroom Management and Attendance through Smart
-                        Technology)<br />
-                        Date: Feb 2024
-                        <br /><br />
-                        <span style="font-weight: 900; color: #94e131 ;">### “Best thesis project candidate” in Shahid
-                        Beheshti University Faculty of Computer Science and Engineering</span>
-                        <br />
-                        <br />
-                        Key Words: #Raspberry_Pi #Raspberry_OS #IoT #DotNet #REST_API #RFID #QRCODE #PWA #UI/UX
-                        <br />
-                        <br />
-                        <span style="font-weight: 900; font-size: 18px;"> Description:</span>
-                        <br />
-                        As a culmination of my Bachelor of Computer Engineering at Shahid Beheshti University,
-                        I spearheaded the development of "Class Negar", a pioneering smart classroom system designed to
-                        streamline class management and enhance the educational experience for both faculty and
-                        students.
-                        This project stands as a testament to my ability to blend theoretical knowledge with practical
-                        application, showcasing my expertise in both hardware and software domains.
-                        <br /> <br />
-                        <span style="font-weight: 900; font-size: 18px;"> Core Features:</span>
-                        </span>
-
-                        <br />
-                        ⚬ Seamless Integration: Utilizing a Raspberry Pi Zero W as the central processing unit, Class
-                        Negar seamlessly integrates with existing university systems, ensuring a smooth adoption curve.
-                        <br /> <br />
-                        ⚬ Advanced Attendance Tracking: Incorporating QR code and RFID scanning technologies, the system
-                        offers a dual-mode for recording check-ins and check-outs, accommodating students and professors
-                        with university ID cards or QR codes generated within the Class Negar system.
-                        <br /> <br />
-                        ⚬ Interactive Platform: A Progressive Web App (PWA) serves as the system's interface, facilitating
-                        class management tasks for professors, such as adding discussions, uploading resources, and
-                        monitoring attendance data.
-                        <br /> <br />
-                        ⚬ Comprehensive Reporting: The system enables detailed attendance reporting, providing insights on
-                        student presence both on an individual and group basis, thereby aiding in the academic
-                        assessment
-                        process.
-                        <br /> <br />
-                        ⚬ Administrative Control: An intuitive admin panel allows for the efficient management of the
-                        system, including class oversight and data analytics.
-                        <br />
-                        <br />
-                        <span style="font-weight: 900; font-size: 18px;"> Impact and Usability:</span>
-
-                        <br />
-                        The design and implementation of Class Negar were driven by a commitment to usability and
-                        security.
-                        The system's interface was crafted with keen attention to UI/UX principles, ensuring an
-                        accessible
-                        and user-friendly experience for all stakeholders. By offering a reliable and efficient method
-                        for
-                        managing class attendance and resources, Class Negar has not only enhanced the educational
-                        process
-                        within the faculty but also set a benchmark for future innovations in smart classroom systems.
-                        <br />
-                        <br />
-                        <span style="font-weight: 900; font-size: 18px;"> Conclusion:
-                    </span>
-
-                        <br />
-                        <span style="font-weight: 900; font-style: italic; color: #f96256;">
-                        My role in bringing Class Negar to fruition exemplifies my capability to navigate complex
-                        engineering challenges and deliver solutions that are both innovative and practical. This
-                        project
-                        underscores my proficiency in a range of technical skills, from hardware design with Raspberry
-                        Pi
-                        Zero W to software development for PWA, along with a deep understanding of the importance of
-                        user
-                        experience in educational technology.
-                    </span>
-                        <br />
-                        <br />
-                        <span style="font-weight: 900; font-size: 18px;"> News:
-                    </span>
-                        <br />
-                        July 2024 - I am thrilled to announce that my thesis project, <span style="font-weight: 900;color: yellow">"ClassNegar," is now officially published and available for use at the Shahid Beheshti University Faculty of Computer Science and Engineering</span>. This innovative smart classroom system, designed to revolutionize classroom management and attendance tracking, is a product of rigorous research and development. It seamlessly integrates advanced technologies such as Raspberry Pi, QR code, and RFID to create a dual-mode attendance tracking system. With a user-friendly Progressive Web App (PWA) interface, ClassNegar enables professors to manage class activities, upload resources, and monitor attendance with ease. This project has been recognized as the "Best Thesis Project Candidate" by the faculty, underscoring its impact and potential.
-
-                        The deployment of ClassNegar marks a significant milestone in enhancing the educational experience for both faculty and students. The system's comprehensive reporting capabilities provide detailed insights into student attendance, aiding academic assessments and resource management. The intuitive admin panel ensures efficient oversight and data analytics, promoting a streamlined educational process. I am immensely grateful to my supervisor, <span style="font-weight: 900;text-decoration: underline">Dr. Mojtaba Vahidi-Asl</span> , for his invaluable guidance and support throughout my thesis project. Additionally, I extend my heartfelt thanks to <span style="font-weight: 900;text-decoration: underline"> Dr. Mohsen Ebrahimi Moghaddam</span> , Head of the Computer Engineering Faculty, for his unwavering support in implementing ClassNegar at the faculty. Attached are some photos showcasing ClassNegar in action, demonstrating its user-friendly interface and seamless integration within the university environment.
-                        <br />
-
-                    </div>
-                </div>
-                <div class="news-image-album">
-                    <img class="news-image" src="./assets/classnegar8.jpeg" alt="Danial Riazati Thesis Project Image Album">
-                    <img class="news-image" src="./assets/classnegar9.jpeg" alt="Danial Riazati Thesis Project Image Album">
-                </div>
-            </div>
-
-            <div>
-                <div class="project-item">
-                    <div class="project-title">Piki Smart Cart (Transforming Retail with State-of-the-Art Smart
-                        Technology)</div>
-                    <div class="project-description">
-                        <br />
-                        The Piki Smart Cart embodies the forefront of retail innovation, a project that I had the
-                        pleasure of leading and developing from the ground up. As the Team Lead and Full Stack Developer
-                        at Startup Studio, I championed the transformation of conventional shopping carts into
-                        intelligent companions for shoppers.
-                        <br /><br />
-                        <span style="font-weight: 900;"> Key Words: #Computer_Vision #IoT #Micro_Services #Raspberry_Pi
-                            #Sensor_Fusion #Linux #REST_API #Payment
-                        </span>
-                        <br />
-                        <br />
-                    </div>
-                    <div class="project-images">
-                        <img class="project-image" src="./assets/pikilogo.png"  alt="Piki Cart Prject Images">
-                        <img class="project-image" src="./assets/pikicart1.png" alt="Piki Cart Prject Images">
-                        <img class="project-image" src="./assets/pikicart2.png" alt="Piki Cart Prject Images">
-                    </div>
-                    <div class="project-description">
-                        <br />
-                        <br />
-                        <span style="font-weight: 900; font-size: 18px;">Innovative Features:</span>
-                        <br /> <br />
-                        ⚬ Advanced Sensor Integration: By harnessing a variety of sensors, including load cells and
-                        cutting-edge computer vision, the Piki Smart Cart provides a seamless shopping experience. These
-                        sensors accurately track items as they are added or removed from the cart, ensuring an
-                        interactive and responsive user interface.
-                        <br /> <br />
-                        ⚬ Sophisticated Fraud Detection: At the core of the cart's technology lies a robust fraud
-                        detection system, meticulously engineered to safeguard against inaccuracies and potential
-                        misuse. This system is the result of a comprehensive design process that emphasizes security
-                        without compromising user convenience.
-                        <br /> <br />
-                        ⚬ Versatile Payment Solutions: The Piki Smart Cart offers a range of payment options,
-                        integrating
-                        effortlessly with mobile and card payments, thereby eliminating the need for queues and reducing
-                        checkout times dramatically.
-                        <br /> <br />
-                        ⚬ Microservice-Based Architecture: Utilizing a microservice-based REST API infrastructure, the
-                        system ensures scalability and maintainability. This architecture supports the cart's complex
-                        functionalities and facilitates seamless updates and enhancements.
-                        <br /> <br />
-                        ⚬ Raspberry Pi and Linux Foundation: Powered by a Raspberry Pi and operating on a Linux
-                        platform,
-                        the cart is a testament to the versatility and reliability of open-source technologies in
-                        creating commercial-grade applications.
-
-                        <br /> <br /> <br />
-                        <span style="font-weight: 900; font-size: 18px;">Value Proposition:</span>
-                        <br /> <br />
-                        The Piki Smart Cart project is more than just a technological triumph; it's a leap towards the
-                        future of shopping. By integrating multiple sensors and technologies, we have not only enhanced
-                        the shopping experience but also set a new standard for retail operations. Our commitment to
-                        quality code, system design, and innovation has culminated in a product that not only meets the
-                        current market demands but also paves the way for future advancements.
-
-                        Through the successful launch of the Piki Smart Cart, we have solidified our company's
-                        reputation as a leader in technological innovation. This project serves as a showcase of our
-                        dedication to creating solutions that are not just functional but also scalable, maintainable,
-                        and ahead of their time.
-
-
-                    </div>
-
-                </div>
-                <div class="project-item">
-                    <div class="project-title">InfraFund.net (Empowering Net-Zero Solutions: Building Sustainable Futures through Blockchain Powered Crowdfunding with InfraFund)</div>
-                    <div class="project-description">
-                        <br />
-                        As a Frontend Developer at InfraFund, I work on a cutting-edge platform designed for Web 3.0 crowdfunding focused on NetZero projects. InfraFund integrates blockchain technology, AI-driven asset management, and robust KYC systems to provide a secure, transparent, and efficient platform for investors and project owners.
-                        <br /> <br />
-                        Project Description: <br />
-                        InfraFund facilitates crowdfunding through Security Token Offerings (STOs) and a Decentralized Exchange (DEX). The platform offers AI tools for asset management, real-time analytics, interactive charts, a fiat-to-crypto exchange, and a comprehensive KYC system.
-                        <br /><br />
-                        <span style="font-weight: 900;"> Key Words: #Next.js #Web3 #Smart Contracts #Ethereum
-                        </span>
-                        <br />
-                        <br />
-                    </div>
-                    <div class="project-images">
-                        <img class="project-image-wide" src="./assets/infrafund1.jpeg"  alt="InfraFund.net Images">
-                        <img class="project-image-wide" src="./assets/infrafund2.jpeg" alt="InfraFund.net Images">
-                        <img class="project-image-wide" src="./assets/infrafund3.jpeg" alt="InfraFund.net Images">
-                        <img class="project-image-wide" src="./assets/infrafund5.jpeg" alt="InfraFund.net Images">
-                    </div>
-                    <div class="project-description">
-                        <br />
-                        <br />
-                        <span style="font-weight: 900; font-size: 18px;"> My Roles and Responsibilities :</span>
-                       <br /><br />
-                        • UI/UX Development: Designing and implementing user-friendly, responsive interfaces.<br /><br />
-                        • Web3 Integration: Implementing transactions and wallet connections for various blockchain networks.<br /><br />
-                        • Data Visualization: Creating real-time analytics and interactive charts.<br /><br />
-                        • Chat and Ticketing System: Integrating a comprehensive chat system with user management and push notifications.<br /><br />
-                        • Authentication and Security: Implementing secure authentication mechanisms.<br /><br />
-                        • Performance Optimization: Ensuring optimal performance and load speed.<br /><br />
-                        • State Management: Managing application state and ensuring data synchronization.<br /><br />
-                        • Collaboration and Code Quality: Collaborating with backend developers and maintaining high code quality.<br /><br /><br />
-                    </div>
-
-                </div>
-
-                <div class="subtitle-box">
-                    <div class="subtitle-dollar-sign">$</div>
-                    <div class="subtitle-name">Experineces</div>
-                </div>
-                <div class="terminal-top-box">
-                    <div class="terminal-top-red"></div>
-                    <div class="terminal-top-yellow"></div>
-                    <div class="terminal-top-green"></div>
-                </div>
-                <div class="terminal">
-                    <div class="terminal-command-box">
-                        <div class="terminal-name">danial@linux-desktop</div>
-                        <div class="terminal-title-dots">:</div>
-                        <div class="terminal-title-path">~/portfolio</div>
-                        <div class="terminal-title-dollar">$</div>
-                        <div class="terminal-command">
-                            cat Experineces.txt
-                        </div>
-                    </div>
-                    <div class="terminal-return">
-                        <br />
-                        <span style="font-weight: 900; font-size: 21px;"> Frontend Developer - InfraFund.net,
-                           London, United Kingdom <br /> Apr 2024 - Jul
-                            2024<br /><br />
-                        </span>
-                        As a Frontend Developer at InfraFund, I work on a cutting-edge platform designed for Web 3.0 crowdfunding focused on NetZero projects. InfraFund integrates blockchain technology, AI-driven asset management, and robust KYC systems to provide a secure, transparent, and efficient platform for investors and project owners.
-                        <br /><br /><br />
-                        Project Description :<br /><br />
-                        InfraFund facilitates crowdfunding through Security Token Offerings (STOs) and a Decentralized Exchange (DEX). The platform offers AI tools for asset management, real-time analytics, interactive charts, a fiat-to-crypto exchange, and a comprehensive KYC system.
-                        <br />
-                        <br />
-                        <br />
-                        <span style="font-weight: 900; font-size: 21px;"> Software Engineer - Hasin Technology Co.,
-                            Tehran, Iran <br /> Mar 2021 - Feb
-                            2024<br /><br />
-                        </span>
-                        • Backend Developer, Payment Solutions Department<br />
-                        Initially joined as a Backend Developer focusing on payment switch and channel management
-                        systems. Spearheaded algorithmic and security enhancements to handle over 2 million transactions
-                        daily, ensuring system integrity, speed, and maintainability. Excelled in implementing robust
-                        monitoring and logging systems for efficient issue resolution.<br /><br />
-
-                        • Team Lead & Full Stack Developer, Startup Studio Department<br />
-                        Transitioned to lead and contribute as a Full Stack Developer within the innovative Startup
-                        Studio. Directed brainstorming sessions and spearheaded the development of three startup
-                        projects, including the high-tech Piki Smart Cart. Pioneered the integration of advanced sensors
-                        and computer vision to enhance the shopping experience, eliminating queues. Led the design of a
-                        sophisticated fraud detection system and versatile payment solutions, employing best practices
-                        in code quality and system design.
-                        <br /><br />
-                        Key Contributions:<br />
-                        • Engineered a core system for sensor data recognition and processing, significantly enhancing
-                        UI responsiveness and fraud detection capabilities.<br /><br />
-                        • Implemented various design patterns and system design methodologies, improving code
-                        maintainability and project scalability.<br /><br />
-                        • Fostered a culture of innovation, leading to the successful launch of Piki Smart Cart and
-                        enhancing the company's technological footprint.
-                        <br />
-                        <br />
-                        <br />
-                        <span style="font-weight: 900; font-size: 21px;">Internship Mentor - Radin Technology Co.,
-                            Tehran, Iran <br /> Jun 2021 - Dec 2023 <br /><br /></span>
-
-                        Mentored 37 undergraduates in CS/CE at Radin Technology Co., teaching software engineering
-                        fundamentals, including algorithms, OOP, design patterns, and tool proficiency (Git, Microsoft
-                        Azure). Developed web development courses on .NET Core, RESTful APIs, React JS, and basics of
-                        UI/UX design with Figma. Guided interns to specialize in backend or frontend development,
-                        culminating in real-world projects for their portfolios.
-                        <br />
-                        <br />
-                        <br />
-                        <span style="font-weight: 900; font-size: 21px;">Research Assistant - Shahid Beheshti
-                            University, Tehran, Iran <br /> Mar 2021 - Sep 2023 <br /><br /></span>
-                        • Engaged in innovative research under Dr. Mohsen Ebrahimi Moghaddam, Head of the Computer
-                        Engineering Faculty, to enable iOS functionality
-                        on alternative hardware platforms, decrypting proprietary protocols and algorithms.<br />
-                        <br />
-                        • Designed an efficient data schema and developed web API services for a BPMS project,
-                        demonstrating practical application of research in software
-                        development.
-                        <br />
-                        <br />
-                        <br />
-                        <span style="font-weight: 900; font-size: 21px;">Teaching Assistant - Shahid Beheshti
-                            University, Tehran, Iran <br /> Sep 2020 - Aug 2024 <br /><br /> </span>
-                        • Appointed as Head Teaching Assistant for Advanced Programming under Dr. Mojtaba Vahidi-Asl
-                        crafting exercises focused on OOP and Design
-                        Patterns, and facilitating the adoption of efficient programming practices.
-                        <br />
-                        <br />
-                        • Served as a Teaching Assistant for Internet Engineering with Dr. Ehsan Javanmardi, where I
-                        taught web fundamentals, ReactJS, NodeJS, and NoSQL
-                        database usage. Coordinated the development of a timely project monitoring COVID-19 statistics.
-                        <br />
-                        <br />
-                        • Assisted in the Algorithms course led by Dr. Ramak Ghavamizadeh, mentoring students in solving
-                        complex problems with an emphasis on optimal
-                        time and memory complexity, employing greedy algorithms and dynamic programming in C/C++.
-                    </div>
-                    <div class="terminal-command-box">
-                        <div class="terminal-name">danial@linux-desktop</div>
-                        <div class="terminal-title-dots">:</div>
-                        <div class="terminal-title-path">~/portfolio</div>
-                        <div class="terminal-title-dollar">$</div>
-                        <div class="cursor-blinker terminal-cursor-blinker">
-                            s
-                        </div>
-                    </div>
-                </div>
-                <div class="subtitle-box">
-                    <div class="subtitle-dollar-sign">$</div>
-                    <div class="subtitle-name">Certificates</div>
-                </div>
-                <div class="certificates-data">
-                    <br />
-                    ### Scrum Alliance Certified Scrum Professional<br />
-                    <span style="font-weight: 100; font-size: initial;">
-                        Scrum Alliance<br />
-                        Credential ID 001605847<br />
-                    </span>
-                    <br /><br />
-                    ### JAVACUP CERTIFIED JAVA PROGRAMMER<br />
-                    <span style="font-weight: 100; font-size: initial;">
-                        Javacup Association<br />
-                        Issued Oct 2020
-                    </span>
-                </div>
-                <div class="certificate-images">
-                    <img src="./assets/certificate1.jpeg" alt="Danial Riazati Certificate Images" class="certificate-image">
-                    <img src="./assets/certificate2.png"  alt="Danial Riazati Certificate Images" class="certificate-image">
-                </div>
-
-            </div>
-            <div class="footer"">
-                © Copyright Danial Riazati | 2025
-            </div>
+                <section>
+                    <h2>Interests</h2>
+                    <p class="summary">
+                        Passionate about software architecture, IoT development, and building scalable distributed systems.
+                    </p>
+                </section>
+            </main>
         </div>
     </div>
 </body>
