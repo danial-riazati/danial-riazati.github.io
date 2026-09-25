@@ -1,605 +1,1112 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="en" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Danial Riazati's personal portfolio website showcasing projects, skills, and contact information.">
-    <meta name="keywords" content="Danial Riazati, Portfolio, Computer Engineering, Software Developer, Projects">
-    <meta name="author" content="Danial Riazati">
-    <meta property="og:title" content="Danial Riazati - Portfolio">
-    <meta property="og:description" content="Explore Danial Riazati's projects, skills, and professional journey.">
-    <meta property="og:image" content="/assets/profile.jpg">
-    <meta property="og:url" content="https://danialriazati.ir">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="google-site-verification" content="cyOPO8z70xLNQhaveYXwENMDbJk1cBrHa9JIeOiAR3I" />
-    <link rel="icon" href="/assets/logo.png">
-    <title>Curriculum Vitae — Danial Riazati</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Danial Riazati — Software Engineer · Backend & Full-Stack · Kiel, Germany</title>
+<meta name="description" content="Software engineer with 5+ years building production backends, REST APIs and web applications in .NET, C# and TypeScript. Based in Kiel, Germany; MSc Computer Science student at Kiel University (CAU). Open to backend and full-stack roles across Germany.">
+<link rel="canonical" href="https://danialriazati.ir/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Danial Riazati">
+<meta name="theme-color" content="#fbfaf8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131318" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light">
 
-    <!-- Fonts and style for CV -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #3468ff;
-            --accent-deep: #1b3fb9;
-            --muted: #5c6475;
-            --text: #111528;
-            --paper: #ffffff;
-            --bg: #f3f6ff;
-            --card: rgba(255, 255, 255, 0.88);
-            --line: #dbe4ff;
-            --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Danial Riazati">
+<meta property="og:title" content="Danial Riazati — Software Engineer · Backend & Full-Stack · Kiel, Germany">
+<meta property="og:description" content="Software engineer with 5+ years building production backends, REST APIs and web applications in .NET, C# and TypeScript. Based in Kiel, Germany; MSc Computer Science student at Kiel University (CAU). Open to backend and full-stack roles across Germany.">
+<meta property="og:url" content="https://danialriazati.ir/">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image" content="https://danialriazati.ir/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Danial Riazati — Software Engineer, Kiel, Germany">
+<meta property="profile:first_name" content="Danial">
+<meta property="profile:last_name" content="Riazati">
 
-        html,
-        body {
-            background:
-                radial-gradient(circle at 15% 10%, #dbe5ff 0%, transparent 35%),
-                radial-gradient(circle at 85% 8%, #e4dcff 0%, transparent 34%),
-                var(--bg);
-            font-family: var(--sans);
-            color: var(--text);
-            margin: 0;
-            padding: 0;
-        }
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Danial Riazati — Software Engineer · Backend & Full-Stack · Kiel, Germany">
+<meta name="twitter:description" content="Software engineer with 5+ years building production backends, REST APIs and web applications in .NET, C# and TypeScript. Based in Kiel, Germany; MSc Computer Science student at Kiel University (CAU). Open to backend and full-stack roles across Germany.">
+<meta name="twitter:image" content="https://danialriazati.ir/assets/og-image.png">
 
-        .sheet {
-            background: var(--paper);
-            width: calc(100% - 32px);
-            max-width: 1080px;
-            margin: 16px auto;
-            padding: 30px;
-            box-sizing: border-box;
-            border-radius: 24px;
-            border: 1px solid #e2e8ff;
-            box-shadow: 0 18px 45px rgba(27, 63, 185, 0.08);
-        }
+<meta name="google-site-verification" content="cyOPO8z70xLNQhaveYXwENMDbJk1cBrHa9JIeOiAR3I">
 
-        .row {
-            display: flex;
-            gap: 24px;
-            align-items: flex-start;
-        }
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/logo.png" sizes="any">
+<link rel="apple-touch-icon" href="/assets/logo.png">
 
-        .left {
-            width: 245px;
-            flex-shrink: 0;
-            border-right: 1px solid var(--line);
-            padding-right: 16px;
-            box-sizing: border-box;
-        }
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-sans-normal-400-700-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/jetbrains-mono-normal-400-600-latin.woff2" crossorigin>
+<link rel="stylesheet" href="/styles/site.css">
 
-        main {
-            flex: 1;
-            padding-left: 10px;
-        }
-
-        .photo {
-            width: 150px;
-            height: 200px;
-            border-radius: 14px;
-            background: #eef2ff;
-            margin: 0 auto 14px auto;
-            overflow: hidden;
-            box-shadow: 0 9px 20px rgba(27, 63, 185, 0.14);
-            border: 1px solid #dee6ff;
-        }
-
-        .photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .name {
-            text-align: center;
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--accent-deep);
-            margin-bottom: 5px;
-        }
-
-        .role {
-            text-align: center;
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 12px;
-        }
-
-        .contact {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.65;
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: 14px;
-            padding: 12px 14px;
-            backdrop-filter: blur(6px);
-        }
-
-        .contact strong {
-            color: var(--text);
-        }
-
-        a {
-            color: var(--accent-deep);
-            text-decoration-color: #90a9ff;
-            text-underline-offset: 2px;
-        }
-
-        a:hover {
-            color: var(--accent);
-        }
-
-        section {
-            margin-bottom: 12px;
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            padding: 14px 16px;
-            page-break-inside: avoid;
-        }
-
-        h2 {
-            font-size: 16px;
-            margin: 0 0 8px 0;
-            color: #0f1724;
-            font-weight: 700;
-            border-bottom: 1px solid var(--line);
-            padding-bottom: 6px;
-            letter-spacing: 0.2px;
-        }
-
-        .summary {
-            font-size: 14px;
-            line-height: 1.65;
-            margin: 0;
-        }
-
-        .job-title {
-            font-weight: 700;
-            color: var(--accent-deep);
-            font-size: 14px;
-        }
-
-        .period {
-            color: var(--muted);
-            font-size: 12px;
-            margin-left: 7px;
-        }
-
-        .company {
-            font-weight: 600;
-            font-size: 13px;
-            color: #22253a;
-        }
-
-        .bullets {
-            margin: 6px 0 0 0;
-            padding-left: 18px;
-        }
-
-        .bullets li {
-            margin-bottom: 4px;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .experience-item {
-            padding: 10px 0;
-            border-bottom: 1px dashed #d7dff7;
-        }
-
-        .experience-item:last-child {
-            border-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .experience-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) 250px;
-            gap: 14px;
-            align-items: center;
-        }
-
-        .experience-preview {
-            width: 100%;
-            height: 150px;
-            overflow: hidden;
-            box-shadow: 0 14px 28px rgba(27, 63, 185, 0.16);
-            background: linear-gradient(155deg, #eff4ff 0%, #dde7ff 100%);
-            display: block;
-            position: relative;
-        }
-
-        .experience-preview::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65);
-            pointer-events: none;
-        }
-
-        .experience-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            display: block;
-            transition: transform 0.25s ease;
-        }
-
-        .experience-preview:hover img {
-            transform: scale(1.04);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 8px;
-            font-size: 13px;
-        }
-
-        .skill-pill {
-            background: #f6f8ff;
-            border-radius: 10px;
-            padding: 7px 9px;
-            border: 1px solid #e8eeff;
-            color: #07326a;
-        }
-
-        footer {
-            text-align: right;
-            font-size: 11px;
-            color: var(--muted);
-            margin-top: 4mm;
-        }
-
-        @media (max-width: 900px) {
-            .sheet {
-                width: calc(100% - 20px);
-                margin: 10px auto;
-                padding: 16px;
-                border-radius: 16px;
-            }
-
-            .row {
-                flex-direction: column;
-                gap: 14px;
-            }
-
-            .left {
-                width: 100%;
-                border-right: 0;
-                border-bottom: 1px solid var(--line);
-                padding-right: 0;
-                padding-bottom: 12px;
-            }
-
-            main {
-                padding-left: 0;
-            }
-
-            .photo {
-                width: min(44vw, 176px);
-                height: auto;
-                aspect-ratio: 3 / 4;
-                border-radius: 18px;
-                margin: 0 auto 12px auto;
-                box-shadow: 0 12px 28px rgba(27, 63, 185, 0.18);
-                border: 1px solid #d7e2ff;
-            }
-
-            .photo img {
-                object-position: center top;
-            }
-
-            .name {
-                font-size: 18px;
-            }
-
-            .role {
-                font-size: 12px;
-            }
-
-            .contact {
-                font-size: 13px;
-            }
-
-            section {
-                padding: 12px;
-            }
-
-            h2 {
-                font-size: 15px;
-            }
-
-            .summary,
-            .job-title,
-            .company,
-            .bullets li,
-            .skills-grid {
-                font-size: 13px;
-            }
-
-            .period {
-                display: inline-block;
-                margin-left: 0;
-                margin-top: 2px;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 6px;
-            }
-
-            .experience-layout {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-
-            .experience-preview {
-                width: min(100%, 320px);
-                height: 170px;
-            }
-        }
-
-        @media (max-width: 420px) {
-            .photo {
-                width: min(46vw, 150px);
-            }
-        }
-
-        @media print {
-
-            html,
-            body {
-                background: #fff;
-            }
-
-            .sheet {
-                background: #fff;
-                box-shadow: none;
-                margin: 0;
-                padding: 10mm 12mm;
-                width: 210mm;
-                min-height: 297mm;
-                border: 0;
-                border-radius: 0;
-            }
-
-            .row {
-                flex-wrap: nowrap;
-            }
-
-            section,
-            .contact {
-                border: 0;
-                background: transparent;
-                box-shadow: none;
-                backdrop-filter: none;
-            }
-        }
-    </style>
-
-    <!-- Existing API and viewer script -->
-    <script>
-        function updateViewers() {
-            const clientData = {
-                localTime: new Date().toString(),
-                browserDetails: navigator.userAgent,
-                screenWidth: window.screen.width,
-                screenHeight: window.screen.height,
-                ip: "",
-                city: "",
-                region: "",
-                country: "",
-                postal: "",
-                timezone: "",
-                loc: "",
-                org: ""
-            }
-            fetch('https://ipinfo.io/json?token=a3b84d85260497')
-                .then(response => response.json())
-                .then(ipData => {
-                    clientData.ip = ipData.ip;
-                    clientData.city = ipData.city;
-                    clientData.region = ipData.region;
-                    clientData.country = ipData.country;
-                    clientData.loc = ipData.loc;
-                    clientData.org = ipData.org;
-                    clientData.postal = ipData.postal;
-                    clientData.timezone = ipData.timezone;
-
-                    fetch('https://script.google.com/macros/s/AKfycbx0HwBWwJAfNthM7Co4p19gd8AuxcSG6xT95bNVkKrJSsWU1lDlQjNxsMPjaLwW4mZ_Ug/exec', {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ value: JSON.stringify(clientData) }),
-                    })
-                })
-                .catch(error => {
-                    fetch('https://script.google.com/macros/s/AKfycbx0HwBWwJAfNthM7Co4p19gd8AuxcSG6xT95bNVkKrJSsWU1lDlQjNxsMPjaLwW4mZ_Ug/exec', {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ value: "ERROR : " + JSON.stringify(clientData) }),
-                    })
-                });
-        }
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            updateViewers();
-        });
-    </script>
+<script>document.documentElement.classList.remove('no-js');</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://danialriazati.ir/#person","name":"Danial Riazati","givenName":"Danial","familyName":"Riazati","jobTitle":["Software Engineer","Backend Engineer","Full-Stack Engineer"],"description":"Software engineer with 5+ years of experience designing, shipping and operating production web platforms. Most recently Software Engineer & Team Lead at Eyvan Group, where I owned the architecture and production operation of a live booking platform on .NET 8, SQL Server, Redis and Next.js, deployed with Docker and GitLab CI/CD. Comfortable across the whole path from domain modelling and API design through to observability and deployment. Currently studying for an MSc in Computer Science at Christian-Albrechts-Universität zu Kiel, and open to backend or full-stack engineering roles across Germany.","url":"https://danialriazati.ir","image":"https://danialriazati.ir/assets/profile.webp","email":"mailto:riazatidanial@gmail.com","telephone":"+49 163 1311415","address":{"@type":"PostalAddress","addressLocality":"Kiel","addressRegion":"Schleswig-Holstein","addressCountry":"DE"},"homeLocation":{"@type":"Place","name":"Kiel, Germany","address":{"@type":"PostalAddress","addressLocality":"Kiel","addressCountry":"DE"}},"knowsLanguage":[{"@type":"Language","name":"English"},{"@type":"Language","name":"Persian"}],"knowsAbout":["C#",".NET / .NET 8","ASP.NET Core","EF Core","Python","Go","Java","C / C++","TypeScript","JavaScript","React","Next.js","Flutter","HTML & CSS","SQL Server","MySQL","MongoDB","Redis","Kafka","RabbitMQ","Async processing","Caching","Docker","Linux","Nginx","GitLab CI/CD","AWS","Azure","Elasticsearch","Kibana","Filebeat","Seq","Serilog","Health checks","REST API design","Clean architecture","CQRS","Distributed systems","Code review","Technical leadership","IoT","Raspberry Pi","Computer vision","Web3"],"alumniOf":[{"@type":"CollegeOrUniversity","name":"Shahid Beheshti University","address":{"@type":"PostalAddress","addressLocality":"Tehran, Iran"}}],"affiliation":{"@type":"CollegeOrUniversity","name":"Christian-Albrechts-Universität zu Kiel","sameAs":"https://www.uni-kiel.de/"},"worksFor":{"@type":"Organization","name":"Eyvan Group","url":"https://eyvantrip.com"},"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"Certified Scrum Professional","recognizedBy":{"@type":"Organization","name":"Scrum Alliance"}},{"@type":"EducationalOccupationalCredential","name":"JavaCup Certified Java Programmer","recognizedBy":{"@type":"Organization","name":"JavaCup"}},{"@type":"EducationalOccupationalCredential","name":"TOEFL iBT — 88","recognizedBy":{"@type":"Organization","name":"ETS"}}],"seeks":{"@type":"Demand","name":"Software engineering roles in Germany"},"sameAs":["https://www.linkedin.com/in/danial-riazati/","https://github.com/danial-riazati","https://danialriazati.ir"]},{"@type":"WebSite","@id":"https://danialriazati.ir/#website","url":"https://danialriazati.ir","name":"Danial Riazati — Software Engineer","inLanguage":"en","publisher":{"@id":"https://danialriazati.ir/#person"}},{"@type":"ProfilePage","@id":"https://danialriazati.ir/#profilepage","url":"https://danialriazati.ir","name":"Danial Riazati — Software Engineer · Backend & Full-Stack · Kiel, Germany","isPartOf":{"@id":"https://danialriazati.ir/#website"},"about":{"@id":"https://danialriazati.ir/#person"},"primaryImageOfPage":"https://danialriazati.ir/assets/og-image.png"}]}</script>
 </head>
-
 <body>
-    <div class="sheet">
-        <div class="row">
-            <aside class="left">
-                <div class="photo">
-                    <img src="./assets/profile.jpg" alt="Danial Riazati Photo">
-                </div>
-                <div class="name">Danial Riazati</div>
-                <div class="role">Computer Engineer • Full-Stack Developer</div>
-                <div class="contact">
-                    <strong>Address:</strong> Tehran, Iran<br>
-                    <strong>Phone:</strong> (+98) 9034795992 <br>
-                    <strong>Email:</strong> riazatidanial@gmail.com<br><br>
-                    <strong>Website:</strong> <a href="https://danialriazati.ir" target="_blank" rel="noopener noreferrer">danialriazati.ir</a><br>
-                    <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/danial-riazati" target="_blank" rel="noopener noreferrer">linkedin.com/in/danial-riazati</a><br>
-                    <strong>GitHub:</strong> <a href="https://github.com/danial-riazati" target="_blank" rel="noopener noreferrer">github.com/danial-riazati</a><br><br>
-                    <strong>Date of Birth:</strong> 8 Sep 2001<br>
-                    <strong>Nationality:</strong> Iranian<br>
-                    <strong>Marital Status:</strong> Married
-                </div>
-            </aside>
 
-            <main>
-                <section>
-                    <h2>Profile</h2>
-                    <p class="summary">
-                        Computer Engineer and Software Developer with hands-on experience in backend systems, IoT, blockchain, and AI-driven applications.
-                        Proven ability to lead teams, mentor interns, and deliver robust, scalable systems. Passionate about smart technologies and software architecture.
-                    </p>
-                </section>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="grid-lines" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  
+  <header class="nav" id="nav" data-stuck="false">
+    <div class="shell nav__inner">
+      <a class="nav__brand" href="#top" aria-label="Danial Riazati — back to top">
+        <span class="nav__brand-mark" aria-hidden="true">DR</span>
+        <span>
+          Danial Riazati
+          <span class="nav__brand-role">Software Engineer</span>
+        </span>
+      </a>
 
-                <section>
-                    <h2>Professional Experience</h2>
-                    <div class="experience-item">
-                        <div class="experience-layout">
-                            <div>
-                                <span class="job-title">Freelance Full-Stack Developer</span><span class="period">Apr 2024 – Present</span><br>
-                                <span class="company">Remote / International Projects</span>
-                                <ul class="bullets">
-                                    <li>Delivered custom web products for startups and business clients with end-to-end ownership from architecture to deployment.</li>
-                                    <li>Built and launched <a href="https://perspectivedesign.co/" target="_blank" rel="noopener noreferrer">perspectivedesign.co</a> for an architecture and design company in Oman.</li>
-                                    <li>Contributed to product and technical improvements for <a href="https://infrafund.net" target="_blank" rel="noopener noreferrer">infrafund.net</a>.</li>
-                                </ul>
-                            </div>
-                            <a class="experience-preview" href="https://perspectivedesign.co/" target="_blank" rel="noopener noreferrer" aria-label="Open perspectivedesign.co">
-                                <img src="./assets/perspectivedesign-preview.png" alt="Preview of Perspective Design website" loading="lazy" onerror="this.src='./assets/logo.png'">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="experience-item">
-                        <div class="experience-layout">
-                            <div>
-                                <span class="job-title">Software Engineer & Team Lead</span><span class="period">Apr 2024 – Present</span><br>
-                                <span class="company">Eyvan Group / <a href="https://eyvantrip.com" target="_blank" rel="noopener noreferrer">eyvantrip.com</a> — Tehran, Iran</span>
-                                <ul class="bullets">
-                                    <li>Developed travel platform features including REST APIs and responsive UI modules.</li>
-                                    <li>Improved booking logic and CI/CD pipeline efficiency while mentoring engineering teammates.</li>
-                                </ul>
-                            </div>
-                            <a class="experience-preview" href="https://eyvantrip.com" target="_blank" rel="noopener noreferrer" aria-label="Open eyvantrip.com">
-                                <img src="./assets/eyvantrip-preview.png" alt="Preview of EyvanTrip website" loading="lazy" onerror="this.src='./assets/logo.png'">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="experience-item">
-                        <div class="experience-layout">
-                            <div>
-                                <span class="job-title">Software Engineer</span><span class="period">Apr 2024 – Jul 2024</span><br>
-                                <span class="company"><a href="https://infrafund.net" target="_blank" rel="noopener noreferrer">InfraFund.net</a> — London, UK</span>
-                                <ul class="bullets">
-                                    <li>Developed Web 3.0 crowdfunding platform integrating blockchain, AI asset management, and KYC systems.</li>
-                                    <li>Built DEX/STO components and APIs for real-time investor analytics.</li>
-                                </ul>
-                            </div>
-                            <a class="experience-preview" href="https://infrafund.net" target="_blank" rel="noopener noreferrer" aria-label="Open infrafund.net">
-                                <img src="./assets/infrafund1.jpeg" alt="Preview of InfraFund website" loading="lazy" onerror="this.src='./assets/logo.png'">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="experience-item">
-                        <span class="job-title">Software Engineer — Backend & Team Lead</span><span class="period">Mar 2021 – Feb 2024</span><br>
-                        <span class="company"><a href="https://hasin.ir" target="_blank" rel="noopener noreferrer">Hasin Technology Co.</a> — Tehran, Iran</span>
-                        <ul class="bullets">
-                            <li>Optimized payment switch handling 2 M+ daily transactions; implemented advanced monitoring & security.</li>
-                            <li>Led Startup Studio; built Piki Smart Cart integrating sensors, IoT, and computer vision for retail automation.</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item">
-                        <span class="job-title">Internship Mentor</span><span class="period">Jun 2021 – Dec 2023</span><br>
-                        <span class="company">Radin Technology Co. — Tehran, Iran</span>
-                        <ul class="bullets">
-                            <li>Mentored 30+ undergraduate interns in software engineering and project delivery.</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item">
-                        <span class="job-title">Teaching & Research Assistant</span><span class="period">Sep 2020 – Sep 2023</span><br>
-                        <span class="company">Shahid Beheshti University — Tehran, Iran</span>
-                        <ul class="bullets">
-                            <li>Head TA for Advanced Programming and Algorithms; assisted in Internet Engineering and research projects.</li>
-                        </ul>
-                    </div>
-                </section>
+      <nav class="nav__links" aria-label="Sections">
+        <a class="nav__link" href="#about" data-nav-link="about">About</a><a class="nav__link" href="#experience" data-nav-link="experience">Experience</a><a class="nav__link" href="#projects" data-nav-link="projects">Projects</a><a class="nav__link" href="#skills" data-nav-link="skills">Skills</a><a class="nav__link" href="#education" data-nav-link="education">Education</a><a class="nav__link" href="#contact" data-nav-link="contact">Contact</a>
+      </nav>
 
-                <section>
-                    <h2>Education</h2>
-                    <div>
-                        <span class="job-title">B.Sc. Computer Engineering</span><br>
-                        <span class="period">Shahid Beheshti University, Tehran • Sep 2019 – Aug 2024</span>
-                        <ul class="bullets">
-                            <li>Thesis: <em>Class Negar — Smart Classroom & Attendance System</em> (Best Thesis Project Candidate in CSE Faculty)</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <span class="job-title">High School Diploma — Mathematics</span><br>
-                        <span class="period">SAMPAD (Alborz) • Sep 2013 – Jun 2019</span>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>Technical Skills</h2>
-                    <div class="skills-grid">
-                        <div class="skill-pill">C#, Python, Go, C/C++, Java</div>
-                        <div class="skill-pill">JavaScript, Dart, SQL, HTML5, CSS/SCSS</div>
-                        <div class="skill-pill">.NET Core, Node.js, Flask, Gin, Fiber</div>
-                        <div class="skill-pill">React, Next.js, Flutter</div>
-                        <div class="skill-pill">SQL Server, MySQL, MongoDB, Redis</div>
-                        <div class="skill-pill">Docker, AWS, Azure, GitLab CI/CD</div>
-                        <div class="skill-pill">Kafka, RabbitMQ, ELK Stack</div>
-                        <div class="skill-pill">Raspberry Pi, IoT, Computer Vision</div>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>Projects & Certificates</h2>
-                    <ul class="bullets">
-                        <li><strong>Class Negar:</strong> Smart classroom system using RFID & QR attendance on Raspberry Pi.</li>
-                        <li><strong>Piki Smart Cart:</strong> AI-driven retail cart with IoT sensors and fraud detection.</li>
-                        <li><strong>Certified Scrum Professional (Scrum Alliance)</strong> — Dec 2023 (ID 001605847)</li>
-                        <li><strong>JavaCup Certified Java Programmer</strong> — Oct 2020</li>
-                        <li><strong>TOEFL iBT Score:</strong> 88-R:22L:21S:22W:23 · Nov 2024</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>Languages</h2>
-                    <ul class="bullets">
-                        <li><strong>English:</strong> C1 - (TOEFL iBT 2024)</li>
-                        <li><strong>Persian (Farsi):</strong> Native</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>Interests</h2>
-                    <p class="summary">
-                        Passionate about software architecture, IoT development, and building scalable distributed systems.
-                    </p>
-                </section>
-            </main>
-        </div>
+      <div class="nav__actions">
+        <a class="btn btn--accent btn--sm btn--desktop" href="/Danial_Riazati_CV.pdf" download="Danial_Riazati_CV.pdf">
+          <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M2.5 11.5v1a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5v-1"/></svg> Download CV
+        </a>
+        <button
+          class="nav__toggle"
+          type="button"
+          id="nav-toggle"
+          aria-expanded="false"
+          aria-controls="nav-panel"
+        >
+          <span class="nav__toggle-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span id="nav-toggle-text">Menu</span>
+        </button>
+      </div>
     </div>
-</body>
 
+    <div class="nav__panel" id="nav-panel" data-open="false">
+      <nav class="nav__panel-links" aria-label="Sections">
+        
+            <a class="nav__panel-link" href="#about">
+              <span>01</span>About
+            </a>
+          
+            <a class="nav__panel-link" href="#experience">
+              <span>02</span>Experience
+            </a>
+          
+            <a class="nav__panel-link" href="#projects">
+              <span>03</span>Projects
+            </a>
+          
+            <a class="nav__panel-link" href="#skills">
+              <span>04</span>Skills
+            </a>
+          
+            <a class="nav__panel-link" href="#education">
+              <span>05</span>Education
+            </a>
+          
+            <a class="nav__panel-link" href="#contact">
+              <span>06</span>Contact
+            </a>
+          
+      </nav>
+      <div class="nav__panel-actions">
+        <a class="btn btn--accent" href="/Danial_Riazati_CV.pdf" download="Danial_Riazati_CV.pdf">
+          <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M2.5 11.5v1a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5v-1"/></svg> Download CV (PDF)
+        </a>
+        <a class="btn btn--ghost" href="/cv/">View CV online</a>
+        <a class="btn btn--ghost" href="mailto:riazatidanial@gmail.com">Email me</a>
+      </div>
+      <div class="nav__panel-meta">
+        <span>Kiel, Germany</span>
+        <span>+49 163 1311415</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="page">
+    <main id="main">
+      
+  <section class="section section--flush hero" id="top" aria-labelledby="hero-name">
+    <div class="shell">
+      <div class="hero__top" data-reveal>
+        <p class="hero__status">
+          <span class="status-dot" aria-hidden="true"></span>
+          Open to software engineering roles across Germany
+        </p>
+        <p class="hero__availability">
+          <span>On-site <b>Kiel</b></span><span>Hybrid <b>Hamburg</b></span><span>Remote <b>Germany-wide</b></span>
+        </p>
+      </div>
+
+      <div class="hero__masthead" data-reveal>
+        <h1 class="hero__name" id="hero-name"><span>Danial</span> <em>Riazati</em></h1>
+      </div>
+
+      <p class="hero__roles" data-reveal>
+        <b>Software Engineer</b><i aria-hidden="true">/</i><b>Backend Engineer</b><i aria-hidden="true">/</i><b>Full-Stack Engineer</b>
+      </p>
+
+      <div class="hero__grid">
+        <div class="hero__lede" data-reveal>
+          <p class="hero__intro">I build and run production software: .NET backends, REST APIs and the web applications on top of them. Five years of shipping systems that real customers depend on, now continuing my studies with an MSc in Computer Science at Kiel University.</p>
+
+          <div class="hero__cta">
+            <a class="btn" href="#experience"><svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10m0 0 4-4m-4 4-4-4"/></svg> View experience</a>
+            <a class="btn btn--ghost" href="/Danial_Riazati_CV.pdf" download="Danial_Riazati_CV.pdf">
+              <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M2.5 11.5v1a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5v-1"/></svg> Download CV
+            </a>
+            <a class="btn btn--ghost" href="https://github.com/danial-riazati" target="_blank" rel="noopener">
+              <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg> GitHub
+            </a>
+          </div>
+        </div>
+
+        <figure class="hero__portrait" data-reveal>
+          <img
+    src="/assets/profile.webp"
+    alt="Portrait photograph of Danial Riazati"
+    width="760" height="1161"
+    loading="eager"
+    decoding="sync"
+    fetchpriority="high"
+  />
+          <figcaption>
+            <span>Kiel, Germany</span>
+            <span aria-hidden="true">54.32°N</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <dl class="hero__facts" data-reveal>
+        
+            <div class="hero__fact">
+              <dt class="visually-hidden">years building production software</dt>
+              <dd>
+                <b>5+</b>
+                <span>years building production software</span>
+              </dd>
+            </div>
+          
+            <div class="hero__fact">
+              <dt class="visually-hidden">primary backend platform</dt>
+              <dd>
+                <b>.NET</b>
+                <span>primary backend platform</span>
+              </dd>
+            </div>
+          
+            <div class="hero__fact">
+              <dt class="visually-hidden">Computer Science, Kiel University</dt>
+              <dd>
+                <b>MSc</b>
+                <span>Computer Science, Kiel University</span>
+              </dd>
+            </div>
+          
+            <div class="hero__fact">
+              <dt class="visually-hidden">based in Germany</dt>
+              <dd>
+                <b>Kiel</b>
+                <span>based in Germany</span>
+              </dd>
+            </div>
+          
+      </dl>
+    </div>
+  </section>
+ 
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="shell">
+      
+  <header class="section-head" data-reveal>
+    <p class="eyebrow">
+      <span class="eyebrow__index">01</span>
+      <span>About</span>
+    </p>
+    <h2 class="section-title">Backend systems, shipped and kept running.</h2>
+    
+  </header>
+
+      <div class="about">
+        <div class="about__body" data-reveal>
+          <p>
+            I am a software engineer with <strong>five years of production experience</strong>,
+            mostly on the backend. My work has been the unglamorous, load-bearing kind: designing
+            domain models and REST APIs, getting data access and caching right, wiring up payments
+            and third-party providers, and making sure there is enough logging and health checking
+            to understand what a system is doing at three in the morning.
+          </p>
+          <p>
+            Most recently I was <strong>Software Engineer &amp; Team Lead at Eyvan Group</strong>,
+            where I owned the architecture of a live travel-booking platform — a .NET 8
+            clean-architecture API over SQL Server and Redis, a Next.js client, and the Docker and
+            GitLab CI/CD pipeline that put both into production behind Nginx. Before that I worked
+            on payment infrastructure at Hasin Technology and led Piki Smart Cart, an IoT
+            retail-automation product.
+          </p>
+          <p>
+            I like problems where the hard part is the system rather than the syntax: consistency
+            across services, failure modes, observability, and the design decisions that make a
+            codebase survivable two years later. I also maintain
+            <a class="link link--always" href="https://github.com/danial-riazati/avan-persian-date-picker" target="_blank" rel="noopener">Avan</a>,
+            an open-source Persian calendar library for React published on npm.
+          </p>
+          <p>
+            I moved to <strong>Kiel</strong> to read for an MSc in Computer Science at
+            Christian-Albrechts-Universität, and I am looking for backend or full-stack engineering
+            work in Germany where I can keep building systems that carry real traffic.
+          </p>
+        </div>
+
+        <dl class="about__aside" data-reveal>
+          <div class="about__row">
+            <dt>Based in</dt>
+            <dd>Kiel, Schleswig-Holstein, Germany</dd>
+          </div>
+          <div class="about__row">
+            <dt>Experience</dt>
+            <dd>5+ years, production software</dd>
+          </div>
+          <div class="about__row">
+            <dt>Focus</dt>
+            <dd>Backend · APIs · distributed systems · full-stack</dd>
+          </div>
+          <div class="about__row">
+            <dt>Studying</dt>
+            <dd>MSc Computer Science, Kiel University (CAU)</dd>
+          </div>
+          <div class="about__row">
+            <dt>Languages</dt>
+            <dd>English (C1) · Persian (Native)</dd>
+          </div>
+          <div class="about__row">
+            <dt>Open to</dt>
+            <dd>
+              On-site Kiel · Hybrid Hamburg · Remote Germany-wide
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="section" id="experience" aria-labelledby="experience-title">
+    <div class="shell">
+      
+  <header class="section-head" data-reveal>
+    <p class="eyebrow">
+      <span class="eyebrow__index">02</span>
+      <span>Experience</span>
+    </p>
+    <h2 class="section-title">Five years of building and operating software.</h2>
+    <p class="section-lede">Roles are listed most recent first. Open any one for the engineering detail.</p>
+  </header>
+
+
+      <div class="roles">
+        
+            <article
+              class="role role--featured"
+              data-reveal
+              itemscope
+              itemtype="https://schema.org/OrganizationRole"
+            >
+              <h3>
+                <button
+                  class="role__head"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="role-body-eyvan"
+                  data-role-toggle
+                >
+                  <span class="role__period">
+                    Apr 2024 – Nov 2025
+                    
+                  </span>
+                  <span>
+                    <span class="role__title">Software Engineer &amp; Team Lead</span>
+                    <span class="role__company">
+                      <b>Eyvan Group</b> · EyvanTrip —
+                      Tehran, Iran
+                    </span>
+                  </span>
+                  <span class="role__toggle" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg></span>
+                </button>
+              </h3>
+
+              <div class="role__body" id="role-body-eyvan" data-open="true">
+                <div class="role__body-inner">
+                  <div class="role__content">
+                    <div>
+                      <p class="role__summary">Technical lead for EyvanTrip, a production hotel and tour booking platform. I owned the backend architecture, the release pipeline and day-to-day production operation, and led a small engineering team across the API and the web client.</p>
+                      <ul class="role__bullets">
+                        <li>Led engineering for a live booking platform, owning backend architecture, release process and production operations, and directing a small team across the API and the Next.js web client.</li><li>Built the .NET 8 API as a clean-architecture solution (Domain / Application / Infrastructure / API) using CQRS with MediatR, FluentValidation, EF Core on SQL Server and Redis-backed distributed caching.</li><li>Designed versioned REST APIs with JWT authentication, role-based authorisation, request rate limiting and OpenAPI documentation, consumed by the React / Next.js front end.</li><li>Integrated online payment gateways, QR and voucher generation, and server-side PDF document rendering into the booking and check-in flow.</li><li>Instrumented the platform with structured Serilog logging shipped to Elasticsearch, Kibana and Seq, plus health checks over SQL Server, Redis and upstream providers.</li><li>Containerised the stack with multi-stage Docker builds and automated build, image publishing and deployment through GitLab CI/CD to a private registry and Linux/Nginx hosts.</li><li>Drove remediation of an external security assessment based on ISO/IEC 15408 and the OWASP testing guides, hardening authentication, session invalidation, authorisation, audit logging and file-upload policy across the API.</li><li>Established integration testing over the real HTTP surface with xUnit and the ASP.NET Core test host, and ran code review for the team.</li>
+                      </ul>
+                      
+                      <ul class="tags">
+        <li class="tag">C#</li><li class="tag">.NET 8</li><li class="tag">ASP.NET Core</li><li class="tag">EF Core</li><li class="tag">MediatR</li><li class="tag">SQL Server</li><li class="tag">Redis</li><li class="tag">Next.js</li><li class="tag">React</li><li class="tag">TypeScript</li><li class="tag">Docker</li><li class="tag">GitLab CI/CD</li><li class="tag">Nginx</li><li class="tag">Linux</li><li class="tag">Elasticsearch</li><li class="tag">Kibana</li><li class="tag">Seq</li><li class="tag">Serilog</li>
+      </ul>
+                    </div>
+                    <figure class="role__media frame"><img
+    src="/assets/eyvantrip-preview.webp"
+    alt="The EyvanTrip booking platform home page, showing hotel search and listings"
+    width="1500" height="766"
+    loading="lazy"
+    decoding="async"
+    
+  /></figure>
+                  </div>
+                </div>
+              </div>
+            </article>
+          
+            <article
+              class="role "
+              data-reveal
+              itemscope
+              itemtype="https://schema.org/OrganizationRole"
+            >
+              <h3>
+                <button
+                  class="role__head"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="role-body-freelance"
+                  data-role-toggle
+                >
+                  <span class="role__period">
+                    Apr 2024 – Present
+                    <b>Current</b>
+                  </span>
+                  <span>
+                    <span class="role__title">Software Engineer</span>
+                    <span class="role__company">
+                      <b>Independent / Freelance</b> —
+                      Remote — international clients
+                    </span>
+                  </span>
+                  <span class="role__toggle" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg></span>
+                </button>
+              </h3>
+
+              <div class="role__body" id="role-body-freelance" data-open="false">
+                <div class="role__body-inner">
+                  <div class="role__content">
+                    <div>
+                      <p class="role__summary">Web products delivered end to end for startups and business clients, with full ownership from architecture through to deployment.</p>
+                      <ul class="role__bullets">
+                        <li>Delivered web products end to end for international clients, owning architecture, implementation, deployment and handover.</li><li>Built and launched perspectivedesign.co for an architecture and design studio in Muscat, Oman, on a headless Strapi CMS so the studio can publish its own project portfolio.</li>
+                      </ul>
+                      <div class="project__links">
+                            
+                                <a class="project__link" href="https://perspectivedesign.co" target="_blank" rel="noopener">
+                                  perspectivedesign.co <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg>
+                                </a>
+                              
+                          </div>
+                      <ul class="tags">
+        <li class="tag">TypeScript</li><li class="tag">React</li><li class="tag">Next.js</li><li class="tag">Node.js</li><li class="tag">Strapi</li><li class="tag">Docker</li><li class="tag">Nginx</li>
+      </ul>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </article>
+          
+            <article
+              class="role "
+              data-reveal
+              itemscope
+              itemtype="https://schema.org/OrganizationRole"
+            >
+              <h3>
+                <button
+                  class="role__head"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="role-body-infrafund"
+                  data-role-toggle
+                >
+                  <span class="role__period">
+                    Apr 2024 – Jul 2024
+                    
+                  </span>
+                  <span>
+                    <span class="role__title">Software Engineer</span>
+                    <span class="role__company">
+                      <b>InfraFund</b> —
+                      Remote — London, United Kingdom
+                    </span>
+                  </span>
+                  <span class="role__toggle" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg></span>
+                </button>
+              </h3>
+
+              <div class="role__body" id="role-body-infrafund" data-open="false">
+                <div class="role__body-inner">
+                  <div class="role__content">
+                    <div>
+                      <p class="role__summary">Web3 crowdfunding platform financing NetZero and renewable-infrastructure projects, backed by University of Exeter R&amp;D, Santander and the SETsquared incubator.</p>
+                      <ul class="role__bullets">
+                        <li>Developed features for a Web3 crowdfunding platform combining blockchain settlement, AI-assisted asset management and KYC onboarding.</li><li>Built DEX/STO components and the APIs behind real-time investor analytics.</li>
+                      </ul>
+                      
+                      <ul class="tags">
+        <li class="tag">Web3</li><li class="tag">Blockchain</li><li class="tag">TypeScript</li><li class="tag">React</li><li class="tag">REST APIs</li><li class="tag">KYC integrations</li>
+      </ul>
+                    </div>
+                    <figure class="role__media frame"><img
+    src="/assets/infrafund1.webp"
+    alt="The InfraFund platform home page, a Web3 crowdfunding site for NetZero projects"
+    width="800" height="413"
+    loading="lazy"
+    decoding="async"
+    
+  /></figure>
+                  </div>
+                </div>
+              </div>
+            </article>
+          
+            <article
+              class="role role--featured"
+              data-reveal
+              itemscope
+              itemtype="https://schema.org/OrganizationRole"
+            >
+              <h3>
+                <button
+                  class="role__head"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="role-body-hasin"
+                  data-role-toggle
+                >
+                  <span class="role__period">
+                    Mar 2021 – Feb 2024
+                    
+                  </span>
+                  <span>
+                    <span class="role__title">Software Engineer — Backend &amp; Team Lead</span>
+                    <span class="role__company">
+                      <b>Hasin Technology Co.</b> —
+                      Tehran, Iran
+                    </span>
+                  </span>
+                  <span class="role__toggle" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg></span>
+                </button>
+              </h3>
+
+              <div class="role__body" id="role-body-hasin" data-open="false">
+                <div class="role__body-inner">
+                  <div class="role__content">
+                    <div>
+                      <p class="role__summary">Backend engineering on high-throughput payment infrastructure, then technical lead of the company Startup Studio.</p>
+                      <ul class="role__bullets">
+                        <li>Optimised a payment switch processing more than 2 million transactions per day, and implemented the monitoring and security controls around it.</li><li>Led the company Startup Studio and acted as technical lead for Piki Smart Cart, a retail-automation product combining IoT sensors and computer vision.</li>
+                      </ul>
+                      
+                      <ul class="tags">
+        <li class="tag">C#</li><li class="tag">.NET</li><li class="tag">SQL Server</li><li class="tag">Redis</li><li class="tag">Docker</li><li class="tag">Linux</li><li class="tag">IoT</li><li class="tag">Computer Vision</li>
+      </ul>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </article>
+          
+            <article
+              class="role "
+              data-reveal
+              itemscope
+              itemtype="https://schema.org/OrganizationRole"
+            >
+              <h3>
+                <button
+                  class="role__head"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="role-body-radin"
+                  data-role-toggle
+                >
+                  <span class="role__period">
+                    Jun 2021 – Dec 2023
+                    
+                  </span>
+                  <span>
+                    <span class="role__title">Internship Mentor</span>
+                    <span class="role__company">
+                      <b>Radin Technology Co.</b> —
+                      Tehran, Iran
+                    </span>
+                  </span>
+                  <span class="role__toggle" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg></span>
+                </button>
+              </h3>
+
+              <div class="role__body" id="role-body-radin" data-open="false">
+                <div class="role__body-inner">
+                  <div class="role__content">
+                    <div>
+                      <p class="role__summary">Mentoring programme for undergraduate software engineering interns.</p>
+                      <ul class="role__bullets">
+                        <li>Mentored 30+ undergraduate interns through software engineering fundamentals and project delivery.</li>
+                      </ul>
+                      
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </article>
+          
+            <article
+              class="role "
+              data-reveal
+              itemscope
+              itemtype="https://schema.org/OrganizationRole"
+            >
+              <h3>
+                <button
+                  class="role__head"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="role-body-sbu-ta"
+                  data-role-toggle
+                >
+                  <span class="role__period">
+                    Sep 2020 – Sep 2023
+                    
+                  </span>
+                  <span>
+                    <span class="role__title">Teaching &amp; Research Assistant</span>
+                    <span class="role__company">
+                      <b>Shahid Beheshti University</b> —
+                      Tehran, Iran
+                    </span>
+                  </span>
+                  <span class="role__toggle" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg></span>
+                </button>
+              </h3>
+
+              <div class="role__body" id="role-body-sbu-ta" data-open="false">
+                <div class="role__body-inner">
+                  <div class="role__content">
+                    <div>
+                      <p class="role__summary">Head teaching assistant for core computer science courses, alongside research project support.</p>
+                      <ul class="role__bullets">
+                        <li>Head TA for Advanced Programming and Algorithms; also assisted in Internet Engineering and faculty research projects.</li>
+                      </ul>
+                      
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </article>
+          
+      </div>
+    </div>
+  </section>
+ 
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="shell">
+        
+  <header class="section-head" data-reveal>
+    <p class="eyebrow">
+      <span class="eyebrow__index">03</span>
+      <span>Projects</span>
+    </p>
+    <h2 class="section-title">Selected work.</h2>
+    <p class="section-lede">Four projects that show the range: a production platform, a published open-source library, an IoT thesis, and a hardware product.</p>
+  </header>
+
+
+        <div class="projects">
+          
+              <article class="project" data-reveal>
+                <div>
+                  <p class="project__index">
+                    <span>01</span>Production platform · 2024 – 2025
+                  </p>
+                  <h3 class="project__name">EyvanTrip</h3>
+                  <p class="project__tagline">Hotel and tour booking platform for a hotel chain.</p>
+                  
+  <dl class="project__story">
+    <div><dt>Problem</dt><dd>A hotel group was selling rooms and tours through disconnected channels, with pricing, availability and payment handled manually across several systems.</dd></div>
+    <div><dt>Role</dt><dd>Software Engineer &amp; Team Lead — backend architecture, API design, infrastructure and production operations.</dd></div>
+    <div><dt>Engineering</dt><dd>A .NET 8 API split along clean-architecture boundaries, with CQRS handlers, EF Core against SQL Server, Redis for distributed caching and Serilog shipping structured logs into Elasticsearch and Seq. Payment, QR voucher and PDF-document generation run server-side. The Next.js client consumes versioned, JWT-protected REST endpoints.</dd></div>
+    <div><dt>Outcome</dt><dd>Runs in production as the group&#39;s booking platform, deployed continuously from GitLab CI/CD to Dockerised Linux hosts behind Nginx.</dd></div>
+  </dl>
+
+                  
+                  <div class="project__links">
+                    <a class="project__link" href="https://eyvantrip.com" target="_blank" rel="noopener">
+                          Visit site <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg>
+                        </a>
+                    
+                    
+                  </div>
+                  <ul class="tags">
+        <li class="tag">C#</li><li class="tag">.NET 8</li><li class="tag">SQL Server</li><li class="tag">Redis</li><li class="tag">Next.js</li><li class="tag">Docker</li><li class="tag">GitLab CI/CD</li><li class="tag">ELK</li><li class="tag">Seq</li>
+      </ul>
+                </div>
+
+                <div class="project__media">
+                      <figure class="frame"><img
+    src="/assets/eyvantrip-preview.webp"
+    alt="EyvanTrip home page with hotel and tour search"
+    width="1500" height="766"
+    loading="lazy"
+    decoding="async"
+    
+  /></figure>
+                      
+                      <p class="frame__caption">EyvanTrip — 2024 – 2025</p>
+                    </div>
+              </article>
+            
+              <article class="project" data-reveal>
+                <div>
+                  <p class="project__index">
+                    <span>02</span>Open source · npm · 2025
+                  </p>
+                  <h3 class="project__name">Avan Persian Date Picker</h3>
+                  <p class="project__tagline">A Jalali (Shamsi) calendar and date-range picker for React, published to npm.</p>
+                  
+  <dl class="project__story">
+    <div><dt>Problem</dt><dd>Persian-calendar date pickers for React are typically unmaintained, bundle their own styling and handle RTL, holidays and range selection poorly — a recurring problem in every Iranian product I worked on.</dd></div>
+    <div><dt>Role</dt><dd>Author and maintainer.</dd></div>
+    <div><dt>Engineering</dt><dd>A TypeScript monorepo of four published packages: a headless core for Jalali conversion, calendar grids and digit handling; a React layer with calendar, single-date and range pickers built on custom hooks for dismissible layers and controllable open state; an Iran public-holiday dataset; and a CSS-token theme package. Built with pnpm workspaces and Turborepo, unit-tested with Vitest, released through Changesets.</dd></div>
+    <div><dt>Outcome</dt><dd>Published on npm as @avan-persian/react with a live demo built from the repository and deployed on every push.</dd></div>
+  </dl>
+
+                  <ul class="project__packages">
+                        <li><code>@avan-persian/react</code><span>Calendar, date and range pickers</span></li><li><code>core</code><span>Jalali conversion, grid generation, digit handling</span></li><li><code>holidays</code><span>Iran public holidays</span></li><li><code>themes</code><span>CSS design tokens and theming</span></li>
+                      </ul>
+                  <div class="project__links">
+                    <a class="project__link" href="https://danialriazati.ir/avan-persian-date-picker/" target="_blank" rel="noopener">
+                          Live demo <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg>
+                        </a>
+                    <a class="project__link" href="https://github.com/danial-riazati/avan-persian-date-picker" target="_blank" rel="noopener">
+                          Source <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg>
+                        </a>
+                    <a class="project__link" href="https://www.npmjs.com/package/@avan-persian/react" target="_blank" rel="noopener">
+                          npm <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg>
+                        </a>
+                  </div>
+                  <ul class="tags">
+        <li class="tag">TypeScript</li><li class="tag">React</li><li class="tag">pnpm</li><li class="tag">Turborepo</li><li class="tag">Vitest</li><li class="tag">Changesets</li><li class="tag">RTL</li><li class="tag">a11y</li>
+      </ul>
+                </div>
+
+                <div class="project__media">
+                      <figure class="frame"><img
+    src="/assets/avan-demo.webp"
+    alt="The Avan two-month Jalali date-range picker, showing Persian numerals in a right-to-left calendar grid with a selected range and a holiday marker"
+    width="1344" height="826"
+    loading="lazy"
+    decoding="async"
+    
+  /></figure>
+                      
+                      <p class="frame__caption">Avan Persian Date Picker — 2025</p>
+                    </div>
+              </article>
+            
+              <article class="project" data-reveal>
+                <div>
+                  <p class="project__index">
+                    <span>03</span>BSc thesis · IoT · 2023 – 2024
+                  </p>
+                  <h3 class="project__name">Class Negar</h3>
+                  <p class="project__tagline">Smart classroom and attendance system built on Raspberry Pi, RFID and QR codes.</p>
+                  
+  <dl class="project__story">
+    <div><dt>Problem</dt><dd>University attendance was still taken on paper: slow, easy to falsify, and producing no usable data for the faculty.</dd></div>
+    <div><dt>Role</dt><dd>Sole author — hardware integration, backend and progressive web application. Supervised by Dr. Mojtaba Vahidi-Asl.</dd></div>
+    <div><dt>Engineering</dt><dd>Raspberry Pi classroom terminals read student RFID cards and time-limited QR codes, posting attendance events to a backend that exposes them to a progressive web application for students, lecturers and faculty administration.</dd></div>
+    <div><dt>Outcome</dt><dd>Selected as a Best Thesis Project candidate in the Computer Science &amp; Engineering faculty at Shahid Beheshti University.</dd></div>
+  </dl>
+
+                  
+                  <div class="project__links">
+                    
+                    
+                    
+                  </div>
+                  <ul class="tags">
+        <li class="tag">Raspberry Pi</li><li class="tag">RFID</li><li class="tag">QR</li><li class="tag">React</li><li class="tag">PWA</li><li class="tag">IoT</li><li class="tag">REST APIs</li>
+      </ul>
+                </div>
+
+                <div class="project__media">
+                      <figure class="frame"><img
+    src="/assets/classnegar8.webp"
+    alt="The Class Negar classroom terminal mounted on a wall: a wood-fronted enclosure housing an RFID reader and camera"
+    width="960" height="1280"
+    loading="lazy"
+    decoding="async"
+    
+  /></figure>
+                      <div class="project__gallery">
+                            <figure class="frame frame--tall"><img
+    src="/assets/classnegar3.webp"
+    alt="Class Negar student home screen showing enrolled classes and a QR check-in action"
+    width="1100" height="2381"
+    loading="lazy"
+    decoding="async"
+    
+  /></figure><figure class="frame frame--tall"><img
+    src="/assets/classnegar1.webp"
+    alt="Class Negar progressive web app sign-in screen"
+    width="900" height="1948"
+    loading="lazy"
+    decoding="async"
+    
+  /></figure>
+                          </div>
+                      <p class="frame__caption">Class Negar — 2023 – 2024</p>
+                    </div>
+              </article>
+            
+              <article class="project" data-reveal>
+                <div>
+                  <p class="project__index">
+                    <span>04</span>Product · Technical lead · 2021 – 2024
+                  </p>
+                  <h3 class="project__name">Piki Smart Cart</h3>
+                  <p class="project__tagline">Self-checkout shopping cart for retail stores, using IoT sensors and computer vision.</p>
+                  
+  <dl class="project__story">
+    <div><dt>Problem</dt><dd>Supermarket checkout queues are the slowest part of the shopping trip, and retrofitting full self-checkout infrastructure into an existing store is expensive.</dd></div>
+    <div><dt>Role</dt><dd>Technical Lead within the Hasin Technology Startup Studio.</dd></div>
+    <div><dt>Engineering</dt><dd>A cart-mounted terminal identifies items as they are added, using weight sensors and computer vision for verification and fraud detection, and runs the basket and payment flow on the cart itself rather than at a till.</dd></div>
+    <div><dt>Outcome</dt><dd>Built and trialled in-store as a working retail prototype.</dd></div>
+  </dl>
+
+                  
+                  <div class="project__links">
+                    
+                    
+                    
+                  </div>
+                  <ul class="tags">
+        <li class="tag">IoT</li><li class="tag">Computer Vision</li><li class="tag">Embedded Linux</li><li class="tag">C#</li><li class="tag">REST APIs</li>
+      </ul>
+                </div>
+
+                <div class="project__media">
+                      <figure class="frame"><img
+    src="/assets/pikicart1.webp"
+    alt="Piki Smart Cart terminal mounted on a shopping trolley in a store, showing a scanned product"
+    width="854" height="854"
+    loading="lazy"
+    decoding="async"
+    
+  /></figure>
+                      
+                      <p class="frame__caption">Piki Smart Cart — 2021 – 2024</p>
+                    </div>
+              </article>
+            
+        </div>
+
+        <div class="more-projects">
+          
+              <a class="mini" href="https://infrafund.net" target="_blank" rel="noopener">
+                <span class="mini__kind">Web3 platform · 2024</span>
+                <span class="mini__name">InfraFund <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+                <span class="mini__text">Web3 crowdfunding platform for NetZero and renewable-infrastructure projects.</span>
+              </a>
+            
+              <a class="mini" href="https://perspectivedesign.co" target="_blank" rel="noopener">
+                <span class="mini__kind">Client project · 2024</span>
+                <span class="mini__name">Perspective Design <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+                <span class="mini__text">Portfolio site for an architecture and design studio in Muscat, Oman.</span>
+              </a>
+            
+          <a class="mini" href="https://github.com/danial-riazati" target="_blank" rel="noopener">
+            <span class="mini__kind">Open source</span>
+            <span class="mini__name">More on GitHub <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+            <span class="mini__text">Libraries, experiments and coursework at github.com/danial-riazati.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+   
+  <section class="section" id="skills" aria-labelledby="skills-title">
+    <div class="shell">
+      
+  <header class="section-head" data-reveal>
+    <p class="eyebrow">
+      <span class="eyebrow__index">04</span>
+      <span>Skills</span>
+    </p>
+    <h2 class="section-title">Technical expertise.</h2>
+    <p class="section-lede">Grouped by what I actually use in production, not by what looks good in a list.</p>
+  </header>
+
+
+      <div class="skills">
+        
+            <section class="skill-group" data-reveal>
+              <h3 class="skill-group__name"><i>01</i> Backend</h3>
+              <ul class="skill-group__items">
+                <li>C#</li><li>.NET / .NET 8</li><li>ASP.NET Core</li><li>EF Core</li><li>Python</li><li>Go</li><li>Java</li><li>C / C++</li>
+              </ul>
+            </section>
+          
+            <section class="skill-group" data-reveal>
+              <h3 class="skill-group__name"><i>02</i> Frontend</h3>
+              <ul class="skill-group__items">
+                <li>TypeScript</li><li>JavaScript</li><li>React</li><li>Next.js</li><li>Flutter</li><li>HTML &amp; CSS</li>
+              </ul>
+            </section>
+          
+            <section class="skill-group" data-reveal>
+              <h3 class="skill-group__name"><i>03</i> Data</h3>
+              <ul class="skill-group__items">
+                <li>SQL Server</li><li>MySQL</li><li>MongoDB</li><li>Redis</li>
+              </ul>
+            </section>
+          
+            <section class="skill-group" data-reveal>
+              <h3 class="skill-group__name"><i>04</i> Messaging</h3>
+              <ul class="skill-group__items">
+                <li>Kafka</li><li>RabbitMQ</li><li>Async processing</li><li>Caching</li>
+              </ul>
+            </section>
+          
+            <section class="skill-group" data-reveal>
+              <h3 class="skill-group__name"><i>05</i> Infrastructure</h3>
+              <ul class="skill-group__items">
+                <li>Docker</li><li>Linux</li><li>Nginx</li><li>GitLab CI/CD</li><li>AWS</li><li>Azure</li>
+              </ul>
+            </section>
+          
+            <section class="skill-group" data-reveal>
+              <h3 class="skill-group__name"><i>06</i> Observability</h3>
+              <ul class="skill-group__items">
+                <li>Elasticsearch</li><li>Kibana</li><li>Filebeat</li><li>Seq</li><li>Serilog</li><li>Health checks</li>
+              </ul>
+            </section>
+          
+            <section class="skill-group" data-reveal>
+              <h3 class="skill-group__name"><i>07</i> Practices</h3>
+              <ul class="skill-group__items">
+                <li>REST API design</li><li>Clean architecture</li><li>CQRS</li><li>Distributed systems</li><li>Code review</li><li>Technical leadership</li>
+              </ul>
+            </section>
+          
+            <section class="skill-group" data-reveal>
+              <h3 class="skill-group__name"><i>08</i> Domains</h3>
+              <ul class="skill-group__items">
+                <li>IoT</li><li>Raspberry Pi</li><li>Computer vision</li><li>Web3</li>
+              </ul>
+            </section>
+          
+      </div>
+    </div>
+  </section>
+
+      
+  <section class="section" id="education" aria-labelledby="education-title">
+    <div class="shell">
+      
+  <header class="section-head" data-reveal>
+    <p class="eyebrow">
+      <span class="eyebrow__index">05</span>
+      <span>Education</span>
+    </p>
+    <h2 class="section-title">Education &amp; certifications.</h2>
+    
+  </header>
+
+
+      <div class="split">
+        <div data-reveal>
+          <div class="edu">
+            
+                <article class="edu__item">
+                  <div class="edu__period">
+                    2026 – present
+                    <span class="edu__current">
+                          <span class="status-dot" aria-hidden="true"></span>In progress
+                        </span>
+                  </div>
+                  <div>
+                    <h3 class="edu__degree">MSc Computer Science</h3>
+                    <p class="edu__school">Christian-Albrechts-Universität zu Kiel (CAU) — Kiel, Germany</p>
+                    
+                    <ul class="edu__notes">
+                          <li>English-taught Master&#39;s programme in Computer Science.</li>
+                        </ul>
+                  </div>
+                </article>
+              
+                <article class="edu__item">
+                  <div class="edu__period">
+                    Sep 2019 – Aug 2024
+                    
+                  </div>
+                  <div>
+                    <h3 class="edu__degree">BSc Computer Engineering</h3>
+                    <p class="edu__school">Shahid Beheshti University — Tehran, Iran</p>
+                    <p class="edu__grade">GPA 17.27 / 20</p>
+                    <ul class="edu__notes">
+                          <li>Thesis: Class Negar — Smart Classroom &amp; Attendance System (Raspberry Pi, RFID, QR attendance, PWA). Best Thesis Project candidate in the CSE faculty.</li><li>Supervisor: Dr. Mojtaba Vahidi-Asl.</li>
+                        </ul>
+                  </div>
+                </article>
+              
+          </div>
+        </div>
+
+        <div data-reveal>
+          <h3 class="eyebrow" style="margin-bottom:var(--space-s)">
+            <span class="eyebrow__index">·</span><span>Certifications &amp; tests</span>
+          </h3>
+          <ul class="certs">
+            
+                <li>
+                  <b>Certified Scrum Professional</b>
+                  <span>
+                    Scrum Alliance · December 2023
+                  </span>
+                  <code>ID 001605847</code>
+                </li>
+              
+                <li>
+                  <b>JavaCup Certified Java Programmer</b>
+                  <span>
+                    JavaCup · October 2020
+                  </span>
+                  
+                </li>
+              
+                <li>
+                  <b>TOEFL iBT — 88</b>
+                  <span>
+                    ETS · November 2024 · R 22 · L 21 · S 22 · W 23
+                  </span>
+                  
+                </li>
+              
+          </ul>
+
+          <h3 class="eyebrow" style="margin:var(--space-l) 0 var(--space-s)">
+            <span class="eyebrow__index">·</span><span>Languages</span>
+          </h3>
+          <ul class="certs">
+            <li><b>English</b><span>C1 — TOEFL iBT 88 (2024)</span></li><li><b>Persian</b><span>Native</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="shell">
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">
+            <span class="eyebrow__index">06</span><span>Contact</span>
+          </p>
+          <h2 class="contact__title" id="contact-title">Let's build something useful.</h2>
+          <p class="contact__lede">
+            I am in Kiel and open to backend and full-stack engineering roles across Germany —
+            on-site, hybrid or remote. The fastest way to reach me is email or LinkedIn.
+          </p>
+        </header>
+
+        <div class="contact__grid" data-reveal>
+          
+              <div class="contact__item">
+                <span class="contact__label">Email</span>
+                <a
+                  class="contact__value"
+                  href="mailto:riazatidanial@gmail.com"
+                  
+                >
+                  riazatidanial@gmail.com
+                </a>
+              </div>
+            
+              <div class="contact__item">
+                <span class="contact__label">Phone</span>
+                <a
+                  class="contact__value"
+                  href="tel:+491631311415"
+                  
+                >
+                  +49 163 1311415
+                </a>
+              </div>
+            
+              <div class="contact__item">
+                <span class="contact__label">LinkedIn</span>
+                <a
+                  class="contact__value"
+                  href="https://www.linkedin.com/in/danial-riazati/"
+                  target="_blank" rel="noopener"
+                >
+                  linkedin.com/in/danial-riazati<svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg>
+                </a>
+              </div>
+            
+              <div class="contact__item">
+                <span class="contact__label">GitHub</span>
+                <a
+                  class="contact__value"
+                  href="https://github.com/danial-riazati"
+                  target="_blank" rel="noopener"
+                >
+                  github.com/danial-riazati<svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg>
+                </a>
+              </div>
+            
+          <div class="contact__item">
+            <span class="contact__label">Location</span>
+            <span class="contact__value">Kiel, Germany</span>
+          </div>
+          <div class="contact__item">
+            <span class="contact__label">Availability</span>
+            <span class="contact__value">On-site Kiel · Hybrid Hamburg · Remote Germany-wide</span>
+          </div>
+        </div>
+
+        <div class="contact__cta" data-reveal>
+          <a class="btn" href="mailto:riazatidanial@gmail.com"><svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg> Email me</a>
+          <a class="btn btn--ghost" href="/Danial_Riazati_CV.pdf" download="Danial_Riazati_CV.pdf">
+            <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M2.5 11.5v1a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5v-1"/></svg> Download CV (PDF)
+          </a>
+          <a class="btn btn--ghost" href="/cv/">View CV online</a>
+        </div>
+      </div>
+    </section>
+  
+    </main>
+    
+  <footer class="footer">
+    <div class="shell footer__inner">
+      <p>
+        <span class="footer__name">Danial Riazati</span>
+        <span class="footer__meta"> · Software Engineer · Kiel, Germany</span>
+      </p>
+      <nav class="footer__links" aria-label="Elsewhere">
+        <a href="https://github.com/danial-riazati" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/danial-riazati/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:riazatidanial@gmail.com">Email</a>
+        <a href="/cv/">CV</a>
+      </nav>
+      <p class="footer__meta">© 2026 Danial Riazati</p>
+    </div>
+  </footer>
+
+  </div>
+
+<script src="/scripts/site.js" defer></script>
+</body>
 </html>

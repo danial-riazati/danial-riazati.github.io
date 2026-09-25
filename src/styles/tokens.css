@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Design tokens — Danial Riazati
+   Identity: warm paper, ink, hairline rules, one vermilion accent.
+   Reads like a technical document rather than a dashboard.
+   ========================================================================== */
+
+:root {
+  /* --- Colour ----------------------------------------------------------- */
+  --paper: #fbfaf8;
+  --paper-sunken: #f4f2ed;
+  --surface: #ffffff;
+
+  --ink: #14151a;
+  --ink-soft: #35373f;
+  --muted: #6b6e76;
+  --faint: #9a9da4;
+
+  --line: #e4e1d9;
+  --line-strong: #cdc9c0;
+  --line-ink: rgba(255, 255, 255, 0.14);
+
+  --accent: #bf3b12;
+  --accent-hover: #9c2f0d;
+  --accent-soft: #fbeee9;
+  --accent-ink: #ff7a4d;
+
+  --success: #1f6f4a;
+  --focus: #1b5cd8;
+
+  /* Inverted band used for the contact section and the footer. */
+  --ink-bg: #131318;
+  --ink-bg-raised: #1c1c22;
+  --on-ink: #f2f0ec;
+  --on-ink-muted: #9b9ba3;
+
+  /* --- Type ------------------------------------------------------------- */
+  --sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+
+  --step--1: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --step-1: clamp(1.125rem, 1.07rem + 0.28vw, 1.3125rem);
+  --step-2: clamp(1.3125rem, 1.2rem + 0.6vw, 1.75rem);
+  --step-3: clamp(1.625rem, 1.4rem + 1.1vw, 2.5rem);
+  --step-4: clamp(2rem, 1.5rem + 2.4vw, 3.5rem);
+  --step-5: clamp(2.75rem, 1.4rem + 6.4vw, 7rem);
+
+  --label: 0.6875rem;
+  --tracking-label: 0.16em;
+
+  /* --- Space ------------------------------------------------------------ */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: clamp(3.5rem, 6vw, 6rem);
+  --space-3xl: clamp(5rem, 10vw, 9rem);
+
+  /* --- Layout ----------------------------------------------------------- */
+  --measure: 62ch;
+  --shell: 78rem;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --radius: 3px;
+  --radius-lg: 5px;
+  --nav-h: 4.25rem;
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --fast: 140ms;
+  --base: 260ms;
+  --slow: 620ms;
+}

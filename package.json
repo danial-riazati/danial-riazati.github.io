@@ -1,0 +1,27 @@
+{
+  "name": "danialriazati.ir",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Personal site and CV of Danial Riazati — Software Engineer, Kiel, Germany",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node src/build.mjs && node src/pdf.mjs && node src/og.mjs",
+    "build:html": "node src/build.mjs",
+    "build:pdf": "node src/pdf.mjs",
+    "build:og": "node src/og.mjs",
+    "verify": "node src/verify-pdf.mjs",
+    "fonts": "node src/fonts.mjs",
+    "images": "node src/images.mjs",
+    "shots": "node src/shots.mjs",
+    "preview:pdf": "node src/pdf-preview.mjs",
+    "serve": "node src/serve.mjs",
+    "dev": "node src/build.mjs && node src/serve.mjs"
+  },
+  "devDependencies": {
+    "pdfjs-dist": "^6.3.289",
+    "puppeteer": "^23.11.1"
+  }
+}
