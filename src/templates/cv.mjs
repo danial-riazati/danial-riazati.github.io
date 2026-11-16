@@ -1,11 +1,11 @@
 import { html, each, icons } from '../lib/html.mjs';
 import {
-  site,
+  cvVariants,
   person,
   contact,
   experience,
   projects,
-  cvSkills,
+  skills,
   education,
   certifications,
   languages,
@@ -48,21 +48,21 @@ const contactBar = () => {
   `;
 };
 
-const experienceEntries = () =>
+const experienceEntries = (variant) =>
   each(
     experience,
     (role) => html`
       <article class="cv-entry">
         <div class="cv-entry__head">
           <h3 class="cv-entry__role">
-            ${role.role}<span class="cv-entry__at">,</span>
+            ${variant.educationFirst ? role.studentRole ?? role.role : role.role}<span class="cv-entry__at">,</span>
             <span class="cv-entry__org"
               >${role.company}${role.product ? ` (${role.product})` : ''}</span
             >
           </h3>
           <p class="cv-entry__meta">${role.period}</p>
         </div>
-        <p class="cv-entry__place">${role.location}</p>
+        <p class="cv-entry__place">${role.location} · ${role.scope}</p>
         <ul class="cv-bullets">
           ${each(
             role.bullets.filter((b) => b.cv),
@@ -76,7 +76,7 @@ const experienceEntries = () =>
     `,
   );
 
-const educationEntries = () =>
+const educationEntries = (variant) =>
   each(
     education,
     (item) => html`
@@ -88,7 +88,7 @@ const educationEntries = () =>
         <p class="cv-entry__place">
           ${item.institution} — ${item.location}${item.grade ? html` · <b>${item.grade}</b>` : ''}
         </p>
-        ${item.notes
+        ${item.notes && (variant.educationFirst || !item.current)
           ? html`<ul class="cv-bullets">
               ${each(item.notes, (note) => html`<li>${note}</li>`)}
             </ul>`
@@ -119,22 +119,23 @@ const projectEntries = () =>
     `,
   );
 
-export const cvDocument = () => html`
+const cvDocument = (variant) => html`
   <article class="cv" id="cv-document">
     <header class="cv-header">
       <h1 class="cv-name">${person.name}</h1>
-      <p class="cv-role">${person.headline}</p>
+      <p class="cv-role">${variant.headline}</p>
       ${contactBar()}
     </header>
 
-    ${section('Professional Summary', html`<p class="cv-summary">${person.summary}</p>`)}
-    ${section('Professional Experience', experienceEntries())}
+    ${section('Professional Summary', html`<p class="cv-summary">${variant.summary}</p>`)}
+    ${variant.educationFirst ? section('Education', educationEntries(variant)) : ''}
+    ${section('Professional Experience', experienceEntries(variant))}
     ${section(
       'Technical Skills',
       html`
         <dl class="cv-skills">
           ${each(
-            cvSkills,
+            skills,
             (group) => html`
               <div>
                 <dt>${group.group}</dt>
@@ -145,7 +146,7 @@ export const cvDocument = () => html`
         </dl>
       `,
     )}
-    ${section('Education', educationEntries())}
+    ${variant.educationFirst ? '' : section('Education', educationEntries(variant))}
     ${section('Selected Projects', projectEntries())}
     ${section(
       'Certifications & Languages',
@@ -175,7 +176,7 @@ export const cvDocument = () => html`
 `;
 
 /** Screen-only chrome around the document. Excluded from the PDF. */
-export const cvPage = () => html`
+export const cvPage = (variant) => html`
   <a class="skip-link" href="#cv-document">Skip to CV</a>
 
   <div class="cv-bar" data-print-hide>
@@ -183,9 +184,8 @@ export const cvPage = () => html`
       <a class="cv-bar__back" href="/">
         <span aria-hidden="true">←</span> ${person.name}
       </a>
-      <p class="cv-bar__title">Curriculum Vitae</p>
       <div class="cv-bar__actions">
-        <a class="btn btn--accent btn--sm" href="${site.cvPdf}" download="${site.cvPdfFilename}">
+        <a class="btn btn--accent btn--sm" href="/${variant.filename}" download="${variant.filename}">
           ${icons.download} Download PDF
         </a>
         <button class="btn btn--ghost btn--sm" type="button" id="cv-print">
@@ -195,12 +195,20 @@ export const cvPage = () => html`
     </div>
   </div>
 
-  <main class="cv-stage">${cvDocument()}</main>
+  <nav class="cv-variants" aria-label="CV version" data-print-hide>
+    ${each(Object.values(cvVariants), (option) => html`
+      <a class="btn btn--ghost btn--sm" href="${option.path}" aria-current="${option === variant ? 'page' : 'false'}">
+        ${option.label}
+      </a>
+    `)}
+  </nav>
+
+  <main class="cv-stage">${cvDocument(variant)}</main>
 
   <footer class="cv-foot" data-print-hide>
     <p>
       Also available as a
-      <a class="link link--always" href="${site.cvPdf}" download="${site.cvPdfFilename}">PDF</a>.
+      <a class="link link--always" href="/${variant.filename}" download="${variant.filename}">PDF</a>.
       Back to the <a class="link link--always" href="/">portfolio</a>.
     </p>
     <p>© ${new Date().getFullYear()} ${person.name} · ${person.location.label}</p>

@@ -1,5 +1,5 @@
 /**
- * Renders /cv/ to Danial_Riazati_CV.pdf with headless Chrome.
+ * Renders both CV routes to downloadable PDFs with headless Chrome.
  *
  * Chrome prints the same DOM the browser shows, driven by the print rules in
  * src/styles/cv.css, so the PDF can never drift from the page or from
@@ -13,12 +13,7 @@ import path from 'node:path';
 
 import { startServer, ROOT } from './lib/server.mjs';
 import { launch } from './lib/browser.mjs';
-import { site, person } from './data/profile.mjs';
-
-const OUT = path.join(ROOT, site.cvPdfFilename);
-
-/** Chrome takes the PDF's /Title from document.title at print time. */
-const PDF_TITLE = `${person.name} — Curriculum Vitae`;
+import { cvVariants, person } from './data/profile.mjs';
 
 /**
  * Chrome writes page objects uncompressed, so counting them is reliable.
@@ -34,23 +29,27 @@ async function inspect(file) {
 }
 
 /**
- * @param {{ out?: string, pageRanges?: string }} [options]
+ * @param {{ variant?: object, out?: string, pageRanges?: string }} [options]
  *   `pageRanges` is only used by src/pdf-preview.mjs to isolate single pages.
  */
-export async function renderCvPdf({ out = OUT, pageRanges = '' } = {}) {
+export async function renderCvPdf({
+  variant = cvVariants.fullTime,
+  out = path.join(ROOT, variant.filename),
+  pageRanges = '',
+} = {}) {
   const server = await startServer();
   const browser = await launch();
 
   try {
     const page = await browser.newPage();
-    await page.goto(`${server.origin}/cv/`, { waitUntil: 'networkidle0' });
+    await page.goto(`${server.origin}${variant.path}`, { waitUntil: 'networkidle0' });
 
     // @media print rules only apply once print emulation is enabled.
     await page.emulateMediaType('print');
     await page.evaluate((title) => {
       document.title = title;
       return document.fonts.ready;
-    }, PDF_TITLE);
+    }, `${person.name} — ${variant.label}`);
 
     await page.pdf({
       path: out,
@@ -71,13 +70,13 @@ export async function renderCvPdf({ out = OUT, pageRanges = '' } = {}) {
 }
 
 async function main() {
-  await renderCvPdf();
-
-  const info = await inspect(OUT);
-  console.log(`${site.cvPdfFilename}  ${(info.size / 1024).toFixed(0)} kB  ${info.pages} page(s)`);
-
-  if (info.pages > 2) {
-    console.warn(`Warning: the CV runs to ${info.pages} pages. Aim for one or two.`);
+  for (const variant of Object.values(cvVariants)) {
+    const file = await renderCvPdf({ variant });
+    const info = await inspect(file);
+    console.log(`${variant.filename}  ${(info.size / 1024).toFixed(0)} kB  ${info.pages} page(s)`);
+    if (info.pages > 2) {
+      throw new Error(`${variant.label} runs to ${info.pages} pages. Aim for one or two.`);
+    }
   }
 }
 

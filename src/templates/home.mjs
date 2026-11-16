@@ -1,6 +1,5 @@
 import { html, each, raw, pad, icons, img } from '../lib/html.mjs';
 import {
-  site,
   person,
   contact,
   experience,
@@ -54,8 +53,8 @@ const nav = () => html`
       </nav>
 
       <div class="nav__actions">
-        <a class="btn btn--accent btn--sm btn--desktop" href="${site.cvPdf}" download="${site.cvPdfFilename}">
-          ${icons.download} Download CV
+        <a class="btn btn--accent btn--sm btn--desktop" href="/cv/">
+          View CV options
         </a>
         <button
           class="nav__toggle"
@@ -82,10 +81,9 @@ const nav = () => html`
         )}
       </nav>
       <div class="nav__panel-actions">
-        <a class="btn btn--accent" href="${site.cvPdf}" download="${site.cvPdfFilename}">
-          ${icons.download} Download CV (PDF)
+        <a class="btn btn--accent" href="/cv/">
+          View CV options
         </a>
-        <a class="btn btn--ghost" href="/cv/">View CV online</a>
         <a class="btn btn--ghost" href="${contact.email.href}">Email me</a>
       </div>
       <div class="nav__panel-meta">
@@ -116,9 +114,7 @@ const hero = () => html`
       </div>
 
       <p class="hero__roles" data-reveal>
-        ${each(person.roles, (role, i) =>
-          i === 0 ? html`<b>${role}</b>` : html`<i aria-hidden="true">/</i><b>${role}</b>`,
-        )}
+        <b>${person.headline}</b>
       </p>
 
       <div class="hero__grid">
@@ -127,8 +123,8 @@ const hero = () => html`
 
           <div class="hero__cta">
             <a class="btn" href="#experience">${icons.arrowDown} View experience</a>
-            <a class="btn btn--ghost" href="${site.cvPdf}" download="${site.cvPdfFilename}">
-              ${icons.download} Download CV
+            <a class="btn btn--ghost" href="/cv/">
+              View CV options
             </a>
             <a class="btn btn--ghost" href="${contact.github.href}" target="_blank" rel="noopener">
               ${icons.arrowUpRight} GitHub
@@ -179,12 +175,10 @@ const about = () => html`
             to understand what a system is doing at three in the morning.
           </p>
           <p>
-            Most recently I was <strong>Software Engineer &amp; Team Lead at Eyvan Group</strong>,
-            where I owned the architecture of a live travel-booking platform — a .NET 8
-            clean-architecture API over SQL Server and Redis, a Next.js client, and the Docker and
-            GitLab CI/CD pipeline that put both into production behind Nginx. Before that I worked
-            on payment infrastructure at Hasin Technology and led Piki Smart Cart, an IoT
-            retail-automation product.
+            At <strong>Eyvan Group</strong>, I led engineering for a live travel-booking platform,
+            from backend architecture and API design through testing and containerized deployment.
+            At Hasin Technology, I worked on high-throughput transaction processing and led
+            development of Piki Smart Cart, an IoT retail prototype.
           </p>
           <p>
             I like problems where the hard part is the system rather than the syntax: consistency
@@ -194,9 +188,8 @@ const about = () => html`
             an open-source Persian calendar library for React published on npm.
           </p>
           <p>
-            I moved to <strong>Kiel</strong> to read for an MSc in Computer Science at
-            Christian-Albrechts-Universität, and I am looking for backend or full-stack engineering
-            work in Germany where I can keep building systems that carry real traffic.
+            <strong>Work Authorization &amp; Availability</strong><br>
+            ${person.availability.details}
           </p>
         </div>
 
@@ -219,7 +212,7 @@ const about = () => html`
           </div>
           <div class="about__row">
             <dt>Languages</dt>
-            <dd>${languages.map((l) => `${l.name} (${l.level.split(' —')[0]})`).join(' · ')}</dd>
+            <dd>${languages.map((l) => `${l.name} (${l.level.split(' (')[0]})`).join(' · ')}</dd>
           </div>
           <div class="about__row">
             <dt>Open to</dt>
@@ -244,7 +237,7 @@ const experienceSection = () => html`
       ${sectionHead({
         id: 'experience',
         title: 'Five years of building and operating software.',
-        lede: 'Roles are listed most recent first. Open any one for the engineering detail.',
+        lede: 'Open a role to see the engineering work behind it.',
       })}
 
       <div class="roles">
@@ -273,7 +266,7 @@ const experienceSection = () => html`
                     <span class="role__title">${role.role}</span>
                     <span class="role__company">
                       <b>${role.company}</b>${role.product ? ` · ${role.product}` : ''} —
-                      ${role.location}
+                      ${role.location} · ${role.scope}
                     </span>
                   </span>
                   <span class="role__toggle" aria-hidden="true">${icons.plus}</span>
@@ -573,10 +566,9 @@ const contactSection = () => {
 
         <div class="contact__cta" data-reveal>
           <a class="btn" href="${contact.email.href}">${icons.arrowUpRight} Email me</a>
-          <a class="btn btn--ghost" href="${site.cvPdf}" download="${site.cvPdfFilename}">
-            ${icons.download} Download CV (PDF)
+          <a class="btn btn--ghost" href="/cv/">
+            View CV options
           </a>
-          <a class="btn btn--ghost" href="/cv/">View CV online</a>
         </div>
       </div>
     </section>

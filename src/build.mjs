@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { layout, personJsonLd } from './templates/layout.mjs';
 import { homeBody } from './templates/home.mjs';
 import { cvPage } from './templates/cv.mjs';
-import { site, person, contact } from './data/profile.mjs';
+import { site, person, contact, cvVariants } from './data/profile.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = (...segments) => path.join(root, ...segments);
@@ -20,8 +20,9 @@ const written = [];
 async function write(relativePath, contents) {
   const target = out(relativePath);
   await mkdir(path.dirname(target), { recursive: true });
-  await writeFile(target, contents);
-  written.push([relativePath, Buffer.byteLength(contents)]);
+  const output = relativePath.endsWith('.html') ? contents.replace(/^[ \t]+$/gm, '') : contents;
+  await writeFile(target, output);
+  written.push([relativePath, Buffer.byteLength(output)]);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -40,26 +41,30 @@ async function buildPages() {
     }),
   );
 
-  await write(
-    'cv/index.html',
-    layout({
-      title: `CV — ${person.name} · Software Engineer, Kiel`,
-      description: `Curriculum vitae of ${person.name}: software engineer with 5+ years of backend and full-stack experience in .NET, C# and TypeScript. Based in Kiel, Germany. Download as PDF.`,
-      path: '/cv/',
-      styles: ['/styles/cv.css'],
-      script: '/scripts/site.js',
-      bodyClass: 'cv-body',
-      jsonLd: {
-        '@context': 'https://schema.org',
-        '@type': 'WebPage',
-        name: `Curriculum Vitae — ${person.name}`,
-        url: `${site.url}/cv/`,
-        about: { '@id': `${site.url}/#person` },
-        mainEntity: { '@id': `${site.url}/#person` },
-      },
-      body: cvPage().toString(),
-    }),
-  );
+  for (const variant of Object.values(cvVariants)) {
+    const title = `${variant.label} — ${person.name} · ${variant.headline}`;
+    await write(
+      `${variant.path.slice(1)}index.html`,
+      layout({
+        title,
+        description: variant.description,
+        path: variant.path,
+        styles: ['/styles/cv.css'],
+        script: '/scripts/site.js',
+        bodyClass: 'cv-body',
+        jsonLd: {
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: title,
+          description: variant.summary,
+          url: `${site.url}${variant.path}`,
+          about: { '@id': `${site.url}/#person` },
+          mainEntity: { '@id': `${site.url}/#person` },
+        },
+        body: cvPage(variant).toString(),
+      }),
+    );
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -80,7 +85,7 @@ async function copyStatic() {
 async function buildMeta() {
   const routes = [
     { loc: '/', priority: '1.0', changefreq: 'monthly' },
-    { loc: '/cv/', priority: '0.9', changefreq: 'monthly' },
+    ...Object.values(cvVariants).map(({ path }) => ({ loc: path, priority: '0.9', changefreq: 'monthly' })),
   ];
   const today = new Date().toISOString().slice(0, 10);
 

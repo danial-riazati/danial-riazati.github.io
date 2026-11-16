@@ -13,10 +13,9 @@ export const site = {
   title: 'Danial Riazati — Software Engineer · Backend & Full-Stack · Kiel, Germany',
   shortTitle: 'Danial Riazati — Software Engineer',
   description:
-    'Software engineer with 5+ years building production backends, REST APIs and web applications in .NET, C# and TypeScript. Based in Kiel, Germany; MSc Computer Science student at Kiel University (CAU). Open to backend and full-stack roles across Germany.',
+    'Backend and full-stack software engineer with 5+ years of production experience. Python, TypeScript, C#/.NET, React and Docker. Open to working student and full-time roles in Kiel, Hamburg and across Germany.',
   locale: 'en',
   ogImage: '/assets/og-image.png',
-  cvPdf: '/Danial_Riazati_CV.pdf',
   cvPdfFilename: 'Danial_Riazati_CV.pdf',
   googleVerification: 'cyOPO8z70xLNQhaveYXwENMDbJk1cBrHa9JIeOiAR3I',
 };
@@ -25,8 +24,7 @@ export const person = {
   name: 'Danial Riazati',
   givenName: 'Danial',
   familyName: 'Riazati',
-  headline: 'Software Engineer · Backend Engineer · Full-Stack Engineer',
-  roles: ['Software Engineer', 'Backend Engineer', 'Full-Stack Engineer'],
+  headline: 'Software Engineer — Backend & Full-Stack',
   yearsOfExperience: '5+',
   location: {
     city: 'Kiel',
@@ -40,17 +38,35 @@ export const person = {
   },
   /** Hero paragraph — the 10-second pitch. */
   intro:
-    'I build and run production software: .NET backends, REST APIs and the web applications on top of them. Five years of shipping systems that real customers depend on, now continuing my studies with an MSc in Computer Science at Kiel University.',
-  /** 3–5 line CV summary. */
-  summary:
-    'Software engineer with 5+ years of experience designing, shipping and operating production web platforms. Most recently Software Engineer & Team Lead at Eyvan Group, where I owned the architecture and production operation of a live booking platform on .NET 8, SQL Server, Redis and Next.js, deployed with Docker and GitLab CI/CD. Comfortable across the whole path from domain modelling and API design through to observability and deployment. Currently studying for an MSc in Computer Science at Christian-Albrechts-Universität zu Kiel, and open to backend or full-stack engineering roles across Germany.',
+    'I build production APIs and web applications, with 5+ years of experience across backend architecture, testing and deployment. My toolkit includes Python, TypeScript, C#/.NET, React, Next.js, Node.js, SQL and Docker.',
   availability: {
-    statement: 'Open to software engineering roles across Germany',
+    statement: 'Open to working student and full-time roles',
+    details: 'Based in Kiel and studying MSc Computer Science at Kiel University (CAU). Open to Working Student roles (Werkstudent, up to 20 hours/week during lectures under §16b) and full-time software engineering roles across Germany. With a recognized BSc in Computer Engineering, I can apply in Germany to switch to an EU Blue Card (§18g) with a qualifying offer.',
     modes: [
       { mode: 'On-site', place: 'Kiel' },
       { mode: 'Hybrid', place: 'Hamburg' },
       { mode: 'Remote', place: 'Germany-wide' },
     ],
+  },
+};
+
+export const cvVariants = {
+  fullTime: {
+    path: '/cv/',
+    label: 'Full-Time Mid/Senior CV',
+    filename: site.cvPdfFilename,
+    headline: 'Software Engineer · 5+ Years Backend & Full-Stack Experience',
+    description: 'Full-time backend and full-stack software engineering CV. 5+ years of experience with Python, TypeScript, C#/.NET, React and Docker. Kiel, Hamburg and Germany-wide.',
+    summary: 'Software engineer with 5+ years shipping and operating production systems. My toolkit includes Python, TypeScript, C#/.NET, React, Next.js, SQL and Docker. Based in Kiel and open to roles in Hamburg and across Germany. Currently in Germany on a §16b student permit. With a recognized BSc in Computer Engineering (Anabin H+ institution), I can apply to switch to an EU Blue Card (§18g) with a qualifying job offer. No international relocation needed.',
+  },
+  werkstudent: {
+    path: '/cv/werkstudent/',
+    label: 'Working Student (Werkstudent) CV',
+    filename: 'Danial_Riazati_Werkstudent_CV.pdf',
+    headline: 'MSc Computer Science Student · Backend & Full-Stack Software Engineer',
+    description: 'Werkstudent CV for a Kiel University MSc student with backend and full-stack experience. Python, TypeScript, C#/.NET, React and Docker. Kiel, Hamburg or remote in Germany.',
+    summary: 'MSc Computer Science student at Kiel University (CAU) seeking a long-term Working Student (Werkstudent) role in backend or full-stack engineering. Available immediately in Kiel, Hamburg or remotely within Germany, up to 20 hours per week during lectures under §16b. I bring 5+ years of experience building and operating production software.',
+    educationFirst: true,
   },
 };
 
@@ -80,10 +96,12 @@ export const contact = {
 export const experience = [
   {
     id: 'eyvan',
+    scope: 'Full-time',
     company: 'Eyvan Group',
     product: 'EyvanTrip',
     url: 'https://eyvantrip.com',
     role: 'Software Engineer & Team Lead',
+    studentRole: 'Software Engineer',
     start: 'April 2024',
     end: 'November 2025',
     period: 'Apr 2024 – Nov 2025',
@@ -103,9 +121,7 @@ export const experience = [
       },
       {
         cv: true,
-        text: 'Built the .NET 8 API as a clean-architecture solution (Domain / Application / Infrastructure / API) using CQRS with MediatR, FluentValidation, EF Core on SQL Server and Redis-backed distributed caching.',
-        cvText:
-          'Built the .NET 8 API on clean-architecture boundaries using CQRS with MediatR, FluentValidation, EF Core on SQL Server and Redis distributed caching.',
+        text: 'Designed a modular .NET backend on SQL Server with Redis distributed caching.',
       },
       {
         cv: true,
@@ -121,9 +137,7 @@ export const experience = [
       },
       {
         cv: true,
-        text: 'Instrumented the platform with structured Serilog logging shipped to Elasticsearch, Kibana and Seq, plus health checks over SQL Server, Redis and upstream providers.',
-        cvText:
-          'Instrumented the platform with structured Serilog logging into Elasticsearch, Kibana and Seq, plus health checks over SQL Server, Redis and upstream providers.',
+        text: 'Added structured logging and dependency health checks to improve production observability.',
       },
       {
         cv: true,
@@ -138,30 +152,11 @@ export const experience = [
           'Drove remediation of an external ISO/IEC 15408 and OWASP-based security assessment, hardening authentication, session invalidation, authorisation and audit logging.',
       },
       {
-        cv: false,
-        text: 'Established integration testing over the real HTTP surface with xUnit and the ASP.NET Core test host, and ran code review for the team.',
+        cv: true,
+        text: 'Established HTTP integration testing and led code review for the team.',
       },
     ],
-    tech: [
-      'C#',
-      '.NET 8',
-      'ASP.NET Core',
-      'EF Core',
-      'MediatR',
-      'SQL Server',
-      'Redis',
-      'Next.js',
-      'React',
-      'TypeScript',
-      'Docker',
-      'GitLab CI/CD',
-      'Nginx',
-      'Linux',
-      'Elasticsearch',
-      'Kibana',
-      'Seq',
-      'Serilog',
-    ],
+    tech: ['C#', '.NET', 'SQL Server', 'Redis', 'TypeScript', 'React', 'Next.js', 'Docker', 'Linux', 'CI/CD'],
     image: {
       src: '/assets/eyvantrip-preview.webp',
       alt: 'The EyvanTrip booking platform home page, showing hotel search and listings',
@@ -169,13 +164,14 @@ export const experience = [
   },
   {
     id: 'freelance',
-    company: 'Independent / Freelance',
+    scope: 'Contract / Project-based',
+    company: 'Independent Client Projects',
     role: 'Software Engineer',
     start: 'April 2024',
-    end: 'Present',
-    period: 'Apr 2024 – Present',
+    end: 'December 2025',
+    period: 'Apr 2024 – Dec 2025',
     isoStart: '2024-04',
-    isoEnd: null,
+    isoEnd: '2025-12',
     location: 'Remote — international clients',
     featured: false,
     cvTech: true,
@@ -198,6 +194,7 @@ export const experience = [
   },
   {
     id: 'infrafund',
+    scope: 'Contract / Part-time',
     company: 'InfraFund',
     url: 'https://infrafund.net',
     role: 'Software Engineer',
@@ -229,9 +226,11 @@ export const experience = [
   },
   {
     id: 'hasin',
+    scope: 'Full-time',
     company: 'Hasin Technology Co.',
     url: 'https://hasin.ir',
     role: 'Software Engineer — Backend & Team Lead',
+    studentRole: 'Software Engineer',
     start: 'March 2021',
     end: 'February 2024',
     period: 'Mar 2021 – Feb 2024',
@@ -245,7 +244,7 @@ export const experience = [
     bullets: [
       {
         cv: true,
-        text: 'Optimised a payment switch processing more than 2 million transactions per day, and implemented the monitoring and security controls around it.',
+        text: 'Optimised a high-throughput transaction processing service handling 2M+ daily requests and implemented monitoring and security controls.',
       },
       {
         cv: true,
@@ -256,6 +255,7 @@ export const experience = [
   },
   {
     id: 'radin',
+    scope: 'Part-time',
     company: 'Radin Technology Co.',
     role: 'Internship Mentor',
     start: 'June 2021',
@@ -276,6 +276,7 @@ export const experience = [
   },
   {
     id: 'sbu-ta',
+    scope: 'Part-time',
     company: 'Shahid Beheshti University',
     role: 'Teaching & Research Assistant',
     start: 'September 2020',
@@ -290,7 +291,7 @@ export const experience = [
     bullets: [
       {
         cv: true,
-        text: 'Head TA for Advanced Programming and Algorithms; also assisted in Internet Engineering and faculty research projects.',
+        text: 'Served as head TA for Advanced Programming and Algorithms and supported Internet Engineering and faculty research projects. Worked with Python, Java and C++.',
       },
     ],
     tech: [],
@@ -311,16 +312,16 @@ export const projects = [
       'A hotel group was selling rooms and tours through disconnected channels, with pricing, availability and payment handled manually across several systems.',
     role: 'Software Engineer & Team Lead — backend architecture, API design, infrastructure and production operations.',
     engineering:
-      'A .NET 8 API split along clean-architecture boundaries, with CQRS handlers, EF Core against SQL Server, Redis for distributed caching and Serilog shipping structured logs into Elasticsearch and Seq. Payment, QR voucher and PDF-document generation run server-side. The Next.js client consumes versioned, JWT-protected REST endpoints.',
+      'A modular .NET backend uses SQL Server, Redis caching and structured logging. The Next.js client consumes versioned REST APIs for booking, payments, QR vouchers and PDF documents.',
     outcome:
       'Runs in production as the group\'s booking platform, deployed continuously from GitLab CI/CD to Dockerised Linux hosts behind Nginx.',
-    tech: ['C#', '.NET 8', 'SQL Server', 'Redis', 'Next.js', 'Docker', 'GitLab CI/CD', 'ELK', 'Seq'],
+    tech: ['C#', '.NET 8', 'SQL Server', 'Redis', 'Next.js', 'Docker', 'CI/CD', 'Observability'],
     image: {
       src: '/assets/eyvantrip-preview.webp',
       alt: 'EyvanTrip home page with hotel and tour search',
     },
     cvLine:
-      'Production hotel and tour booking platform: .NET 8 clean-architecture API with CQRS, EF Core on SQL Server, Redis caching and ELK/Seq observability, with a Next.js client shipped via Docker and GitLab CI/CD.',
+      'Production hotel and tour booking platform with a modular .NET API, SQL Server, Redis caching and a Next.js client deployed through Docker and CI/CD.',
   },
   {
     id: 'avan',
@@ -456,46 +457,11 @@ export const projects = [
 ];
 
 export const skills = [
-  {
-    group: 'Backend',
-    items: ['C#', '.NET / .NET 8', 'ASP.NET Core', 'EF Core', 'Python', 'Go', 'Java', 'C / C++'],
-  },
-  {
-    group: 'Frontend',
-    items: ['TypeScript', 'JavaScript', 'React', 'Next.js', 'Flutter', 'HTML & CSS'],
-  },
-  { group: 'Data', items: ['SQL Server', 'MySQL', 'MongoDB', 'Redis'] },
-  { group: 'Messaging', items: ['Kafka', 'RabbitMQ', 'Async processing', 'Caching'] },
-  {
-    group: 'Infrastructure',
-    items: ['Docker', 'Linux', 'Nginx', 'GitLab CI/CD', 'AWS', 'Azure'],
-  },
-  {
-    group: 'Observability',
-    items: ['Elasticsearch', 'Kibana', 'Filebeat', 'Seq', 'Serilog', 'Health checks'],
-  },
-  {
-    group: 'Practices',
-    items: [
-      'REST API design',
-      'Clean architecture',
-      'CQRS',
-      'Distributed systems',
-      'Code review',
-      'Technical leadership',
-    ],
-  },
-  { group: 'Domains', items: ['IoT', 'Raspberry Pi', 'Computer vision', 'Web3'] },
-];
-
-/** Compact grouping used on the CV, where space is tight. */
-export const cvSkills = [
-  { group: 'Languages', items: ['C#', 'TypeScript', 'JavaScript', 'Python', 'Go', 'Java', 'C/C++', 'SQL', 'Dart'] },
-  { group: 'Backend', items: ['.NET 8', 'ASP.NET Core', 'EF Core', 'MediatR / CQRS', 'REST API design', 'Clean architecture'] },
-  { group: 'Frontend', items: ['React', 'Next.js', 'Tailwind CSS', 'Flutter'] },
-  { group: 'Data & messaging', items: ['SQL Server', 'MySQL', 'MongoDB', 'Redis', 'Kafka', 'RabbitMQ'] },
-  { group: 'Infrastructure', items: ['Docker', 'Linux', 'Nginx', 'GitLab CI/CD', 'AWS', 'Azure'] },
-  { group: 'Observability', items: ['Serilog', 'Elasticsearch', 'Kibana', 'Filebeat', 'Seq'] },
+  { group: 'Languages', items: ['Python', 'TypeScript', 'C#', 'JavaScript', 'SQL', 'Java', 'C++', 'Go'] },
+  { group: 'Backend', items: ['.NET', 'Node.js', 'REST API design', 'Backend architecture'] },
+  { group: 'Frontend', items: ['React', 'Next.js', 'HTML & CSS', 'Flutter'] },
+  { group: 'Data', items: ['PostgreSQL', 'SQL Server', 'MySQL', 'Redis'] },
+  { group: 'Delivery', items: ['Docker', 'Linux', 'CI/CD', 'Automated testing', 'Observability'] },
 ];
 
 export const education = [
@@ -521,7 +487,7 @@ export const education = [
     end: '2024-08',
     location: 'Tehran, Iran',
     current: false,
-    grade: 'GPA 17.27 / 20',
+    grade: 'GPA 17.27 / 20 (German equiv. ~1.8 — Good/Very Good)',
     notes: [
       'Thesis: Class Negar — Smart Classroom & Attendance System (Raspberry Pi, RFID, QR attendance, PWA). Best Thesis Project candidate in the CSE faculty.',
       'Supervisor: Dr. Mojtaba Vahidi-Asl.',
@@ -541,25 +507,18 @@ export const certifications = [
     issuer: 'JavaCup',
     date: 'October 2020',
   },
-  {
-    name: 'TOEFL iBT — 88',
-    issuer: 'ETS',
-    date: 'November 2024',
-    detail: 'R 22 · L 21 · S 22 · W 23',
-    // Already covered by the Languages row on the CV.
-    cv: false,
-  },
 ];
 
 export const languages = [
-  { name: 'English', level: 'C1 — TOEFL iBT 88 (2024)' },
+  { name: 'English', level: 'C1 (Full Professional Proficiency)' },
+  { name: 'German', level: 'A2 (Actively studying)' },
   { name: 'Persian', level: 'Native' },
 ];
 
 /** Numbers shown in the hero strip. Each must be derivable from the data above. */
 export const facts = [
   { value: '5+', label: 'years building production software' },
-  { value: '.NET', label: 'primary backend platform' },
+  { value: 'Backend', label: 'APIs and full-stack systems' },
   { value: 'MSc', label: 'Computer Science, Kiel University' },
   { value: 'Kiel', label: 'based in Germany' },
 ];

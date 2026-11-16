@@ -9,9 +9,9 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import { ROOT, resolveFile } from './lib/server.mjs';
-import { contact, site } from './data/profile.mjs';
+import { contact, site, cvVariants } from './data/profile.mjs';
 
-const PAGES = ['index.html', 'cv/index.html'];
+const PAGES = ['index.html', ...Object.values(cvVariants).map(({ path }) => `${path.slice(1)}index.html`)];
 
 /**
  * Hosts that refuse automated requests to their public pages. A plain fetch

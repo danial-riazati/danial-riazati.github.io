@@ -3,7 +3,7 @@
 Personal site and CV of Danial Riazati — software engineer, Kiel, Germany.
 
 Live at **[danialriazati.ir](https://danialriazati.ir)**. The portfolio is at `/`,
-the CV at `/cv/`, and the PDF at `/Danial_Riazati_CV.pdf`.
+the full-time CV at `/cv/`, and the working student CV at `/cv/werkstudent/`. Both pages offer browser printing and a matching PDF download.
 
 ## How it works
 
@@ -24,7 +24,7 @@ src/
   styles/               design tokens, site, CV (print rules included)
   lib/                  HTML escaping, static server, browser launcher
   build.mjs             renders pages, sitemap, robots.txt, favicon, vCard
-  pdf.mjs               prints /cv/ to Danial_Riazati_CV.pdf
+  pdf.mjs               prints both CV routes to their downloadable A4 PDFs
   og.mjs                renders the social preview card
 ```
 
@@ -41,7 +41,7 @@ Verification, all of which should pass before deploying:
 ```sh
 npm run verify            # parses the PDF: text layer, every field, page count
 node src/check-links.mjs  # every link in both pages
-node src/shots.mjs / /cv/ # screenshots at 1440/1280/768/390/320, flags overflow
+node src/shots.mjs / /cv/ /cv/werkstudent/ # screenshots at 1440/1280/768/390/320, flags overflow
 ```
 
 Occasional tasks:
@@ -52,16 +52,15 @@ npm run images        # re-encode assets/*.{png,jpg} to WebP
 npm run preview:pdf   # rasterise each PDF page to .preview/ for review
 ```
 
-## The PDF
+## The CV PDFs
 
-`Danial_Riazati_CV.pdf` is printed by headless Chrome from the same `/cv/` page a
-visitor sees, driven by the print rules in `src/styles/cv.css`. It is a real text
-PDF — selectable, copyable and readable by an applicant tracking system — not an
-image or a screenshot.
+Headless Chrome prints `/cv/` to `Danial_Riazati_CV.pdf` and `/cv/werkstudent/` to
+`Danial_Riazati_Werkstudent_CV.pdf`. Both routes use the A4 rules in
+`src/styles/cv.css` and produce PDFs with selectable text.
 
-`src/verify-pdf.mjs` parses the generated file and asserts the things that are easy
+`src/verify-pdf.mjs` parses both generated files and asserts the things that are easy
 to break silently: that the text layer extracts cleanly, that every contact detail
-and date is present, that it stays within two pages, and that no word is split by a
+and date is present, that each CV stays within two pages, and that no word is split by a
 lost ligature or by letter-spacing. Run it after any change to the CV.
 
 ## Content rules

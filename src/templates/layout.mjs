@@ -1,10 +1,8 @@
 import { html, raw } from '../lib/html.mjs';
-import { site, person, contact, experience, education, skills, certifications } from '../data/profile.mjs';
+import { site, person, contact, education, skills, certifications, languages } from '../data/profile.mjs';
 
 /** Person + related entities, used by search engines and LLM-backed search. */
 export function personJsonLd() {
-  const employer = experience[0];
-
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -14,8 +12,8 @@ export function personJsonLd() {
         name: person.name,
         givenName: person.givenName,
         familyName: person.familyName,
-        jobTitle: person.roles,
-        description: person.summary,
+        jobTitle: person.headline,
+        description: site.description,
         url: site.url,
         image: `${site.url}${person.photo.src}`,
         email: contact.email.href.replace('mailto:', 'mailto:'),
@@ -35,10 +33,7 @@ export function personJsonLd() {
             addressCountry: 'DE',
           },
         },
-        knowsLanguage: [
-          { '@type': 'Language', name: 'English' },
-          { '@type': 'Language', name: 'Persian' },
-        ],
+        knowsLanguage: languages.map(({ name }) => ({ '@type': 'Language', name })),
         knowsAbout: skills.flatMap((group) => group.items),
         alumniOf: education
           .filter((e) => !e.current)
@@ -52,11 +47,6 @@ export function personJsonLd() {
           name: 'Christian-Albrechts-Universität zu Kiel',
           sameAs: 'https://www.uni-kiel.de/',
         },
-        worksFor: {
-          '@type': 'Organization',
-          name: employer.company,
-          url: employer.url,
-        },
         hasCredential: certifications.map((c) => ({
           '@type': 'EducationalOccupationalCredential',
           name: c.name,
@@ -64,7 +54,7 @@ export function personJsonLd() {
         })),
         seeks: {
           '@type': 'Demand',
-          name: 'Software engineering roles in Germany',
+          name: 'Working student and full-time software engineering roles in Kiel, Hamburg and across Germany',
         },
         sameAs: [contact.linkedin.href, contact.github.href, contact.website.href],
       },
@@ -137,7 +127,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robo
 <meta property="og:image" content="${site.url}${site.ogImage}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="${person.name} — Software Engineer, Kiel, Germany">
+<meta property="og:image:alt" content="${person.name} — ${person.headline}, Kiel, Germany">
 <meta property="profile:first_name" content="${person.givenName}">
 <meta property="profile:last_name" content="${person.familyName}">
 
