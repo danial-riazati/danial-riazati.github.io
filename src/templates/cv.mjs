@@ -1,13 +1,11 @@
 import { html, each, icons } from '../lib/html.mjs';
+import { resume, prioritise } from '../data/resume.mjs';
 import {
   cvVariants,
   person,
   contact,
   experience,
-  projects,
-  skills,
   education,
-  certifications,
   languages,
 } from '../data/profile.mjs';
 
@@ -48,132 +46,81 @@ const contactBar = () => {
   `;
 };
 
-const experienceEntries = (variant) =>
-  each(
-    experience,
-    (role) => html`
-      <article class="cv-entry">
-        <div class="cv-entry__head">
-          <h3 class="cv-entry__role">
-            ${variant.educationFirst ? role.studentRole ?? role.role : role.role}<span class="cv-entry__at">,</span>
-            <span class="cv-entry__org"
-              >${role.company}${role.product ? ` (${role.product})` : ''}</span
-            >
-          </h3>
-          <p class="cv-entry__meta">${role.period}</p>
-        </div>
-        <p class="cv-entry__place">${role.location} · ${role.scope}</p>
-        <ul class="cv-bullets">
-          ${each(
-            role.bullets.filter((b) => b.cv),
-            (bullet) => html`<li>${bullet.cvText ?? bullet.text}</li>`,
-          )}
-        </ul>
-        ${role.cvTech && role.tech.length
-          ? html`<p class="cv-entry__tech"><span>Stack</span>${role.tech.join(' · ')}</p>`
-          : ''}
-      </article>
-    `,
-  );
-
-const educationEntries = (variant) =>
-  each(
-    education,
-    (item) => html`
-      <article class="cv-entry">
-        <div class="cv-entry__head">
-          <h3 class="cv-entry__role">${item.degree}</h3>
-          <p class="cv-entry__meta">${item.period}</p>
-        </div>
-        <p class="cv-entry__place">
-          ${item.institution} — ${item.location}${item.grade ? html` · <b>${item.grade}</b>` : ''}
-        </p>
-        ${item.notes && (variant.educationFirst || !item.current)
-          ? html`<ul class="cv-bullets">
-              ${each(item.notes, (note) => html`<li>${note}</li>`)}
-            </ul>`
-          : ''}
-      </article>
-    `,
-  );
-
-const projectEntries = () =>
-  each(
-    projects.filter((p) => p.cv),
-    (project) => html`
-      <article class="cv-entry cv-entry--tight">
-        <div class="cv-entry__head">
-          <h3 class="cv-entry__role">
-            ${project.name}
-            ${project.npm ? html`<span class="cv-entry__org">— ${project.npm}</span>` : ''}
-          </h3>
-          <p class="cv-entry__meta">${project.year}</p>
-        </div>
-        <p class="cv-project__text">${project.cvLine}</p>
-        ${project.repo || project.url
-          ? html`<p class="cv-project__link">
-              <a href="${project.repo ?? project.url}">${(project.repo ?? project.url).replace(/^https?:\/\//, '')}</a>
-            </p>`
-          : ''}
-      </article>
-    `,
-  );
-
-const cvDocument = (variant) => html`
-  <article class="cv" id="cv-document">
-    <header class="cv-header">
-      <h1 class="cv-name">${person.name}</h1>
-      <p class="cv-role">${variant.headline}</p>
-      ${contactBar()}
-    </header>
-
-    ${section('Professional Summary', html`<p class="cv-summary">${variant.summary}</p>`)}
-    ${variant.educationFirst ? section('Education', educationEntries(variant)) : ''}
-    ${section('Professional Experience', experienceEntries(variant))}
-    ${section(
-      'Technical Skills',
-      html`
-        <dl class="cv-skills">
-          ${each(
-            skills,
-            (group) => html`
-              <div>
-                <dt>${group.group}</dt>
-                <dd>${group.items.join(' · ')}</dd>
-              </div>
-            `,
-          )}
-        </dl>
-      `,
-    )}
-    ${variant.educationFirst ? '' : section('Education', educationEntries(variant))}
-    ${section('Selected Projects', projectEntries())}
-    ${section(
-      'Certifications & Languages',
-      html`
-        <ul class="cv-certs">
-          ${each(
-            certifications.filter((c) => c.cv !== false),
-            (cert) => html`
-              <li>
-                <b>${cert.name}</b>
-                <span>
-                  ${cert.issuer} · ${cert.date}${cert.detail ? ` · ${cert.detail}` : ''}${cert.id
-                    ? ` · ID ${cert.id}`
-                    : ''}
-                </span>
-              </li>
-            `,
-          )}
-          <li>
-            <b>Languages</b>
-            <span>${languages.map((l) => `${l.name} — ${l.level}`).join(' · ')}</span>
-          </li>
-        </ul>
-      `,
-    )}
-  </article>
+const keywordGroups = (items) => html`
+  <div class="cv-keywords">
+    ${each(items, ([label, values]) => html`<p><b>${label}</b> - ${values.join(' · ')}</p>`)}
+  </div>
 `;
+
+const experienceEntries = (variant, ids) => each(ids, id => {
+  const role = experience.find(item => item.id === id);
+  const content = resume.roles[id];
+  return html`
+    <article class="cv-entry">
+      <div class="cv-entry__head">
+        <h3 class="cv-entry__role">${role.studentRole ?? role.role}<span class="cv-entry__at">,</span>
+          <span class="cv-entry__org">${role.company}${role.product ? ` (${role.product})` : ''}</span>
+        </h3>
+        <p class="cv-entry__meta">${role.period}</p>
+      </div>
+      <p class="cv-entry__place">${role.scope} · ${role.location}</p>
+      <p class="cv-context">${content.context}</p>
+      ${keywordGroups(prioritise(content.groups, variant.groupOrder))}
+    </article>
+  `;
+});
+
+const educationEntries = () => each(education, item => html`
+  <article class="cv-entry">
+    <div class="cv-entry__head">
+      <h3 class="cv-entry__role">${item.degree}</h3>
+      <p class="cv-entry__meta">${item.period}</p>
+    </div>
+    <p class="cv-project__text">${item.institution}</p>
+    <p class="cv-entry__place">${item.location}${item.grade ? ' · GPA 17.27 / 20' : ' · English-taught programme'}</p>
+  </article>
+`);
+
+const projectEntries = variant => each(
+  prioritise(resume.projects, variant.projectOrder ?? []),
+  ([title, year, technologies]) => html`
+    <article class="cv-entry">
+      <div class="cv-entry__head">
+        <h3 class="cv-entry__role">${title}</h3>
+        <p class="cv-entry__meta">${year}</p>
+      </div>
+      <p class="cv-project__text">${technologies.join(' · ')}</p>
+    </article>
+  `,
+);
+
+export const cvDocument = variant => {
+  const remaining = experience.map(role => role.id).filter(id => !variant.firstRoles.includes(id));
+  return html`
+    <article class="cv" id="cv-document">
+      <header class="cv-header">
+        <h1 class="cv-name">${person.name}</h1>
+        <p class="cv-role">${variant.headline}</p>
+        ${contactBar()}
+      </header>
+      ${section('Profile', html`<p class="cv-summary">${variant.summary}</p>`)}
+      ${variant.educationFirst ? section('Education', educationEntries()) : ''}
+      ${section('Technical Skills', keywordGroups(prioritise(resume.skills, variant.skillOrder)))}
+      ${section('Professional Experience', experienceEntries(variant, variant.firstRoles))}
+      <div class="cv-continuation">
+        <p class="cv-continuation__name">${person.name} · ${variant.label}</p>
+        ${section('Professional Experience - Continued', experienceEntries(variant, remaining))}
+        ${section('Selected Projects', projectEntries(variant))}
+        ${variant.educationFirst ? '' : section('Education', educationEntries())}
+        ${section('Languages', html`
+          <div class="cv-keywords">
+            ${each(languages, language => html`<p><b>${language.name}</b> — ${language.level}</p>`)}
+          </div>
+        `)}
+      </div>
+    </article>
+  `;
+};
 
 /** Screen-only chrome around the document. Excluded from the PDF. */
 export const cvPage = (variant) => html`

@@ -1,6 +1,6 @@
 /**
- * Single source of truth for the portfolio, the /cv page, the PDF CV and
- * the JSON-LD structured data. Edit here; everything downstream regenerates
+ * Shared identity, dates, education and portfolio projects. Confirmed skills
+ * and CV specialisations are imported from resume.mjs. Edit here; everything downstream regenerates
  * with `npm run build`.
  *
  * Every fact in this file is taken from the previous CV in this repository,
@@ -8,12 +8,13 @@
  * directly by the author. Nothing here is inferred or embellished.
  */
 
+import { resume, resumeVariants } from './resume.mjs';
+
 export const site = {
   url: 'https://danialriazati.ir',
-  title: 'Danial Riazati — Software Engineer · Backend & Full-Stack · Kiel, Germany',
+  title: 'Danial Riazati — Software Engineer · Data Analytics & AI · Kiel, Germany',
   shortTitle: 'Danial Riazati — Software Engineer',
-  description:
-    'Backend and full-stack software engineer with 5+ years of production experience. Python, TypeScript, C#/.NET, React and Docker. Open to working student and full-time roles in Kiel, Hamburg and across Germany.',
+  description: resumeVariants.general.description,
   locale: 'en',
   ogImage: '/assets/og-image.png',
   cvPdfFilename: 'Danial_Riazati_CV.pdf',
@@ -24,7 +25,7 @@ export const person = {
   name: 'Danial Riazati',
   givenName: 'Danial',
   familyName: 'Riazati',
-  headline: 'Software Engineer — Backend & Full-Stack',
+  headline: resume.headline,
   yearsOfExperience: '5+',
   location: {
     city: 'Kiel',
@@ -37,8 +38,7 @@ export const person = {
     alt: 'Portrait photograph of Danial Riazati',
   },
   /** Hero paragraph — the 10-second pitch. */
-  intro:
-    'I build production APIs and web applications, with 5+ years of experience across backend architecture, testing and deployment. My toolkit includes Python, TypeScript, C#/.NET, React, Next.js, Node.js, SQL and Docker.',
+  intro: resume.summary,
   availability: {
     statement: 'Open to working student and full-time roles',
     details: 'Based in Kiel and studying MSc Computer Science at Kiel University (CAU). Open to Working Student roles (Werkstudent, up to 20 hours/week during lectures under §16b) and full-time software engineering roles across Germany. With a recognized BSc in Computer Engineering, I can apply in Germany to switch to an EU Blue Card (§18g) with a qualifying offer.',
@@ -50,25 +50,7 @@ export const person = {
   },
 };
 
-export const cvVariants = {
-  fullTime: {
-    path: '/cv/',
-    label: 'Full-Time Mid/Senior CV',
-    filename: site.cvPdfFilename,
-    headline: 'Software Engineer · 5+ Years Backend & Full-Stack Experience',
-    description: 'Full-time backend and full-stack software engineering CV. 5+ years of experience with Python, TypeScript, C#/.NET, React and Docker. Kiel, Hamburg and Germany-wide.',
-    summary: 'Software engineer with 5+ years shipping and operating production systems. My toolkit includes Python, TypeScript, C#/.NET, React, Next.js, SQL and Docker. Based in Kiel and open to roles in Hamburg and across Germany. Currently in Germany on a §16b student permit. With a recognized BSc in Computer Engineering (Anabin H+ institution), I can apply to switch to an EU Blue Card (§18g) with a qualifying job offer. No international relocation needed.',
-  },
-  werkstudent: {
-    path: '/cv/werkstudent/',
-    label: 'Working Student (Werkstudent) CV',
-    filename: 'Danial_Riazati_Werkstudent_CV.pdf',
-    headline: 'MSc Computer Science Student · Backend & Full-Stack Software Engineer',
-    description: 'Werkstudent CV for a Kiel University MSc student with backend and full-stack experience. Python, TypeScript, C#/.NET, React and Docker. Kiel, Hamburg or remote in Germany.',
-    summary: 'MSc Computer Science student at Kiel University (CAU) seeking a long-term Working Student (Werkstudent) role in backend or full-stack engineering. Available immediately in Kiel, Hamburg or remotely within Germany, up to 20 hours per week during lectures under §16b. I bring 5+ years of experience building and operating production software.',
-    educationFirst: true,
-  },
-};
+export const cvVariants = resumeVariants;
 
 export const contact = {
   phone: { display: '+49 163 1311415', href: 'tel:+491631311415' },
@@ -302,20 +284,20 @@ export const projects = [
   {
     id: 'eyvantrip',
     name: 'EyvanTrip',
-    kind: 'Production platform',
+    kind: 'Hotel ERP platform',
     year: '2024 – 2025',
     url: 'https://eyvantrip.com',
     featured: true,
     cv: true,
-    tagline: 'Hotel and tour booking platform for a hotel chain.',
+    tagline: 'Hotel ERP and tourism platform with booking, internal operations and reporting.',
     problem:
       'A hotel group was selling rooms and tours through disconnected channels, with pricing, availability and payment handled manually across several systems.',
     role: 'Software Engineer & Team Lead — backend architecture, API design, infrastructure and production operations.',
     engineering:
-      'A modular .NET backend uses SQL Server, Redis caching and structured logging. The Next.js client consumes versioned REST APIs for booking, payments, QR vouchers and PDF documents.',
+      'C#/.NET and SQL Server backend, React/Next.js frontend, Redis caching and RabbitMQ messaging. Python and Power BI support ERP reporting, with Docker deployment and ELK monitoring.',
     outcome:
       'Runs in production as the group\'s booking platform, deployed continuously from GitLab CI/CD to Dockerised Linux hosts behind Nginx.',
-    tech: ['C#', '.NET 8', 'SQL Server', 'Redis', 'Next.js', 'Docker', 'CI/CD', 'Observability'],
+    tech: ['C# / .NET', 'SQL Server', 'Redis', 'RabbitMQ', 'React / Next.js', 'Python', 'Power BI', 'Docker', 'ELK Stack'],
     image: {
       src: '/assets/eyvantrip-preview.webp',
       alt: 'EyvanTrip home page with hotel and tour search',
@@ -402,9 +384,9 @@ export const projects = [
       'Supermarket checkout queues are the slowest part of the shopping trip, and retrofitting full self-checkout infrastructure into an existing store is expensive.',
     role: 'Technical Lead within the Hasin Technology Startup Studio.',
     engineering:
-      'A cart-mounted terminal identifies items as they are added, using weight sensors and computer vision for verification and fraud detection, and runs the basket and payment flow on the cart itself rather than at a till.',
+      'An IoT retail prototype combining live sensor data, sensor fusion and computer vision, with Linux scripting and microservices integration.',
     outcome: 'Built and trialled in-store as a working retail prototype.',
-    tech: ['IoT', 'Computer Vision', 'Embedded Linux', 'C#', 'REST APIs'],
+    tech: ['IoT integration', 'Sensor fusion', 'Computer vision', 'Linux', 'C#', 'REST APIs'],
     image: {
       src: '/assets/pikicart1.webp',
       alt: 'Piki Smart Cart terminal mounted on a shopping trolley in a store, showing a scanned product',
@@ -425,9 +407,9 @@ export const projects = [
       'Renewable-infrastructure projects struggle to reach retail investors through conventional financing channels.',
     role: 'Software Engineer (remote, London).',
     engineering:
-      'DEX/STO components and the APIs behind real-time investor analytics, alongside KYC onboarding and AI-assisted asset management.',
+      'TypeScript and React frontend engineering, API integration and real-time investor analytics interfaces.',
     outcome: 'Platform live at infrafund.net.',
-    tech: ['Web3', 'Blockchain', 'React', 'REST APIs', 'KYC'],
+    tech: ['TypeScript', 'React', 'REST APIs', 'Data analytics'],
     image: {
       src: '/assets/infrafund1.webp',
       alt: 'InfraFund platform home page',
@@ -456,13 +438,7 @@ export const projects = [
   },
 ];
 
-export const skills = [
-  { group: 'Languages', items: ['Python', 'TypeScript', 'C#', 'JavaScript', 'SQL', 'Java', 'C++', 'Go'] },
-  { group: 'Backend', items: ['.NET', 'Node.js', 'REST API design', 'Backend architecture'] },
-  { group: 'Frontend', items: ['React', 'Next.js', 'HTML & CSS', 'Flutter'] },
-  { group: 'Data', items: ['PostgreSQL', 'SQL Server', 'MySQL', 'Redis'] },
-  { group: 'Delivery', items: ['Docker', 'Linux', 'CI/CD', 'Automated testing', 'Observability'] },
-];
+export const skills = resume.skills.map(([group, items]) => ({ group, items }));
 
 export const education = [
   {

@@ -10,6 +10,7 @@
   "scripts": {
     "build": "node src/build.mjs && node src/pdf.mjs && node src/og.mjs",
     "build:html": "node src/build.mjs",
+    "build:resumes": "node src/build.mjs && node src/resume.mjs",
     "build:pdf": "node src/pdf.mjs",
     "build:og": "node src/og.mjs",
     "verify": "node src/verify-pdf.mjs",

@@ -1,3 +1,4 @@
+import { resume } from '../data/resume.mjs';
 import { html, each, raw, pad, icons, img } from '../lib/html.mjs';
 import {
   person,
@@ -164,28 +165,18 @@ const hero = () => html`
 const about = () => html`
   <section class="section" id="about" aria-labelledby="about-title">
     <div class="shell">
-      ${sectionHead({ id: 'about', title: 'Backend systems, shipped and kept running.' })}
+      ${sectionHead({ id: 'about', title: 'Software, data and connected systems.' })}
       <div class="about">
         <div class="about__body" data-reveal>
+          <p>${person.intro}</p>
           <p>
-            I am a software engineer with <strong>five years of production experience</strong>,
-            mostly on the backend. My work has been the unglamorous, load-bearing kind: designing
-            domain models and REST APIs, getting data access and caching right, wiring up payments
-            and third-party providers, and making sure there is enough logging and health checking
-            to understand what a system is doing at three in the morning.
+            My experience spans hotel ERP and booking systems at EyvanTrip, frontend engineering
+            at InfraFund, backend engineering and Piki Smart Cart at Hasin Technology, and
+            Python research projects at Shahid Beheshti University.
           </p>
           <p>
-            At <strong>Eyvan Group</strong>, I led engineering for a live travel-booking platform,
-            from backend architecture and API design through testing and containerized deployment.
-            At Hasin Technology, I worked on high-throughput transaction processing and led
-            development of Piki Smart Cart, an IoT retail prototype.
-          </p>
-          <p>
-            I like problems where the hard part is the system rather than the syntax: consistency
-            across services, failure modes, observability, and the design decisions that make a
-            codebase survivable two years later. I also maintain
-            <a class="link link--always" href="https://github.com/danial-riazati/avan-persian-date-picker" target="_blank" rel="noopener">Avan</a>,
-            an open-source Persian calendar library for React published on npm.
+            I also develop Avan, an open-source React component library, and Class Negar,
+            an IoT classroom system built as my BSc thesis.
           </p>
           <p>
             <strong>Work Authorization &amp; Availability</strong><br>
@@ -204,7 +195,7 @@ const about = () => html`
           </div>
           <div class="about__row">
             <dt>Focus</dt>
-            <dd>Backend · APIs · distributed systems · full-stack</dd>
+            <dd>Software engineering · data analytics · AI</dd>
           </div>
           <div class="about__row">
             <dt>Studying</dt>
@@ -237,7 +228,7 @@ const experienceSection = () => html`
       ${sectionHead({
         id: 'experience',
         title: 'Five years of building and operating software.',
-        lede: 'Open a role to see the engineering work behind it.',
+        lede: 'Open a role to see its technologies and engineering focus.',
       })}
 
       <div class="roles">
@@ -263,7 +254,7 @@ const experienceSection = () => html`
                     ${role.end === 'Present' ? html`<b>Current</b>` : ''}
                   </span>
                   <span>
-                    <span class="role__title">${role.role}</span>
+                    <span class="role__title">${role.studentRole ?? role.role}</span>
                     <span class="role__company">
                       <b>${role.company}</b>${role.product ? ` · ${role.product}` : ''} —
                       ${role.location} · ${role.scope}
@@ -277,10 +268,12 @@ const experienceSection = () => html`
                 <div class="role__body-inner">
                   <div class="role__content">
                     <div>
-                      <p class="role__summary">${role.summary}</p>
-                      <ul class="role__bullets">
-                        ${each(role.bullets, (bullet) => html`<li>${bullet.text}</li>`)}
-                      </ul>
+                      <p class="role__summary">${resume.roles[role.id].context}</p>
+                      <div class="role__keywords">
+                        ${each(resume.roles[role.id].groups, ([label, items]) => html`
+                          <p><b>${label}</b> — ${items.join(' · ')}</p>
+                        `)}
+                      </div>
                       ${role.links
                         ? html`<div class="project__links">
                             ${each(
@@ -293,7 +286,7 @@ const experienceSection = () => html`
                             )}
                           </div>`
                         : ''}
-                      ${tagList(role.tech)}
+
                     </div>
                     ${role.image
                       ? html`<figure class="role__media frame">${img(role.image)}</figure>`
@@ -422,7 +415,7 @@ const skillsSection = () => html`
       ${sectionHead({
         id: 'skills',
         title: 'Technical expertise.',
-        lede: 'Grouped by what I actually use in production, not by what looks good in a list.',
+        lede: 'Software engineering, data analysis, AI and connected systems.',
       })}
 
       <div class="skills">

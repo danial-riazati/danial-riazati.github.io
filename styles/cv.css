@@ -660,3 +660,74 @@ a {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Shared keyword-based CV for every specialisation and browser PDF export. */
+.cv-role {
+  font-family: var(--sans);
+  font-size: 11pt;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cv-section {
+  margin-top: 11pt;
+}
+
+.cv-entry {
+  margin-bottom: 10pt;
+}
+
+.cv-context {
+  margin-top: 4pt;
+  font-size: 9.8pt;
+  font-weight: 600;
+}
+
+.cv-keywords {
+  display: grid;
+  gap: 3pt;
+  font-size: 10pt;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.cv-keywords b {
+  font-weight: 600;
+}
+
+.cv-context + .cv-keywords {
+  margin-top: 3pt;
+}
+
+.cv-continuation {
+  margin-top: 24pt;
+  padding-top: 16pt;
+  border-top: 1px solid var(--cv-rule);
+}
+
+.cv-continuation__name {
+  font-size: 10pt;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+@media screen and (max-width: 46rem) {
+  .cv-keywords {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+}
+
+@media print {
+  .cv-continuation {
+    break-before: page;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .cv-entry {
+    break-inside: avoid;
+  }
+}

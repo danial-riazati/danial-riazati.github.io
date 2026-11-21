@@ -1,5 +1,5 @@
 /**
- * Renders both CV routes to downloadable PDFs with headless Chrome.
+ * Renders all five CV routes to downloadable PDFs with headless Chrome.
  *
  * Chrome prints the same DOM the browser shows, driven by the print rules in
  * src/styles/cv.css, so the PDF can never drift from the page or from
@@ -8,7 +8,7 @@
  *
  *   node src/pdf.mjs
  */
-import { readFile, stat } from 'node:fs/promises';
+import { cp, mkdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 import { startServer, ROOT } from './lib/server.mjs';
@@ -33,7 +33,7 @@ async function inspect(file) {
  *   `pageRanges` is only used by src/pdf-preview.mjs to isolate single pages.
  */
 export async function renderCvPdf({
-  variant = cvVariants.fullTime,
+  variant = cvVariants.general,
   out = path.join(ROOT, variant.filename),
   pageRanges = '',
 } = {}) {
@@ -69,7 +69,9 @@ export async function renderCvPdf({
   return out;
 }
 
-async function main() {
+export async function renderAllCvPdfs() {
+  const folder = path.join(ROOT, 'output/pdf/resumes');
+  await mkdir(folder, { recursive: true });
   for (const variant of Object.values(cvVariants)) {
     const file = await renderCvPdf({ variant });
     const info = await inspect(file);
@@ -77,11 +79,12 @@ async function main() {
     if (info.pages > 2) {
       throw new Error(`${variant.label} runs to ${info.pages} pages. Aim for one or two.`);
     }
+    await cp(file, path.join(folder, variant.folderFilename));
   }
 }
 
 if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1]))) {
-  main().catch((error) => {
+  renderAllCvPdfs().catch((error) => {
     console.error(error);
     process.exit(1);
   });

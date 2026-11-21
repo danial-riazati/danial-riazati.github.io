@@ -1,5 +1,5 @@
 /**
- * Reads both generated CV PDFs back and asserts the things that actually matter
+ * Reads all five generated CV PDFs back and asserts the things that actually matter
  * to a recruiter and to an ATS: the text is extractable, the contact details
  * and key facts are present and correct, and the document is one or two pages.
  *
@@ -10,6 +10,7 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 
 import { ROOT } from './lib/server.mjs';
+import { resume, prioritise } from './data/resume.mjs';
 import { cvVariants, person, contact, experience, education, languages } from './data/profile.mjs';
 
 // pdfjs-dist targets Node 22; these two are all it needs from the newer runtime
@@ -30,7 +31,8 @@ const { getDocument } = await import('pdfjs-dist/legacy/build/pdf.mjs');
 async function verify(variant) {
   const FILE = path.join(ROOT, variant.filename);
 
-  const data = new Uint8Array(await readFile(FILE));
+  const sourceBytes = await readFile(FILE);
+  const data = new Uint8Array(sourceBytes);
   const document = getDocument({ data, useSystemFonts: false });
   const pdf = await document.promise;
   const meta = await pdf.getMetadata();
@@ -85,10 +87,6 @@ async function verify(variant) {
     ['Eyvan role and dates', has('Eyvan Group') && has('Apr 2024') && has('Nov 2025')],
     ['Hasin role', has('Hasin Technology')],
     ['InfraFund role', has('InfraFund')],
-    ['Certified Scrum Professional', has('Certified Scrum Professional')],
-    ['JavaCup certification', has('JavaCup')],
-    ['Thesis recognition', has('Best Thesis Project')],
-    ['Thesis supervisor', has('Vahidi-Asl')],
     ['npm package name', has('@avan-persian/react')],
     ['Fonts embedded as subsets', fonts.size > 0],
     ['One or two A4 pages', pdf.numPages <= 2 && (await Promise.all(
@@ -98,17 +96,23 @@ async function verify(variant) {
       }),
     )).every(Boolean)],
     ['Education and experience order', (lower.indexOf('education') < lower.indexOf('professional experience')) === Boolean(variant.educationFirst)],
-    ['Role framing', has('Team Lead') === !variant.educationFirst],
+    ['Original engineering and teaching job titles retained', has('Software Engineer') && has('Teaching & Research Assistant')],
     ['Print controls and TOEFL score excluded', !/download pdf|skip to cv|toefl/i.test(text)],
     ...languages.map(({ name, level }) => [`Language: ${name}`, has(`${name} — ${level}`)]),
     ['No placeholder text left behind', !/NEED USER INPUT|Lorem ipsum|TODO/i.test(text)],
     ['Section headings extract as words, not spaced glyphs', !glyphSplit],
     // A lost ligature shows up as a gap mid-word: "Certified" -> "Certi ed".
     ['No words broken by lost ligatures', !brokenByLigature],
-    ['Certification name intact', has('Certified Scrum Professional')],
     ['Experience heading is parseable', has('PROFESSIONAL EXPERIENCE')],
     ['Education heading is parseable', has('EDUCATION')],
     ['Skills heading is parseable', has('TECHNICAL SKILLS')],
+    ['Confirmed summary', has(variant.summary)],
+    ['Removed details absent', !/2M\+|KYC|ASP.NET Core|EF Core|TOEFL/.test(text)],
+    ['No null glyphs in extracted text', !text.includes('\u0000')],
+    ['Specialisation uses the intended skill priority',
+      text.slice(lower.indexOf('technical skills') + 'technical skills'.length).trimStart()
+        .startsWith(prioritise(resume.skills, variant.skillOrder)[0][0])],
+    ['Working student availability', !variant.educationFirst || (has('20 hours/week') && has('12 months'))],
   ];
 
   // Every role and school in the data model should appear in the document.
@@ -118,6 +122,14 @@ async function verify(variant) {
   }
 
   /* ---- Report -------------------------------------------------------------- */
+
+  for (const role of Object.values(resume.roles)) {
+    for (const [group, items] of role.groups) {
+      checks.push([`Experience keywords: ${group} / ${items[0]}`, items.every(has)]);
+    }
+  }
+  const folderCopy = await readFile(path.join(ROOT, 'output/pdf/resumes', variant.folderFilename));
+  checks.push(['Organised folder copy matches the website PDF', sourceBytes.equals(folderCopy)]);
 
   const { size } = await stat(FILE);
   console.log(`${variant.filename} — ${(size / 1024).toFixed(0)} kB, ${pdf.numPages} page(s)`);

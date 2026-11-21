@@ -63,7 +63,7 @@ const card = /* html */ `<!doctype html>
 </head>
 <body>
   <div>
-    <p class="eyebrow">Software Engineer · Backend · Full-Stack</p>
+    <p class="eyebrow">Software Engineer · Data Analytics · AI</p>
     <h1>${person.name}</h1>
     <div class="rule"></div>
     <div class="meta">

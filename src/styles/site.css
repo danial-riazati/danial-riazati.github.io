@@ -1899,3 +1899,14 @@ button {
   opacity: 1;
   transform: none;
 }
+
+.role__keywords {
+  display: grid;
+  gap: 0.65rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.role__keywords b {
+  font-weight: 600;
+}
