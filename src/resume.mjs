@@ -1,3 +1,3 @@
-/** Export the five CV variants from the same pages served by the website. */
+/** Export the five CV variants from a shared template, publishing only the general version. */
 import { renderAllCvPdfs } from './pdf.mjs';
 await renderAllCvPdfs();

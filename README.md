@@ -3,9 +3,9 @@
 Personal site and CV of Danial Riazati — software engineer, Kiel, Germany.
 
 Live at **[danialriazati.ir](https://danialriazati.ir)**. The portfolio is at `/`,
-the general CV at `/cv/`, and the Working Student IT CV at `/cv/werkstudent/`.
-Specialised CVs are at `/cv/data/`, `/cv/backend/` and `/cv/frontend/`. Each page
-offers browser printing and a matching PDF download.
+the general CV at `/cv/`, and its PDF at `/Danial_Riazati_CV.pdf`.
+The data, backend, frontend and Working Student IT CVs are local-only exports in
+`output/pdf/resumes/`.
 
 ## How it works
 
@@ -45,8 +45,8 @@ Verification, all of which should pass before deploying:
 
 ```sh
 npm run verify            # parses the PDF: text layer, every field, page count
-node src/check-links.mjs  # every link in the portfolio and all CV variants
-node src/shots.mjs / /cv/ /cv/werkstudent/ # screenshots at 1440/1280/768/390/320, flags overflow
+node src/check-links.mjs  # every link in the portfolio and general CV
+node src/shots.mjs / /cv/ # screenshots at 1440/1280/768/390/320, flags overflow
 ```
 
 Occasional tasks:
@@ -59,13 +59,13 @@ npm run preview:pdf   # rasterise each PDF page to .preview/ for review
 
 ## The CV PDFs
 
-Headless Chrome prints the same CV pages visitors see. All variants use
-`src/styles/cv.css` and produce PDFs with selectable text. The general version
-keeps the existing `/Danial_Riazati_CV.pdf` address, and the Working Student IT
-version keeps `/Danial_Riazati_Werkstudent_CV.pdf`.
+Headless Chrome prints the general CV page visitors see. Private variants are
+rendered in memory from the same template and print stylesheet. Only the general
+PDF is written to the repository root for public download.
 
-Every PDF build also writes five clearly named files to `output/pdf/resumes/`.
-This local folder is ignored by Git. The root PDFs are the website downloads.
+Every PDF build writes all five clearly named files to `output/pdf/resumes/`.
+This local folder is ignored by Git. The other four variants have no public pages,
+root PDFs, navigation links or sitemap entries.
 
 `src/verify-pdf.mjs` parses all five generated files and asserts the things that are easy
 to break silently: that the text layer extracts cleanly, that every contact detail

@@ -6,6 +6,10 @@
 export const resume = {
   headline: 'Software Engineer | Data Analytics & AI',
   summary: '5+ years in software engineering. Backend and full-stack systems, data analysis, reporting and AI agents. MSc Computer Science student at Kiel University (CAU).',
+  workAuthorization: {
+    workingStudent: 'Based in Germany on a §16b student residence permit. Available for Working Student roles up to 20 hours/week during lectures.',
+    fullTime: 'With a qualifying job offer and my recognized BSc in Computer Engineering, I can apply to switch to an EU Blue Card (§18g) or a skilled-worker residence permit (§18b), subject to approval.',
+  },
   skills: [
     ['Backend', ['C# / .NET', 'Node.js', 'Python', 'REST APIs']],
     ['Frontend', ['TypeScript / JavaScript', 'React', 'Next.js', 'Flutter']],
@@ -124,7 +128,7 @@ export const resumeVariants = {
     filename: 'Danial_Riazati_Werkstudent_CV.pdf',
     folderFilename: 'Danial_Riazati_Working_Student_IT_CV.pdf',
     headline: 'MSc Computer Science Student | IT & Software Engineering',
-    summary: 'MSc Computer Science student at Kiel University (CAU), seeking a Working Student role in IT, software engineering or data analysis. Available immediately in Kiel, Hamburg or remotely within Germany, up to 20 hours/week during lectures, for approximately 12 months. 5+ years of software engineering experience.',
+    summary: 'MSc Computer Science student at Kiel University (CAU), seeking a Working Student role in IT, software engineering or data analysis. Available immediately in Kiel, Hamburg or remotely within Germany, for approximately 12 months. 5+ years of software engineering experience.',
     description: 'Working Student IT and software engineering CV. CAU Kiel MSc student with Python, C#/.NET, TypeScript, React, SQL and Power BI skills.',
     educationFirst: true,
     skillOrder: ['Backend', 'Frontend', 'Data & reporting', 'Delivery & observability', 'Microsoft Office'],

@@ -9,7 +9,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 
-import { ROOT } from './lib/server.mjs';
+import { ROOT, resolveFile } from './lib/server.mjs';
 import { resume, prioritise } from './data/resume.mjs';
 import { cvVariants, person, contact, experience, education, languages } from './data/profile.mjs';
 
@@ -29,7 +29,8 @@ process.getBuiltinModule ??= (name) => createRequire(import.meta.url)(name);
 const { getDocument } = await import('pdfjs-dist/legacy/build/pdf.mjs');
 
 async function verify(variant) {
-  const FILE = path.join(ROOT, variant.filename);
+  const FILE = path.join(ROOT, variant === cvVariants.general
+    ? variant.filename : `output/pdf/resumes/${variant.folderFilename}`);
 
   const sourceBytes = await readFile(FILE);
   const data = new Uint8Array(sourceBytes);
@@ -107,6 +108,9 @@ async function verify(variant) {
     ['Education heading is parseable', has('EDUCATION')],
     ['Skills heading is parseable', has('TECHNICAL SKILLS')],
     ['Confirmed summary', has(variant.summary)],
+    ['Student work authorization in every variant', has(resume.workAuthorization.workingStudent)],
+    ['Both full-time residence routes in every variant', has(resume.workAuthorization.fullTime)],
+    ['Work authorization leads the Profile section', lower.indexOf('working student') < lower.indexOf(variant.summary.toLowerCase())],
     ['Removed details absent', !/2M\+|KYC|ASP.NET Core|EF Core|TOEFL/.test(text)],
     ['No null glyphs in extracted text', !text.includes('\u0000')],
     ['Specialisation uses the intended skill priority',
@@ -129,7 +133,10 @@ async function verify(variant) {
     }
   }
   const folderCopy = await readFile(path.join(ROOT, 'output/pdf/resumes', variant.folderFilename));
-  checks.push(['Organised folder copy matches the website PDF', sourceBytes.equals(folderCopy)]);
+  checks.push(['Organised folder export matches the verified PDF', sourceBytes.equals(folderCopy)]);
+  checks.push(['Public visibility matches the general-only website', variant === cvVariants.general
+    ? Boolean(await resolveFile(variant.path)) && Boolean(await resolveFile(`/${variant.filename}`))
+    : !await resolveFile(variant.path) && !await resolveFile(`/${variant.filename}`)]);
 
   const { size } = await stat(FILE);
   console.log(`${variant.filename} — ${(size / 1024).toFixed(0)} kB, ${pdf.numPages} page(s)`);

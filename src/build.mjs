@@ -41,7 +41,13 @@ async function buildPages() {
     }),
   );
 
-  for (const variant of Object.values(cvVariants)) {
+  // Retire earlier public exports of the local-only CV variants.
+  for (const variant of Object.values(cvVariants).filter(item => item !== cvVariants.general)) {
+    await rm(out(variant.path.slice(1), 'index.html'), { force: true });
+    await rm(out(variant.filename), { force: true });
+  }
+
+  for (const variant of [cvVariants.general]) {
     const title = `${variant.label} — ${person.name} · ${variant.headline}`;
     await write(
       `${variant.path.slice(1)}index.html`,
@@ -85,7 +91,7 @@ async function copyStatic() {
 async function buildMeta() {
   const routes = [
     { loc: '/', priority: '1.0', changefreq: 'monthly' },
-    ...Object.values(cvVariants).map(({ path }) => ({ loc: path, priority: '0.9', changefreq: 'monthly' })),
+    ...[cvVariants.general].map(({ path }) => ({ loc: path, priority: '0.9', changefreq: 'monthly' })),
   ];
   const today = new Date().toISOString().slice(0, 10);
 

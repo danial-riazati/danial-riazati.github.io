@@ -1,7 +1,6 @@
 import { html, each, icons } from '../lib/html.mjs';
 import { resume, prioritise } from '../data/resume.mjs';
 import {
-  cvVariants,
   person,
   contact,
   experience,
@@ -103,7 +102,13 @@ export const cvDocument = variant => {
         <p class="cv-role">${variant.headline}</p>
         ${contactBar()}
       </header>
-      ${section('Profile', html`<p class="cv-summary">${variant.summary}</p>`)}
+      ${section('Profile', html`
+        <div class="cv-authorization">
+          <p><b>Working Student</b> — ${resume.workAuthorization.workingStudent}</p>
+          <p><b>Full-time employment</b> — ${resume.workAuthorization.fullTime}</p>
+        </div>
+        <p class="cv-summary">${variant.summary}</p>
+      `)}
       ${variant.educationFirst ? section('Education', educationEntries()) : ''}
       ${section('Technical Skills', keywordGroups(prioritise(resume.skills, variant.skillOrder)))}
       ${section('Professional Experience', experienceEntries(variant, variant.firstRoles))}
@@ -141,14 +146,6 @@ export const cvPage = (variant) => html`
       </div>
     </div>
   </div>
-
-  <nav class="cv-variants" aria-label="CV version" data-print-hide>
-    ${each(Object.values(cvVariants), (option) => html`
-      <a class="btn btn--ghost btn--sm" href="${option.path}" aria-current="${option === variant ? 'page' : 'false'}">
-        ${option.label}
-      </a>
-    `)}
-  </nav>
 
   <main class="cv-stage">${cvDocument(variant)}</main>
 

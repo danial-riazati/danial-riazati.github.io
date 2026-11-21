@@ -123,19 +123,6 @@ a {
   color: var(--accent);
 }
 
-.cv-variants {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 1rem 1rem 0;
-}
-
-.cv-variants [aria-current='page'] {
-  color: var(--accent);
-  border-color: currentColor;
-}
-
 .cv-bar__actions {
   display: flex;
   gap: 0.5rem;
@@ -728,6 +715,21 @@ a {
   }
 
   .cv-entry {
+    break-inside: avoid;
+  }
+}
+
+
+.cv-authorization {
+  display: grid;
+  gap: 4pt;
+  margin-bottom: 7pt;
+  font-size: 9.5pt;
+  line-height: 1.4;
+}
+
+@media print {
+  .cv-authorization {
     break-inside: avoid;
   }
 }

@@ -41,7 +41,7 @@ export const person = {
   intro: resume.summary,
   availability: {
     statement: 'Open to working student and full-time roles',
-    details: 'Based in Kiel and studying MSc Computer Science at Kiel University (CAU). Open to Working Student roles (Werkstudent, up to 20 hours/week during lectures under §16b) and full-time software engineering roles across Germany. With a recognized BSc in Computer Engineering, I can apply in Germany to switch to an EU Blue Card (§18g) with a qualifying offer.',
+    details: Object.values(resume.workAuthorization).join(' '),
     modes: [
       { mode: 'On-site', place: 'Kiel' },
       { mode: 'Hybrid', place: 'Hamburg' },

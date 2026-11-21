@@ -55,7 +55,7 @@ const nav = () => html`
 
       <div class="nav__actions">
         <a class="btn btn--accent btn--sm btn--desktop" href="/cv/">
-          View CV options
+          View CV
         </a>
         <button
           class="nav__toggle"
@@ -83,7 +83,7 @@ const nav = () => html`
       </nav>
       <div class="nav__panel-actions">
         <a class="btn btn--accent" href="/cv/">
-          View CV options
+          View CV
         </a>
         <a class="btn btn--ghost" href="${contact.email.href}">Email me</a>
       </div>
@@ -125,7 +125,7 @@ const hero = () => html`
           <div class="hero__cta">
             <a class="btn" href="#experience">${icons.arrowDown} View experience</a>
             <a class="btn btn--ghost" href="/cv/">
-              View CV options
+              View CV
             </a>
             <a class="btn btn--ghost" href="${contact.github.href}" target="_blank" rel="noopener">
               ${icons.arrowUpRight} GitHub
@@ -560,7 +560,7 @@ const contactSection = () => {
         <div class="contact__cta" data-reveal>
           <a class="btn" href="${contact.email.href}">${icons.arrowUpRight} Email me</a>
           <a class="btn btn--ghost" href="/cv/">
-            View CV options
+            View CV
           </a>
         </div>
       </div>
