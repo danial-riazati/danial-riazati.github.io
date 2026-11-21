@@ -87,7 +87,7 @@ async function verify(variant) {
     ['MSc at CAU', has('MSc Computer Science') && has('Christian-Albrechts')],
     ['BSc grade 17.27 / 20', has('GPA 17.27 / 20')],
     ['BSc dates', has('Sep 2019') && has('Aug 2024')],
-    ['Eyvan role and dates', has('Eyvan Group') && has('Apr 2024') && has('Nov 2025')],
+    ['Eyvan role and dates', has('Eyvan Group') && has('Apr 2024') && has('Nov 2026')],
     ['Hasin role', has('Hasin Technology')],
     ['InfraFund role', has('InfraFund')],
     ['npm package name', has('@avan-persian/react')],
