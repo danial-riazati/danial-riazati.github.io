@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { layout, personJsonLd } from './templates/layout.mjs';
 import { homeBody } from './templates/home.mjs';
 import { cvPage } from './templates/cv.mjs';
-import { site, person, contact, cvVariants } from './data/profile.mjs';
+import { site, person, contact, cvVariants, publicResume } from './data/profile.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = (...segments) => path.join(root, ...segments);
@@ -67,7 +67,7 @@ async function buildPages() {
           about: { '@id': `${site.url}/#person` },
           mainEntity: { '@id': `${site.url}/#person` },
         },
-        body: cvPage(variant).toString(),
+        body: cvPage(variant, publicResume).toString(),
       }),
     );
   }
@@ -126,7 +126,7 @@ Sitemap: ${site.url}/sitemap.xml
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="8" fill="#14151a"/>
   <path d="M14 17h13.4c9.9 0 16.3 5.8 16.3 15s-6.4 15-16.3 15H14zm9.1 7.6v14.8h4c5 0 8.2-2.8 8.2-7.4s-3.2-7.4-8.2-7.4z" fill="#fbfaf8"/>
-  <rect x="44" y="40" width="7" height="7" fill="#bf3b12"/>
+  <rect x="44" y="40" width="7" height="7" fill="#2d5b4b"/>
 </svg>
 `,
   );
@@ -139,7 +139,7 @@ Sitemap: ${site.url}/sitemap.xml
       'VERSION:3.0',
       `N:${person.familyName};${person.givenName};;;`,
       `FN:${person.name}`,
-      'TITLE:Software Engineer',
+      `TITLE:${person.headline}`,
       `TEL;TYPE=CELL:${contact.phone.display.replace(/\s/g, '')}`,
       `EMAIL;TYPE=INTERNET:${contact.email.display}`,
       `ADR;TYPE=HOME:;;;${person.location.city};${person.location.region};;Germany`,

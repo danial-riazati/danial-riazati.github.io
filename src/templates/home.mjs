@@ -1,600 +1,108 @@
-import { resume } from '../data/resume.mjs';
-import { html, each, raw, pad, icons, img } from '../lib/html.mjs';
-import {
-  person,
-  contact,
-  experience,
-  projects,
-  skills,
-  education,
-  certifications,
-  languages,
-  facts,
-  sections,
-} from '../data/profile.mjs';
+import { html, each, img } from '../lib/html.mjs';
+import { person, contact, experience, education, languages, publicResume } from '../data/profile.mjs';
 
-const sectionIndex = (id) => pad(sections.findIndex((s) => s.id === id) + 1);
+const keywordGroups = groups => html`<dl class="expertise-list">
+  ${each(groups, ([title, items]) => html`<div><dt>${title}</dt><dd>${items.join(' · ')}</dd></div>`)}
+</dl>`;
 
-const sectionHead = ({ id, title, lede }) => html`
-  <header class="section-head" data-reveal>
-    <p class="eyebrow">
-      <span class="eyebrow__index">${sectionIndex(id)}</span>
-      <span>${sections.find((s) => s.id === id)?.label ?? title}</span>
-    </p>
-    <h2 class="section-title">${title}</h2>
-    ${lede ? html`<p class="section-lede">${lede}</p>` : ''}
-  </header>
-`;
-
-const tagList = (items) =>
-  items.length
-    ? html`<ul class="tags">
-        ${each(items, (tech) => html`<li class="tag">${tech}</li>`)}
-      </ul>`
-    : '';
-
-/* -------------------------------------------------------------------------- */
-
-const nav = () => html`
-  <header class="nav" id="nav" data-stuck="false">
-    <div class="shell nav__inner">
-      <a class="nav__brand" href="#top" aria-label="Danial Riazati — back to top">
-        <span class="nav__brand-mark" aria-hidden="true">DR</span>
-        <span>
-          Danial Riazati
-          <span class="nav__brand-role">Software Engineer</span>
-        </span>
-      </a>
-
-      <nav class="nav__links" aria-label="Sections">
-        ${each(
-          sections,
-          (s) => html`<a class="nav__link" href="#${s.id}" data-nav-link="${s.id}">${s.label}</a>`,
-        )}
-      </nav>
-
-      <div class="nav__actions">
-        <a class="btn btn--accent btn--sm btn--desktop" href="/cv/">
-          View CV
-        </a>
-        <button
-          class="nav__toggle"
-          type="button"
-          id="nav-toggle"
-          aria-expanded="false"
-          aria-controls="nav-panel"
-        >
-          <span class="nav__toggle-bars" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span id="nav-toggle-text">Menu</span>
-        </button>
-      </div>
+const roleEntry = (id, expanded = false) => {
+  const role = experience.find(item => item.id === id);
+  const details = publicResume.roles[id];
+  return html`<details class="experience-entry" ${expanded ? 'open' : ''}>
+    <summary>
+      <span><b>${role.company}${role.product ? ` / ${role.product}` : ''}</b><span class="role-name">${role.role}</span></span>
+      <span class="role-date">${role.period}<span class="expand-mark" aria-hidden="true">+</span></span>
+    </summary>
+    <div class="experience-content">
+      <p class="role-meta">${role.scope} · ${role.location}</p>
+      <p class="role-context">${details.context}</p>
+      ${details.highlights ? html`<ul class="highlights">${each(details.highlights, text => html`<li>${text}</li>`)}</ul>` : ''}
+      ${keywordGroups(details.groups)}
     </div>
-
-    <div class="nav__panel" id="nav-panel" data-open="false">
-      <nav class="nav__panel-links" aria-label="Sections">
-        ${each(
-          sections,
-          (s, i) => html`
-            <a class="nav__panel-link" href="#${s.id}">
-              <span>${pad(i + 1)}</span>${s.label}
-            </a>
-          `,
-        )}
-      </nav>
-      <div class="nav__panel-actions">
-        <a class="btn btn--accent" href="/cv/">
-          View CV
-        </a>
-        <a class="btn btn--ghost" href="${contact.email.href}">Email me</a>
-      </div>
-      <div class="nav__panel-meta">
-        <span>${person.location.label}</span>
-        <span>${contact.phone.display}</span>
-      </div>
-    </div>
-  </header>
-`;
-
-/* -------------------------------------------------------------------------- */
-
-const hero = () => html`
-  <section class="section section--flush hero" id="top" aria-labelledby="hero-name">
-    <div class="shell">
-      <div class="hero__top" data-reveal>
-        <p class="hero__status">
-          <span class="status-dot" aria-hidden="true"></span>
-          ${person.availability.statement}
-        </p>
-        <p class="hero__availability">
-          ${each(person.availability.modes, (m) => html`<span>${m.mode} <b>${m.place}</b></span>`)}
-        </p>
-      </div>
-
-      <div class="hero__masthead" data-reveal>
-        <h1 class="hero__name" id="hero-name"><span>Danial</span> <em>Riazati</em></h1>
-      </div>
-
-      <p class="hero__roles" data-reveal>
-        <b>${person.headline}</b>
-      </p>
-
-      <div class="hero__grid">
-        <div class="hero__lede" data-reveal>
-          <p class="hero__intro">${person.intro}</p>
-
-          <div class="hero__cta">
-            <a class="btn" href="#experience">${icons.arrowDown} View experience</a>
-            <a class="btn btn--ghost" href="/cv/">
-              View CV
-            </a>
-            <a class="btn btn--ghost" href="${contact.github.href}" target="_blank" rel="noopener">
-              ${icons.arrowUpRight} GitHub
-            </a>
-          </div>
-        </div>
-
-        <figure class="hero__portrait" data-reveal>
-          ${img(person.photo, { priority: true })}
-          <figcaption>
-            <span>${person.location.label}</span>
-            <span aria-hidden="true">54.32°N</span>
-          </figcaption>
-        </figure>
-      </div>
-
-      <dl class="hero__facts" data-reveal>
-        ${each(
-          facts,
-          (fact) => html`
-            <div class="hero__fact">
-              <dt class="visually-hidden">${fact.label}</dt>
-              <dd>
-                <b>${fact.value}</b>
-                <span>${fact.label}</span>
-              </dd>
-            </div>
-          `,
-        )}
-      </dl>
-    </div>
-  </section>
-`;
-
-/* -------------------------------------------------------------------------- */
-
-const about = () => html`
-  <section class="section" id="about" aria-labelledby="about-title">
-    <div class="shell">
-      ${sectionHead({ id: 'about', title: 'Software, data and connected systems.' })}
-      <div class="about">
-        <div class="about__body" data-reveal>
-          <p>${person.intro}</p>
-          <p>
-            My experience spans hotel ERP and booking systems at EyvanTrip, frontend engineering
-            at InfraFund, backend engineering and Piki Smart Cart at Hasin Technology, and
-            Python research projects at Shahid Beheshti University.
-          </p>
-          <p>
-            I also develop Avan, an open-source React component library, and Class Negar,
-            an IoT classroom system built as my BSc thesis.
-          </p>
-          <p>
-            <strong>Work Authorization &amp; Availability</strong><br>
-            ${person.availability.details}
-          </p>
-        </div>
-
-        <dl class="about__aside" data-reveal>
-          <div class="about__row">
-            <dt>Based in</dt>
-            <dd>${person.location.city}, ${person.location.region}, ${person.location.country}</dd>
-          </div>
-          <div class="about__row">
-            <dt>Experience</dt>
-            <dd>${person.yearsOfExperience} years, production software</dd>
-          </div>
-          <div class="about__row">
-            <dt>Focus</dt>
-            <dd>Software engineering · data analytics · AI</dd>
-          </div>
-          <div class="about__row">
-            <dt>Studying</dt>
-            <dd>MSc Computer Science, Kiel University (CAU)</dd>
-          </div>
-          <div class="about__row">
-            <dt>Languages</dt>
-            <dd>${languages.map((l) => `${l.name} (${l.level.split(' (')[0]})`).join(' · ')}</dd>
-          </div>
-          <div class="about__row">
-            <dt>Open to</dt>
-            <dd>
-              ${each(
-                person.availability.modes,
-                (m, i) => html`${i > 0 ? ' · ' : ''}${m.mode} ${m.place}`,
-              )}
-            </dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  </section>
-`;
-
-/* -------------------------------------------------------------------------- */
-
-const experienceSection = () => html`
-  <section class="section" id="experience" aria-labelledby="experience-title">
-    <div class="shell">
-      ${sectionHead({
-        id: 'experience',
-        title: 'Five years of building and operating software.',
-        lede: 'Open a role to see its technologies and engineering focus.',
-      })}
-
-      <div class="roles">
-        ${each(
-          experience,
-          (role, i) => html`
-            <article
-              class="role ${role.featured ? 'role--featured' : ''}"
-              data-reveal
-              itemscope
-              itemtype="https://schema.org/OrganizationRole"
-            >
-              <h3>
-                <button
-                  class="role__head"
-                  type="button"
-                  aria-expanded="${i === 0 ? 'true' : 'false'}"
-                  aria-controls="role-body-${role.id}"
-                  data-role-toggle
-                >
-                  <span class="role__period">
-                    ${role.period}
-                    ${role.end === 'Present' ? html`<b>Current</b>` : ''}
-                  </span>
-                  <span>
-                    <span class="role__title">${role.studentRole ?? role.role}</span>
-                    <span class="role__company">
-                      <b>${role.company}</b>${role.product ? ` · ${role.product}` : ''} —
-                      ${role.location} · ${role.scope}
-                    </span>
-                  </span>
-                  <span class="role__toggle" aria-hidden="true">${icons.plus}</span>
-                </button>
-              </h3>
-
-              <div class="role__body" id="role-body-${role.id}" data-open="${i === 0 ? 'true' : 'false'}">
-                <div class="role__body-inner">
-                  <div class="role__content">
-                    <div>
-                      <p class="role__summary">${resume.roles[role.id].context}</p>
-                      <div class="role__keywords">
-                        ${each(resume.roles[role.id].groups, ([label, items]) => html`
-                          <p><b>${label}</b> — ${items.join(' · ')}</p>
-                        `)}
-                      </div>
-                      ${role.links
-                        ? html`<div class="project__links">
-                            ${each(
-                              role.links,
-                              (link) => html`
-                                <a class="project__link" href="${link.href}" target="_blank" rel="noopener">
-                                  ${link.label} ${icons.arrowUpRight}
-                                </a>
-                              `,
-                            )}
-                          </div>`
-                        : ''}
-
-                    </div>
-                    ${role.image
-                      ? html`<figure class="role__media frame">${img(role.image)}</figure>`
-                      : ''}
-                  </div>
-                </div>
-              </div>
-            </article>
-          `,
-        )}
-      </div>
-    </div>
-  </section>
-`;
-
-/* -------------------------------------------------------------------------- */
-
-const projectStory = (project) => html`
-  <dl class="project__story">
-    <div><dt>Problem</dt><dd>${project.problem}</dd></div>
-    <div><dt>Role</dt><dd>${project.role}</dd></div>
-    <div><dt>Engineering</dt><dd>${project.engineering}</dd></div>
-    <div><dt>Outcome</dt><dd>${project.outcome}</dd></div>
-  </dl>
-`;
-
-const projectsSection = () => {
-  const featured = projects.filter((p) => p.featured);
-  const rest = projects.filter((p) => !p.featured);
-
-  return html`
-    <section class="section" id="projects" aria-labelledby="projects-title">
-      <div class="shell">
-        ${sectionHead({
-          id: 'projects',
-          title: 'Selected work.',
-          lede: 'Four projects that show the range: a production platform, a published open-source library, an IoT thesis, and a hardware product.',
-        })}
-
-        <div class="projects">
-          ${each(
-            featured,
-            (project, i) => html`
-              <article class="project" data-reveal>
-                <div>
-                  <p class="project__index">
-                    <span>${pad(i + 1)}</span>${project.kind} · ${project.year}
-                  </p>
-                  <h3 class="project__name">${project.name}</h3>
-                  <p class="project__tagline">${project.tagline}</p>
-                  ${projectStory(project)}
-                  ${project.packages
-                    ? html`<ul class="project__packages">
-                        ${each(
-                          project.packages,
-                          (pkg) => html`<li><code>${pkg.name}</code><span>${pkg.role}</span></li>`,
-                        )}
-                      </ul>`
-                    : ''}
-                  <div class="project__links">
-                    ${project.url
-                      ? html`<a class="project__link" href="${project.url}" target="_blank" rel="noopener">
-                          ${project.repo ? 'Live demo' : 'Visit site'} ${icons.arrowUpRight}
-                        </a>`
-                      : ''}
-                    ${project.repo
-                      ? html`<a class="project__link" href="${project.repo}" target="_blank" rel="noopener">
-                          Source ${icons.arrowUpRight}
-                        </a>`
-                      : ''}
-                    ${project.npmUrl
-                      ? html`<a class="project__link" href="${project.npmUrl}" target="_blank" rel="noopener">
-                          npm ${icons.arrowUpRight}
-                        </a>`
-                      : ''}
-                  </div>
-                  ${tagList(project.tech)}
-                </div>
-
-                ${project.image
-                  ? html`<div class="project__media">
-                      <figure class="frame">${img(project.image)}</figure>
-                      ${project.gallery
-                        ? html`<div class="project__gallery">
-                            ${each(
-                              project.gallery,
-                              (shot) => html`<figure class="frame frame--tall">${img(shot)}</figure>`,
-                            )}
-                          </div>`
-                        : ''}
-                      <p class="frame__caption">${project.name} — ${project.year}</p>
-                    </div>`
-                  : ''}
-              </article>
-            `,
-          )}
-        </div>
-
-        <div class="more-projects">
-          ${each(
-            rest,
-            (project) => html`
-              <a class="mini" href="${project.url}" target="_blank" rel="noopener">
-                <span class="mini__kind">${project.kind} · ${project.year}</span>
-                <span class="mini__name">${project.name} ${icons.arrowUpRight}</span>
-                <span class="mini__text">${project.tagline}</span>
-              </a>
-            `,
-          )}
-          <a class="mini" href="${contact.github.href}" target="_blank" rel="noopener">
-            <span class="mini__kind">Open source</span>
-            <span class="mini__name">More on GitHub ${icons.arrowUpRight}</span>
-            <span class="mini__text">Libraries, experiments and coursework at ${contact.github.display}.</span>
-          </a>
-        </div>
-      </div>
-    </section>
-  `;
+  </details>`;
 };
 
-/* -------------------------------------------------------------------------- */
-
-const skillsSection = () => html`
-  <section class="section" id="skills" aria-labelledby="skills-title">
-    <div class="shell">
-      ${sectionHead({
-        id: 'skills',
-        title: 'Technical expertise.',
-        lede: 'Software engineering, data analysis, AI and connected systems.',
-      })}
-
-      <div class="skills">
-        ${each(
-          skills,
-          (group, i) => html`
-            <section class="skill-group" data-reveal>
-              <h3 class="skill-group__name"><i>${pad(i + 1)}</i> ${group.group}</h3>
-              <ul class="skill-group__items">
-                ${each(group.items, (item) => html`<li>${item}</li>`)}
-              </ul>
-            </section>
-          `,
-        )}
-      </div>
-    </div>
-  </section>
-`;
-
-/* -------------------------------------------------------------------------- */
-
-const educationSection = () => html`
-  <section class="section" id="education" aria-labelledby="education-title">
-    <div class="shell">
-      ${sectionHead({ id: 'education', title: 'Education & certifications.' })}
-
-      <div class="split">
-        <div data-reveal>
-          <div class="edu">
-            ${each(
-              education,
-              (item) => html`
-                <article class="edu__item">
-                  <div class="edu__period">
-                    ${item.period}
-                    ${item.current
-                      ? html`<span class="edu__current">
-                          <span class="status-dot" aria-hidden="true"></span>In progress
-                        </span>`
-                      : ''}
-                  </div>
-                  <div>
-                    <h3 class="edu__degree">${item.degree}</h3>
-                    <p class="edu__school">${item.institution} — ${item.location}</p>
-                    ${item.grade ? html`<p class="edu__grade">${item.grade}</p>` : ''}
-                    ${item.notes
-                      ? html`<ul class="edu__notes">
-                          ${each(item.notes, (note) => html`<li>${note}</li>`)}
-                        </ul>`
-                      : ''}
-                  </div>
-                </article>
-              `,
-            )}
-          </div>
-        </div>
-
-        <div data-reveal>
-          <h3 class="eyebrow" style="margin-bottom:var(--space-s)">
-            <span class="eyebrow__index">·</span><span>Certifications &amp; tests</span>
-          </h3>
-          <ul class="certs">
-            ${each(
-              certifications,
-              (cert) => html`
-                <li>
-                  <b>${cert.name}</b>
-                  <span>
-                    ${cert.issuer} · ${cert.date}${cert.detail ? ` · ${cert.detail}` : ''}
-                  </span>
-                  ${cert.id ? html`<code>ID ${cert.id}</code>` : ''}
-                </li>
-              `,
-            )}
-          </ul>
-
-          <h3 class="eyebrow" style="margin:var(--space-l) 0 var(--space-s)">
-            <span class="eyebrow__index">·</span><span>Languages</span>
-          </h3>
-          <ul class="certs">
-            ${each(
-              languages,
-              (lang) => html`<li><b>${lang.name}</b><span>${lang.level}</span></li>`,
-            )}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-`;
-
-/* -------------------------------------------------------------------------- */
-
-const contactSection = () => {
-  const channels = [
-    { label: 'Email', ...contact.email, external: false },
-    { label: 'Phone', ...contact.phone, external: false },
-    { label: 'LinkedIn', ...contact.linkedin, external: true },
-    { label: 'GitHub', ...contact.github, external: true },
-  ];
-
-  return html`
-    <section class="section contact" id="contact" aria-labelledby="contact-title">
-      <div class="shell">
-        <header class="section-head" data-reveal>
-          <p class="eyebrow">
-            <span class="eyebrow__index">${sectionIndex('contact')}</span><span>Contact</span>
-          </p>
-          <h2 class="contact__title" id="contact-title">Let's build something useful.</h2>
-          <p class="contact__lede">
-            I am in Kiel and open to backend and full-stack engineering roles across Germany —
-            on-site, hybrid or remote. The fastest way to reach me is email or LinkedIn.
-          </p>
-        </header>
-
-        <div class="contact__grid" data-reveal>
-          ${each(
-            channels,
-            (channel) => html`
-              <div class="contact__item">
-                <span class="contact__label">${channel.label}</span>
-                <a
-                  class="contact__value"
-                  href="${channel.href}"
-                  ${channel.external ? raw('target="_blank" rel="noopener"') : ''}
-                >
-                  ${channel.display}${channel.external ? icons.arrowUpRight : ''}
-                </a>
-              </div>
-            `,
-          )}
-          <div class="contact__item">
-            <span class="contact__label">Location</span>
-            <span class="contact__value">${person.location.label}</span>
-          </div>
-          <div class="contact__item">
-            <span class="contact__label">Availability</span>
-            <span class="contact__value">${person.availability.modes.map((m) => `${m.mode} ${m.place}`).join(' · ')}</span>
-          </div>
-        </div>
-
-        <div class="contact__cta" data-reveal>
-          <a class="btn" href="${contact.email.href}">${icons.arrowUpRight} Email me</a>
-          <a class="btn btn--ghost" href="/cv/">
-            View CV
-          </a>
-        </div>
-      </div>
-    </section>
-  `;
-};
-
-const footer = () => html`
-  <footer class="footer">
-    <div class="shell footer__inner">
-      <p>
-        <span class="footer__name">${person.name}</span>
-        <span class="footer__meta"> · Software Engineer · ${person.location.label}</span>
-      </p>
-      <nav class="footer__links" aria-label="Elsewhere">
-        <a href="${contact.github.href}" target="_blank" rel="noopener">GitHub</a>
-        <a href="${contact.linkedin.href}" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="${contact.email.href}">Email</a>
-        <a href="/cv/">CV</a>
-      </nav>
-      <p class="footer__meta">© ${new Date().getFullYear()} ${person.name}</p>
-    </div>
-  </footer>
-`;
+const links = () => html`<div class="social-links">
+  <a href="${contact.email.href}">Email</a>
+  <a href="${contact.github.href}" target="_blank" rel="noopener">GitHub</a>
+  <a href="${contact.linkedin.href}" target="_blank" rel="noopener">LinkedIn</a>
+</div>`;
 
 export const homeBody = () => html`
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="grid-lines" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-  ${nav()}
-  <div class="page">
+  <header class="site-header">
+    <a class="wordmark" href="#top">Danial Riazati<span class="wordmark-dot" aria-hidden="true">.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#experience">Experience</a><a href="#expertise">Expertise</a><a href="#projects">Projects</a>
+      <a class="nav-cv" href="/cv/">View CV</a>
+    </nav>
+  </header>
+
+  <div class="portfolio" id="top">
+    <aside class="profile-rail" aria-label="Profile and contact">
+      <figure class="portrait">${img(person.photo, {priority:true})}</figure>
+      <p class="rail-name">${person.name}</p>
+      <p class="rail-location">${person.location.label}</p>
+      ${links()}
+      <div class="rail-section">
+        <h2>Education</h2>
+        ${each(education, school => html`<p><b>${school.degree}</b><span>${school.shortName}${school.id === 'cau' ? ' (CAU)' : ''}</span><small>${school.period}</small></p>`)}
+      </div>
+      <div class="rail-section rail-languages">
+        <h2>Languages</h2>
+        ${each(languages, language => html`<p><b>${language.name}</b><span>${language.level.split(' (')[0]}</span></p>`)}
+      </div>
+      <a class="text-link" href="/Danial_Riazati_CV.pdf" download>Download CV</a>
+    </aside>
+
     <main id="main">
-      ${hero()} ${about()} ${experienceSection()} ${projectsSection()} ${skillsSection()}
-      ${educationSection()} ${contactSection()}
+      <section class="intro" aria-labelledby="intro-title">
+        <p class="availability"><span aria-hidden="true"></span>${person.availability.statement}</p>
+        <h1 id="intro-title">Senior Software<br>Engineer.</h1>
+        <p class="specialisation">Backend architecture · .NET &amp; Python · AI systems</p>
+        <p class="intro-summary">${publicResume.summary}</p>
+        <div class="intro-actions"><a class="button" href="${contact.email.href}">Get in touch</a><a class="text-link" href="/cv/">Read my CV</a></div>
+        <details class="work-authorisation"><summary>Work authorisation &amp; availability</summary><p>${person.availability.details}</p></details>
+      </section>
+
+      <section class="mobile-background content-section" aria-label="Education and languages">
+        <div><h2>Education</h2>${each(education, school => html`<p><b>${school.degree}</b><span>${school.shortName} · ${school.period}</span></p>`)}</div>
+        <div><h2>Languages</h2>${each(languages, language => html`<p><b>${language.name}</b><span>${language.level}</span></p>`)}</div>
+      </section>
+
+      <section class="content-section" id="experience" aria-labelledby="experience-title">
+        <div class="section-heading"><h2 id="experience-title">Experience</h2><p>Architecture, delivery and technical leadership.</p></div>
+        ${roleEntry('eyvan', true)}${roleEntry('hasin', true)}
+        <div class="additional-heading">Additional experience</div>
+        ${each(['freelance','infrafund','radin','sbu-ta'], id => roleEntry(id))}
+      </section>
+
+      <section class="content-section" id="expertise" aria-labelledby="expertise-title">
+        <div class="section-heading"><h2 id="expertise-title">Technical expertise</h2></div>
+        <div class="skills-grid">${each(publicResume.skills, ([group, items]) => html`<div><h3>${group}</h3><p>${items.join(' · ')}</p></div>`)}</div>
+      </section>
+
+      <section class="content-section" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading"><h2 id="projects-title">Selected projects</h2></div>
+        <div class="project-grid">
+          <article class="project-card">
+            <a class="project-image" href="https://github.com/danial-riazati/avan-persian-date-picker" target="_blank" rel="noopener"><img src="/assets/avan-demo.webp" alt="Avan Persian Date Picker showing a two-month calendar" loading="lazy" width="640" height="400"></a>
+            <div><h3><a href="https://github.com/danial-riazati/avan-persian-date-picker" target="_blank" rel="noopener">Avan Persian Date Picker</a></h3><p>Reusable React components · TypeScript · npm · Automated testing</p></div>
+          </article>
+          <article class="project-card">
+            <div class="project-image"><img src="/assets/classnegar8.webp" alt="Class Negar Raspberry Pi classroom attendance terminal" loading="lazy" width="640" height="400"></div>
+            <div><h3>Class Negar</h3><p>BSc thesis · IoT · Raspberry Pi · Linux · REST APIs</p></div>
+          </article>
+        </div>
+        <article class="current-project"><span class="project-status">In development</span><h3>Multi-agent systems</h3><p>Agent coordination · Agentic AI</p></article>
+      </section>
+
+      <footer class="contact-section" id="contact">
+        <h2>Let’s connect.</h2>
+        <a class="email-link" href="${contact.email.href}">${contact.email.display}</a>
+        <p>Based in Kiel. Open to on-site, hybrid and remote engineering roles across Germany.</p>
+        <div class="footer-bottom"><span>© ${new Date().getFullYear()} ${person.name}</span><a href="/cv/">Curriculum vitae</a></div>
+      </footer>
     </main>
-    ${footer()}
   </div>
 `;

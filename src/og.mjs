@@ -27,14 +27,15 @@ const card = /* html */ `<!doctype html>
     width: ${SIZE.width}px; height: ${SIZE.height}px;
     display: grid; grid-template-columns: 1fr auto; align-items: end;
     gap: 64px; padding: 72px;
-    background: var(--paper); color: var(--ink);
+    background: #f9faf8; color: #18271f;
+    --accent: #2d5b4b;
     font-family: var(--sans); font-synthesis: none;
     -webkit-font-smoothing: antialiased;
   }
   .rule { height: 1px; background: var(--line); margin: 28px 0; }
   .eyebrow {
     font-family: var(--mono); font-size: 19px; font-weight: 600;
-    letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent);
+    letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent);
   }
   h1 {
     font-size: 104px; line-height: 0.9; letter-spacing: -0.045em;
@@ -47,7 +48,7 @@ const card = /* html */ `<!doctype html>
   /* The portrait is the real photograph used on the site; nothing here is
      generated or decorative stock imagery. */
   figure { position: relative; width: 300px; height: 380px; }
-  figure img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+  figure img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; border-radius: 5px; }
   figure::before, figure::after {
     content: ''; position: absolute; width: 22px; height: 22px;
   }
@@ -63,7 +64,7 @@ const card = /* html */ `<!doctype html>
 </head>
 <body>
   <div>
-    <p class="eyebrow">Software Engineer · Data Analytics · AI</p>
+    <p class="eyebrow">Backend Architecture · .NET · Python · AI</p>
     <h1>${person.name}</h1>
     <div class="rule"></div>
     <div class="meta">

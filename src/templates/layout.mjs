@@ -114,8 +114,8 @@ export function layout({
 <link rel="canonical" href="${canonical}">
 ${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">'}
 <meta name="author" content="${person.name}">
-<meta name="theme-color" content="#fbfaf8" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#131318" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f9faf8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#f9faf8" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light">
 
 <meta property="og:type" content="profile">

@@ -16,6 +16,7 @@ import { cvPage } from './templates/cv.mjs';
 import { layout } from './templates/layout.mjs';
 import { launch } from './lib/browser.mjs';
 import { cvVariants, person } from './data/profile.mjs';
+import { resume } from './data/resume.mjs';
 
 /**
  * Chrome writes page objects uncompressed, so counting them is reliable.
@@ -31,11 +32,12 @@ async function inspect(file) {
 }
 
 /**
- * @param {{ variant?: object, out?: string, pageRanges?: string }} [options]
+ * @param {{ variant?: object, content?: object, out?: string, pageRanges?: string }} [options]
  *   `pageRanges` is only used by src/pdf-preview.mjs to isolate single pages.
  */
 export async function renderCvPdf({
   variant = cvVariants.general,
+  content = resume,
   out = path.join(ROOT, variant === cvVariants.general ? variant.filename : `output/pdf/resumes/${variant.folderFilename}`),
   pageRanges = '',
 } = {}) {
@@ -56,7 +58,7 @@ export async function renderCvPdf({
         styles: ['/styles/cv.css'],
         bodyClass: 'cv-body',
         noindex: true,
-        body: cvPage(variant).toString(),
+        body: cvPage(variant, content).toString(),
       });
       await page.setContent(document, {
         waitUntil: 'networkidle0',

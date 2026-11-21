@@ -11,7 +11,7 @@ import path from 'node:path';
 
 import { ROOT, resolveFile } from './lib/server.mjs';
 import { resume, prioritise } from './data/resume.mjs';
-import { cvVariants, person, contact, experience, education, languages } from './data/profile.mjs';
+import { cvVariants, publicResume, person, contact, experience, education, languages } from './data/profile.mjs';
 
 // pdfjs-dist targets Node 22; these two are all it needs from the newer runtime
 // for text extraction.
@@ -29,6 +29,8 @@ process.getBuiltinModule ??= (name) => createRequire(import.meta.url)(name);
 const { getDocument } = await import('pdfjs-dist/legacy/build/pdf.mjs');
 
 async function verify(variant) {
+  const content = variant === cvVariants.general ? publicResume : resume;
+  const heading = variant.experienceHeading ?? "Professional Experience";
   const FILE = path.join(ROOT, variant === cvVariants.general
     ? variant.filename : `output/pdf/resumes/${variant.folderFilename}`);
 
@@ -96,7 +98,7 @@ async function verify(variant) {
         return Math.abs(width - 595.28) < 2 && Math.abs(height - 841.89) < 2;
       }),
     )).every(Boolean)],
-    ['Education and experience order', (lower.indexOf('education') < lower.indexOf('professional experience')) === Boolean(variant.educationFirst)],
+    ['Education and experience order', (lower.indexOf('education') < lower.indexOf(heading.toLowerCase())) === Boolean(variant.educationFirst)],
     ['Original engineering and teaching job titles retained', has('Software Engineer') && has('Teaching & Research Assistant')],
     ['Print controls and TOEFL score excluded', !/download pdf|skip to cv|toefl/i.test(text)],
     ...languages.map(({ name, level }) => [`Language: ${name}`, has(`${name} — ${level}`)]),
@@ -104,19 +106,19 @@ async function verify(variant) {
     ['Section headings extract as words, not spaced glyphs', !glyphSplit],
     // A lost ligature shows up as a gap mid-word: "Certified" -> "Certi ed".
     ['No words broken by lost ligatures', !brokenByLigature],
-    ['Experience heading is parseable', has('PROFESSIONAL EXPERIENCE')],
+    ['Experience heading is parseable', has(heading)],
     ['Education heading is parseable', has('EDUCATION')],
     ['Skills heading is parseable', has('TECHNICAL SKILLS')],
     ['Confirmed summary', has(variant.summary)],
-    ['Student work authorization in every variant', has(resume.workAuthorization.workingStudent)],
-    ['Both full-time residence routes in every variant', has(resume.workAuthorization.fullTime)],
-    ['Work authorization leads the Profile section', lower.indexOf('working student') < lower.indexOf(variant.summary.toLowerCase())],
+    ['Student work authorization in every variant', variant.profileNote ? has(variant.profileNote) && has('§16b') : has(content.workAuthorization.workingStudent)],
+    ['Both full-time residence routes in every variant', variant.profileNote ? has('§18g') && has('§18b') : has(content.workAuthorization.fullTime)],
+    ['Work authorization is separate from professional identity', variant.profileNote ? lower.indexOf('work authorisation') > lower.indexOf(variant.summary.toLowerCase()) : lower.indexOf('working student') < lower.indexOf(variant.summary.toLowerCase())],
     ['Removed details absent', !/2M\+|KYC|ASP.NET Core|EF Core|TOEFL/.test(text)],
     ['No null glyphs in extracted text', !text.includes('\u0000')],
     ['Specialisation uses the intended skill priority',
       text.slice(lower.indexOf('technical skills') + 'technical skills'.length).trimStart()
-        .startsWith(prioritise(resume.skills, variant.skillOrder)[0][0])],
-    ['Working student availability', !variant.educationFirst || (has('20 hours/week') && has('12 months'))],
+        .startsWith(prioritise(content.skills, variant.skillOrder)[0][0])],
+    ['Working student availability', variant !== cvVariants.werkstudent || (has('20 hours/week') && has('12 months'))],
   ];
 
   // Every role and school in the data model should appear in the document.
@@ -127,7 +129,7 @@ async function verify(variant) {
 
   /* ---- Report -------------------------------------------------------------- */
 
-  for (const role of Object.values(resume.roles)) {
+  for (const role of Object.values(content.roles)) {
     for (const [group, items] of role.groups) {
       checks.push([`Experience keywords: ${group} / ${items[0]}`, items.every(has)]);
     }

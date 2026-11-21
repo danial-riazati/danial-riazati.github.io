@@ -10,7 +10,7 @@ import {
 
 /**
  * The CV document. Deliberately more conservative than the portfolio: one
- * column, real text, no graphics, no skill bars — so that both a human and an
+ * column, real text, no skill bars — so that both a human and an
  * ATS parser read it the same way. This markup is what Puppeteer prints to
  * Danial_Riazati_CV.pdf, so the print stylesheet is the source of truth for
  * the final document.
@@ -51,20 +51,24 @@ const keywordGroups = (items) => html`
   </div>
 `;
 
-const experienceEntries = (variant, ids) => each(ids, id => {
+const experienceEntries = (variant, ids, content = resume) => each(ids, id => {
   const role = experience.find(item => item.id === id);
-  const content = resume.roles[id];
+  const details = content.roles[id];
   return html`
     <article class="cv-entry">
       <div class="cv-entry__head">
-        <h3 class="cv-entry__role">${role.studentRole ?? role.role}<span class="cv-entry__at">,</span>
+        <h3 class="cv-entry__role">${variant.showLeadership ? role.role : role.studentRole ?? role.role}<span class="cv-entry__at">,</span>
           <span class="cv-entry__org">${role.company}${role.product ? ` (${role.product})` : ''}</span>
         </h3>
         <p class="cv-entry__meta">${role.period}</p>
       </div>
       <p class="cv-entry__place">${role.scope} · ${role.location}</p>
-      <p class="cv-context">${content.context}</p>
-      ${keywordGroups(prioritise(content.groups, variant.groupOrder))}
+      <p class="cv-context">${details.context}</p>
+      ${details.responsibility ? html`<p class="cv-project__text">${details.responsibility}</p>` : ''}
+      ${details.highlights ? html`<ul style="list-style:disc; margin:4pt 0 4pt 11pt; font-size:9.5pt; line-height:1.4">
+        ${each(details.highlights, highlight => html`<li>${highlight}</li>`)}
+      </ul>` : ''}
+      ${keywordGroups(prioritise(details.groups, variant.groupOrder))}
     </article>
   `;
 });
@@ -80,8 +84,8 @@ const educationEntries = () => each(education, item => html`
   </article>
 `);
 
-const projectEntries = variant => each(
-  prioritise(resume.projects, variant.projectOrder ?? []),
+const projectEntries = (variant, content = resume) => each(
+  prioritise(content.projects, variant.projectOrder ?? []),
   ([title, year, technologies]) => html`
     <article class="cv-entry">
       <div class="cv-entry__head">
@@ -93,48 +97,60 @@ const projectEntries = variant => each(
   `,
 );
 
-export const cvDocument = variant => {
-  const remaining = experience.map(role => role.id).filter(id => !variant.firstRoles.includes(id));
+const languageEntries = compact => html`
+  <div class="cv-keywords">
+    ${compact
+      ? html`<p>${languages.map(language => `${language.name} — ${language.level}`).join(' · ')}</p>`
+      : each(languages, language => html`<p><b>${language.name}</b> — ${language.level}</p>`)}
+  </div>
+`;
+
+export const cvDocument = (variant, content = resume) => {
+  const remaining = (variant.roleIds ?? experience.map(role => role.id)).filter(id => !variant.firstRoles.includes(id));
   return html`
     <article class="cv" id="cv-document">
-      <header class="cv-header">
+      <header class="cv-header ${variant.photo ? 'cv-header--photo' : ''}">
+        <div class="cv-header__text">
         <h1 class="cv-name">${person.name}</h1>
         <p class="cv-role">${variant.headline}</p>
+        ${variant.subtitle ? html`<p class="cv-context">${variant.subtitle}</p>` : ''}
         ${contactBar()}
+        </div>
+        ${variant.photo ? html`<img class="cv-photo" src="${person.photo.src}" alt="${person.photo.alt}" width="84" height="96">` : ''}
       </header>
-      ${section('Profile', html`
+      ${section('Profile', variant.profileNote ? html`
+        <p class="cv-summary">${variant.summary}</p>
+        <p class="cv-entry__place" style="margin-top:6pt"><b>Work authorisation</b> — ${variant.profileNote}</p>
+      ` : html`
         <div class="cv-authorization">
-          <p><b>Working Student</b> — ${resume.workAuthorization.workingStudent}</p>
-          <p><b>Full-time employment</b> — ${resume.workAuthorization.fullTime}</p>
+          <p><b>Working Student</b> — ${content.workAuthorization.workingStudent}</p>
+          <p><b>Full-time employment</b> — ${content.workAuthorization.fullTime}</p>
         </div>
         <p class="cv-summary">${variant.summary}</p>
       `)}
       ${variant.educationFirst ? section('Education', educationEntries()) : ''}
-      ${section('Technical Skills', keywordGroups(prioritise(resume.skills, variant.skillOrder)))}
-      ${section('Professional Experience', experienceEntries(variant, variant.firstRoles))}
+      ${variant.languagesFirst ? section('Languages', languageEntries(variant.compactLanguages)) : ''}
+      ${section('Technical Skills', keywordGroups(prioritise(content.skills, variant.skillOrder)))}
+      ${section(variant.experienceHeading ?? 'Professional Experience', experienceEntries(variant, variant.firstRoles, content))}
       <div class="cv-continuation">
         <p class="cv-continuation__name">${person.name} · ${variant.label}</p>
-        ${section('Professional Experience - Continued', experienceEntries(variant, remaining))}
-        ${section('Selected Projects', projectEntries(variant))}
+        ${section(variant.continuationHeading ?? 'Professional Experience - Continued', experienceEntries(variant, remaining, content))}
+        ${section('Selected Projects', projectEntries(variant, content))}
         ${variant.educationFirst ? '' : section('Education', educationEntries())}
-        ${section('Languages', html`
-          <div class="cv-keywords">
-            ${each(languages, language => html`<p><b>${language.name}</b> — ${language.level}</p>`)}
-          </div>
-        `)}
+        ${variant.languagesFirst ? '' : section('Languages', languageEntries(variant.compactLanguages))}
       </div>
     </article>
   `;
 };
 
 /** Screen-only chrome around the document. Excluded from the PDF. */
-export const cvPage = (variant) => html`
+export const cvPage = (variant, content = resume) => html`
   <a class="skip-link" href="#cv-document">Skip to CV</a>
 
   <div class="cv-bar" data-print-hide>
     <div class="cv-bar__inner">
       <a class="cv-bar__back" href="/">
-        <span aria-hidden="true">←</span> ${person.name}
+        ${person.name}
       </a>
       <div class="cv-bar__actions">
         <a class="btn btn--accent btn--sm" href="/${variant.filename}" download="${variant.filename}">
@@ -147,7 +163,7 @@ export const cvPage = (variant) => html`
     </div>
   </div>
 
-  <main class="cv-stage">${cvDocument(variant)}</main>
+  <main class="cv-stage">${cvDocument(variant, content)}</main>
 
   <footer class="cv-foot" data-print-hide>
     <p>

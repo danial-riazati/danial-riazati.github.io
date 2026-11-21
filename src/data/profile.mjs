@@ -8,13 +8,16 @@
  * directly by the author. Nothing here is inferred or embellished.
  */
 
-import { resume, resumeVariants } from './resume.mjs';
+import { resumeVariants } from './resume.mjs';
+import { seniorResume, seniorVariant } from './senior-resume.mjs';
+
+export const publicResume = seniorResume;
 
 export const site = {
   url: 'https://danialriazati.ir',
-  title: 'Danial Riazati — Software Engineer · Data Analytics & AI · Kiel, Germany',
+  title: 'Danial Riazati — Senior Software Engineer · Backend & AI · Kiel, Germany',
   shortTitle: 'Danial Riazati — Software Engineer',
-  description: resumeVariants.general.description,
+  description: 'Senior software engineer focused on backend architecture, C#/.NET, Python and AI systems. Based in Kiel, open to engineering roles across Germany.',
   locale: 'en',
   ogImage: '/assets/og-image.png',
   cvPdfFilename: 'Danial_Riazati_CV.pdf',
@@ -25,7 +28,7 @@ export const person = {
   name: 'Danial Riazati',
   givenName: 'Danial',
   familyName: 'Riazati',
-  headline: resume.headline,
+  headline: publicResume.headline,
   yearsOfExperience: '5+',
   location: {
     city: 'Kiel',
@@ -38,10 +41,10 @@ export const person = {
     alt: 'Portrait photograph of Danial Riazati',
   },
   /** Hero paragraph — the 10-second pitch. */
-  intro: resume.summary,
+  intro: publicResume.summary,
   availability: {
-    statement: 'Open to working student and full-time roles',
-    details: Object.values(resume.workAuthorization).join(' '),
+    statement: 'Open to engineering roles in Germany',
+    details: seniorVariant.profileNote,
     modes: [
       { mode: 'On-site', place: 'Kiel' },
       { mode: 'Hybrid', place: 'Hamburg' },
@@ -50,7 +53,17 @@ export const person = {
   },
 };
 
-export const cvVariants = resumeVariants;
+export const cvVariants = {
+  ...resumeVariants,
+  general: {
+    ...seniorVariant,
+    path: '/cv/',
+    label: 'Curriculum Vitae',
+    filename: 'Danial_Riazati_CV.pdf',
+    folderFilename: 'Danial_Riazati_General_CV.pdf',
+    description: site.description,
+  },
+};
 
 export const contact = {
   phone: { display: '+49 163 1311415', href: 'tel:+491631311415' },
@@ -438,7 +451,7 @@ export const projects = [
   },
 ];
 
-export const skills = resume.skills.map(([group, items]) => ({ group, items }));
+export const skills = publicResume.skills.map(([group, items]) => ({ group, items }));
 
 export const education = [
   {
